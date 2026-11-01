@@ -1,4 +1,4 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  // Permite orígenes de desarrollo de Google AI Studio basados en Cloud Run
+  allowedDevOrigins: [
+    'ais-dev-ku2qur7fzbi6zmd2d7leq3-90831479999.us-east1.run.app',
+    '*.run.app'
+  ],
   // Allow access to remote image placeholder.
   images: {
     remotePatterns: [
