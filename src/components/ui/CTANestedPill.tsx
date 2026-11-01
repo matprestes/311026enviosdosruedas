@@ -54,14 +54,14 @@ export const CTANestedPill = React.forwardRef<HTMLButtonElement | HTMLAnchorElem
     ref
   ) => {
     const baseStyles =
-      'cta-nested-pill group inline-flex items-center justify-between gap-3 rounded-full font-subheading uppercase tracking-wider transition-[transform,background-color,border-color,box-shadow] duration-160 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none border';
+      'cta-nested-pill group inline-flex max-w-full items-center justify-between gap-2.5 sm:gap-3 rounded-full font-subheading uppercase tracking-wider transition-[transform,background-color,border-color,box-shadow] duration-160 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none border';
 
     const normalizedSize = size === 'lg' ? 'large' : size;
 
     const sizeStyles = {
-      compact: 'px-4 py-2 text-xs min-h-11',
-      default: 'px-5 py-2 text-sm min-h-11',
-      large: 'px-8 py-3 text-base min-h-13',
+      compact: 'px-3.5 sm:px-4 py-2 text-xs min-h-11',
+      default: 'px-4 sm:px-5 py-2 text-xs sm:text-sm min-h-11',
+      large: 'px-5 sm:px-8 py-3 text-sm sm:text-base min-h-13',
     }[normalizedSize];
 
     // Anillo de foco bimodal: amarillo sobre azul (primary, elevated) y azul sobre blanco/amarillo (blue, outline, ghost)

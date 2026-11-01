@@ -176,7 +176,7 @@ export default function HeroAnimado() {
       </div>
 
       {/* Ticker de diferenciales. Duplicado y desplazado -50% para que el bucle no se note. */}
-      <div className="relative z-10 border-t border-white/18 bg-white/6">
+      <div className="relative z-10 border-t border-white/18 bg-white/6 overflow-hidden w-full max-w-full">
         <h2 className="sr-only">Diferenciales de Envíos DosRuedas</h2>
         <ul className="sr-only">
           {diferenciales.map((d) => (

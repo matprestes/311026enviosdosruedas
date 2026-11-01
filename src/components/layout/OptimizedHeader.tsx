@@ -154,11 +154,11 @@ export default function OptimizedHeader() {
         className={`fixed top-0 left-0 right-0 z-50 w-full text-white transition-[background-color,border-color,box-shadow,padding] duration-300 ${scrolled ? 'bg-brand-blue-500/95 shadow-elevated border-b border-white/10 py-2.5 backdrop-blur-md' : 'bg-brand-blue-500 py-4 border-b border-transparent'
           }`}
       >
-        <motion.div initial={prefersReducedMotion ? false : { opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={EASE_MOUNT} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <Link href="/" id="nav-logo-opt" aria-current={pathname === '/' ? 'page' : undefined} className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 rounded-xl">
-              <div className="flex items-center gap-2.5">
-                <motion.div className="relative w-10 h-10 shrink-0" whileHover={prefersReducedMotion ? {} : { rotate: 8, scale: 1.04 }} whileTap={prefersReducedMotion ? {} : { scale: 0.97 }} transition={{ type: 'spring', duration: 0.22, bounce: 0.15 }}>
+        <motion.div initial={prefersReducedMotion ? false : { opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={EASE_MOUNT} className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 w-full max-w-full">
+          <div className="flex items-center justify-between gap-2">
+            <Link href="/" id="nav-logo-opt" aria-current={pathname === '/' ? 'page' : undefined} className="flex items-center gap-2 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 rounded-xl shrink min-w-0">
+              <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                <motion.div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0" whileHover={prefersReducedMotion ? {} : { rotate: 8, scale: 1.04 }} whileTap={prefersReducedMotion ? {} : { scale: 0.97 }} transition={{ type: 'spring', duration: 0.22, bounce: 0.15 }}>
                   <Image
                     src="/logo-envios-simplified.webp"
                     alt="Logo Envíos Dos Ruedas"
@@ -169,7 +169,7 @@ export default function OptimizedHeader() {
                     referrerPolicy="no-referrer"
                   />
                 </motion.div>
-                <span className="font-display text-2xl sm:text-3xl tracking-tight leading-none uppercase select-none flex flex-col sm:flex-row sm:gap-1 items-start sm:items-center">
+                <span className="font-display text-xl sm:text-2xl lg:text-3xl tracking-tight leading-none uppercase select-none flex flex-col sm:flex-row sm:gap-1 items-start sm:items-center truncate">
                   <span className="text-white kinetic-font-stretch">Envíos</span>
                   <span className="text-brand-yellow-500 kinetic-font-stretch">DosRuedas</span>
                 </span>

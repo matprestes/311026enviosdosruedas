@@ -59,8 +59,8 @@ export default function CotizadorUnificado() {
   return (
     <div className="space-y-10">
       {/* Input Form Card */}
-      <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm">
-        <div className="bg-white rounded-xl p-6 sm:p-8 border border-brand-blue-100/40">
+      <div className="p-1.5 sm:p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm w-full max-w-full">
+        <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 border border-brand-blue-100/40">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-brand-blue-50">
             <div>
               <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-brand-blue-500">
@@ -269,8 +269,8 @@ export default function CotizadorUnificado() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           
           {/* Card Express */}
-          <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/70 shadow-sm">
-            <div className="bg-white rounded-xl p-6 sm:p-8 h-full flex flex-col justify-between border border-brand-blue-100/40">
+          <div className="p-1.5 sm:p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/70 shadow-sm w-full max-w-full">
+            <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 h-full flex flex-col justify-between border border-brand-blue-100/40">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-xs font-bold px-3 py-1 bg-brand-blue-50 text-brand-blue-500 rounded-full uppercase">
@@ -324,18 +324,18 @@ export default function CotizadorUnificado() {
                   href={getWhatsAppUrl('EXPRESS', expressFinal)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-4 rounded-full bg-brand-blue-500 hover:bg-brand-blue-400 text-white font-subheading text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102"
+                  className="w-full py-3.5 sm:py-4 px-3 rounded-full bg-brand-blue-500 hover:bg-brand-blue-400 text-white font-subheading text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 text-center"
                 >
-                  <Phone className="w-4 h-4 text-brand-yellow-500" />
-                  CONFIRMAR EXPRESS POR WHATSAPP
+                  <Phone className="w-4 h-4 text-brand-yellow-500 shrink-0" />
+                  <span>CONFIRMAR EXPRESS POR WHATSAPP</span>
                 </a>
               </div>
             </div>
           </div>
 
           {/* Card LowCost */}
-          <div className="p-2 rounded-2xl bg-brand-blue-500 border-2 border-brand-yellow-500 shadow-md">
-            <div className="bg-white rounded-xl p-6 sm:p-8 h-full flex flex-col justify-between border border-brand-yellow-500/30">
+          <div className="p-1.5 sm:p-2 rounded-2xl bg-brand-blue-500 border-2 border-brand-yellow-500 shadow-md w-full max-w-full">
+            <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 h-full flex flex-col justify-between border border-brand-yellow-500/30">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-xs font-bold px-3 py-1 bg-brand-yellow-500 text-brand-blue-500 rounded-full uppercase">
@@ -389,10 +389,10 @@ export default function CotizadorUnificado() {
                   href={getWhatsAppUrl('LOWCOST', lowCostFinal)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-4 rounded-full bg-brand-yellow-500 hover:bg-brand-yellow-400 active:bg-brand-yellow-600 text-brand-blue-500 font-subheading text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-accent-sm transition-transform hover:scale-102"
+                  className="w-full py-3.5 sm:py-4 px-3 rounded-full bg-brand-yellow-500 hover:bg-brand-yellow-400 active:bg-brand-yellow-600 text-brand-blue-500 font-subheading text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-accent-sm transition-transform hover:scale-102 text-center"
                 >
-                  <Phone className="w-4 h-4 text-brand-blue-500" />
-                  CONFIRMAR LOWCOST POR WHATSAPP
+                  <Phone className="w-4 h-4 text-brand-blue-500 shrink-0" />
+                  <span>CONFIRMAR LOWCOST POR WHATSAPP</span>
                 </a>
               </div>
             </div>

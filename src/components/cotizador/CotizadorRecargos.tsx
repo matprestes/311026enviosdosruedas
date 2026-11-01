@@ -25,8 +25,8 @@ const RECARGOS = [
 
 export default function CotizadorRecargos() {
   return (
-    <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 mt-12">
-      <div className="bg-white rounded-xl p-6 sm:p-8">
+    <div className="p-1.5 sm:p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 mt-12 w-full max-w-full">
+      <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8">
         <div className="flex items-center gap-2 mb-6">
           <AlertCircle className="w-5 h-5 text-brand-blue-500" />
           <h3 className="font-display text-2xl uppercase tracking-tight text-brand-blue-500">

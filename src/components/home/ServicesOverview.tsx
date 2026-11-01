@@ -412,14 +412,14 @@ export default function ServicesOverview() {
             </h2>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4">
             <motion.button
               type="button"
               onClick={() => setIsAutoRotate((prev) => !prev)}
               aria-pressed={isAutoRotate}
               whileHover={reduceMotion ? undefined : { scale: 1.02 }}
               whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-              className={`min-h-11 px-5 py-2.5 rounded-full text-xs font-bold font-subheading tracking-wider border transition-colors cursor-pointer inline-flex items-center gap-2 justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 ${
+              className={`min-h-11 px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold font-subheading tracking-wider border transition-colors cursor-pointer inline-flex items-center gap-2 justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 ${
                 isAutoRotate
                   ? 'bg-brand-yellow-400 text-brand-blue-500 border-brand-yellow-400 shadow-[0_4px_16px_rgba(255,236,1,0.3)]'
                   : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
@@ -457,7 +457,7 @@ export default function ServicesOverview() {
         {/* 3D Tilted Card Carousel Container */}
         <div
           ref={carouselRef}
-          className="relative h-125 sm:h-135 flex items-center justify-center my-8 transform-3d"
+          className="relative h-125 sm:h-135 flex items-center justify-center my-8 transform-3d max-w-full overflow-visible"
         >
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -481,7 +481,7 @@ export default function ServicesOverview() {
                     setIsAutoRotate(false);
                   }
                 }}
-                className={`absolute w-72.5 sm:w-87.5 h-110 sm:h-122.5 rounded-3xl cursor-pointer select-none group text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink ${
+                className={`absolute w-[min(290px,calc(100vw-3rem))] sm:w-87.5 h-110 sm:h-122.5 rounded-3xl cursor-pointer select-none group text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink ${
                   !isCenter && reduceMotion ? 'pointer-events-none' : ''
                 }`}
                 style={{

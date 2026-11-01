@@ -71,7 +71,7 @@ export default function OptimizedFooter() {
       <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none" />
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-12 relative z-10">
 
         {/* TOP CTA BANNER — slides up from below on scroll reveal */}
         <motion.div

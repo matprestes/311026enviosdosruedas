@@ -188,7 +188,21 @@
 @keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes pulse-subtle { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
 body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  min-height: 100dvh;
   font-family: var(--font-sans);
   background-color: var(--surface-page);
   color: var(--text-body);
