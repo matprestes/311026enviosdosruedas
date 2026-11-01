@@ -1,0 +1,6 @@
+{
+  "name": "Envíos DosRuedas",
+  "description": "Mensajería en moto y logística urbana en Mar del Plata. Envíos Express en franja de 3 hs, Mercado Envíos Flex en el día y reparto LowCost.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
