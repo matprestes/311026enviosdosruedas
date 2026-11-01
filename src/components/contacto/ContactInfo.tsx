@@ -1,143 +1,296 @@
 'use client';
 
-import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, ExternalLink, Copy, Check, Shield } from 'lucide-react';
+import React from 'react';
+import Image from 'next/image';
+import { motion } from 'motion/react';
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ArrowUpRight,
+  ShieldCheck,
+  MessageSquare,
+} from 'lucide-react';
+import DoubleBezelCard from '@/components/ui/DoubleBezelCard';
+import CTANestedPill from '@/components/ui/CTANestedPill';
+
+interface ContactCard {
+  title: string;
+  description: string;
+  buttonText: string;
+  href: string;
+  icon: React.ElementType | string;
+  tag: string;
+  subtag: string;
+}
+
+const contactCards: ContactCard[] = [
+  {
+    title: 'WhatsApp Comercial',
+    description: 'Cotizaciones instantáneas, consultas operativas y seguimiento en vivo por WhatsApp.',
+    buttonText: 'Chatear por WhatsApp',
+    href: 'https://api.whatsapp.com/send/?phone=542236602699&text=Hola!%20Vengo%20desde%20la%20p%C3%A1gina%20de%20Contacto.',
+    icon: MessageSquare,
+    tag: 'RESPUESTA < 2 MIN',
+    subtag: 'MAR DEL PLATA 2026',
+  },
+  {
+    title: 'Instagram Oficial',
+    description: 'Novedades de la flota, consejos para tiendas online y fotos reales de nuestro día a día.',
+    buttonText: 'Seguir en Instagram',
+    href: 'https://instagram.com/enviosdosruedas',
+    icon: '/iconos/instagram.svg',
+    tag: '@ENVIOSDOSRUEDAS',
+    subtag: 'COMUNIDAD E-COMMERCE',
+  },
+  {
+    title: 'Facebook Oficial',
+    description: 'Avisos de servicios, información de tránsito urbano y contacto para empresas.',
+    buttonText: 'Visitar Facebook',
+    href: 'https://facebook.com/enviosdosruedas',
+    icon: '/iconos/facebook.svg',
+    tag: 'PÁGINA OFICIAL',
+    subtag: 'MAR DEL PLATA',
+  },
+];
 
 export default function ContactInfo() {
-  const [copied, setCopied] = useState(false);
-
-  const copyPhoneNumber = () => {
-    navigator.clipboard.writeText('+5492236602699');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
-    <div className="space-y-6 h-full flex flex-col justify-between">
-      {/* Bento Grid Item 1: Physical Base */}
-      <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm">
-        <div className="bg-white rounded-xl p-6 sm:p-7 border border-brand-blue-100/40">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-brand-blue-50 text-brand-blue-500 flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-brand-yellow-500 fill-brand-yellow-500" />
-              </span>
-              <span className="font-mono text-xs font-bold text-brand-blue-400 uppercase">
-                Base Operativa Fija
-              </span>
-            </div>
-            <a
-              href="https://maps.google.com/?q=Friuli+1972,+Mar+del+Plata"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-mono font-bold text-brand-blue-500 hover:text-brand-blue-400 flex items-center gap-1"
-            >
-              Abrir Mapa <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
+    <div id="contact-info" className="space-y-8">
+      {/* 3 Canales Directos */}
+      <div>
+        <div className="text-center sm:text-left mb-6">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-blue-50 text-brand-blue-500 text-xs font-subheading uppercase tracking-wider -rotate-1 border border-brand-blue-100">
+            <ShieldCheck className="w-3.5 h-3.5 text-brand-blue-500" />
+            Canales de Atención Directa
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-brand-blue-500 mt-2">
+            Elegí cómo comunicarte
+          </h2>
+        </div>
 
-          <h3 className="font-display text-2xl uppercase tracking-tight text-brand-blue-500 mb-1">
-            Friuli 1972, Mar del Plata
-          </h3>
-          <p className="font-sans text-xs sm:text-sm text-brand-blue-500/80 leading-relaxed mb-4">
-            Base física propia con depósito y recepción de paquetes. Punto de DropOFF para bonificación del 20% en tus envíos.
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {contactCards.map((card, idx) => {
+            const IconComp = card.icon;
+            const isWhatsApp = idx === 0;
 
-          <div className="p-3 rounded-lg bg-brand-blue-50/70 border border-brand-blue-100/60 flex items-center justify-between text-xs font-mono text-brand-blue-500">
-            <span>Coordenadas GPS:</span>
-            <span className="font-bold">38°00&apos;19.8&quot;S 57°32&apos;33.4&quot;W</span>
-          </div>
+            return (
+              <DoubleBezelCard key={card.title}>
+                <div className="flex flex-col justify-between h-full space-y-4 relative overflow-hidden">
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-2xs font-subheading uppercase tracking-wider text-brand-blue-500 px-2.5 py-0.5 rounded bg-brand-blue-50 border border-brand-blue-100">
+                        {card.tag}
+                      </span>
+                      <span className="text-2xs font-mono font-bold uppercase text-brand-blue-500 tabular-nums">
+                        {card.subtag}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-brand-blue-50 border border-brand-blue-100 text-brand-blue-500">
+                        {/* Renderizado con el componente optimizado de Next.js */}
+                        {typeof IconComp === 'string' ? (
+                          <Image
+                            src={IconComp}
+                            alt={card.title}
+                            width={20}
+                            height={20}
+                            className="w-5 h-5 object-contain"
+                          />
+                        ) : (
+                          <IconComp className="w-5 h-5 text-brand-blue-500" />
+                        )}
+                      </div>
+                      <h3 className="font-display text-lg uppercase tracking-tight text-brand-blue-500 truncate">
+                        {card.title}
+                      </h3>
+                    </div>
+
+                    <p className="font-sans text-xs sm:text-sm text-brand-blue-500 leading-relaxed mb-6">
+                      {card.description}
+                    </p>
+                  </div>
+
+                  <CTANestedPill
+                    href={card.href}
+                    variant={isWhatsApp ? 'primary' : 'elevated'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-10 w-full min-h-11 h-11 rounded-full font-subheading tracking-wider uppercase text-xs font-bold flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer"
+                  >
+                    <span>{card.buttonText}</span>
+                    <ArrowUpRight className="w-4 h-4 shrink-0" />
+                  </CTANestedPill>
+                </div>
+              </DoubleBezelCard>
+            );
+          })}
         </div>
       </div>
 
-      {/* Bento Grid Item 2 & 3: Phone & Schedules */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        
-        {/* Phone / WhatsApp */}
-        <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm">
-          <div className="bg-white rounded-xl p-6 border border-brand-blue-100/40 h-full flex flex-col justify-between">
+      {/* Base de Operaciones MDQ */}
+      <DoubleBezelCard variant="dark">
+        <div className="space-y-6 text-white">
+          <MapPin
+            className="absolute -bottom-10 -right-10 w-64 h-64 text-white/4 pointer-events-none"
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-white/15">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Phone className="w-4 h-4 text-brand-blue-500" />
-                <span className="font-mono text-xs font-bold text-brand-blue-400 uppercase">
-                  Teléfono & WhatsApp
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-brand-yellow-500 animate-pulse shadow-[0_0_8px_#FFEC01]" />
+                <span className="text-xs font-subheading uppercase tracking-widest text-brand-yellow-500">
+                  CENTRO DE DISTRIBUCIÓN Y BASE CENTRAL
                 </span>
               </div>
-              <p className="font-mono text-lg font-extrabold text-brand-blue-500 mb-1">
-                +54 9 223 660-2699
-              </p>
-              <p className="font-sans text-xs text-brand-blue-500/75">
-                Llamadas directas o mensajes para cotización en asfalto.
-              </p>
+              <h3 className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-white">
+                BASE DE OPERACIONES MDQ
+              </h3>
+            </div>
+            <span className="font-mono text-xs text-white font-bold px-3 py-1 rounded-full bg-white/10 border border-white/20 tabular-nums">
+              Mar del Plata
+            </span>
+          </div>
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {/* Datos directos */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/10 border border-white/20">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-brand-yellow-500 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="block text-xs font-subheading uppercase tracking-wider text-white">
+                    Centro de Distribución
+                  </span>
+                  <span className="block font-mono text-sm sm:text-base font-bold text-white mt-0.5 tabular-nums">
+                    Friuli 1972, Mar del Plata
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/10 border border-white/20">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-brand-yellow-500 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="block text-xs font-subheading uppercase tracking-wider text-white">
+                    Línea Directa y WhatsApp
+                  </span>
+                  <a
+                    href="tel:+542236602699"
+                    className="block font-mono text-sm sm:text-base font-bold text-white hover:text-brand-yellow-500 transition-colors mt-0.5 tabular-nums"
+                  >
+                    +54 223 660-2699
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/10 border border-white/20">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-brand-yellow-500 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="block text-xs font-subheading uppercase tracking-wider text-white">
+                    Atención Comercial
+                  </span>
+                  <a
+                    href="mailto:matiascejas@enviosdosruedas.com"
+                    className="block font-mono text-sm sm:text-base font-bold text-white hover:text-brand-yellow-500 transition-colors mt-0.5 break-all tabular-nums"
+                  >
+                    matiascejas@enviosdosruedas.com
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-brand-blue-50 flex items-center gap-2">
-              <button
-                type="button"
-                onClick={copyPhoneNumber}
-                className="flex-1 py-2 px-3 rounded-lg border border-brand-blue-200 text-xs font-mono font-bold text-brand-blue-500 hover:bg-brand-blue-50 transition-colors flex items-center justify-center gap-1.5"
+            {/* Horarios de Despacho */}
+            <div className="flex flex-col justify-between p-6 rounded-xl bg-white/10 border border-white/20">
+              <div>
+                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/15">
+                  <Clock className="w-5 h-5 text-brand-yellow-500" />
+                  <h4 className="font-display text-lg uppercase tracking-tight text-white">
+                    Horarios de Despacho (Base Central)
+                  </h4>
+                </div>
+
+                <div className="space-y-4 font-sans text-sm">
+                  <div className="flex items-center justify-between py-2 border-b border-white/10">
+                    <span className="text-white font-mono tabular-nums">Lunes a Viernes: 09:00 - 18:00 hs</span>
+                    <span className="px-2.5 py-0.5 text-2xs font-mono uppercase font-bold text-brand-blue-500 bg-brand-yellow-500 rounded-full shadow-xs tabular-nums">
+                      Activo
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-white/10">
+                    <span className="text-white font-mono tabular-nums">Sábados: 10:00 - 15:00 hs</span>
+                    <span className="px-2.5 py-0.5 text-2xs font-mono uppercase font-bold text-brand-blue-500 bg-brand-yellow-500 rounded-full shadow-xs tabular-nums">
+                      Activo
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-white/15 text-xs text-white flex items-center justify-between font-mono">
+                <span>Atención presencial y retiro de cargas</span>
+                <span className="text-white font-bold tabular-nums">Friuli 1972</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Mapa Embebido */}
+          <div className="relative z-10 pt-6 border-t border-white/15">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+              <div>
+                <span className="text-xs font-subheading uppercase tracking-wider text-brand-yellow-500 block">
+                  UBICACIÓN EXACTA · GOOGLE MAPS
+                </span>
+                <h4 className="font-display text-xl uppercase tracking-tight text-white mt-0.5">
+                  BASE OPERATIVA EN MAR DEL PLATA
+                </h4>
+              </div>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Friuli+1972,+Mar+del+Plata,+Buenos+Aires"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-yellow-500/10 hover:bg-brand-yellow-500/20 border border-brand-yellow-500/40 text-brand-yellow-500 text-xs font-subheading font-bold uppercase tracking-wider transition-all"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
-                {copied ? 'Copiado!' : 'Copiar número'}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Schedules */}
-        <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm">
-          <div className="bg-white rounded-xl p-6 border border-brand-blue-100/40 h-full flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-4 h-4 text-brand-blue-500" />
-                <span className="font-mono text-xs font-bold text-brand-blue-400 uppercase">
-                  Horarios de Atención
-                </span>
-              </div>
-              <p className="font-sans text-xs font-bold text-brand-blue-500 mb-1">
-                Lunes a Viernes: 09:00 a 18:00 hs
-              </p>
-              <p className="font-sans text-xs font-bold text-brand-blue-500 mb-2">
-                Sábados: 10:00 a 15:00 hs
-              </p>
-              <p className="font-sans text-[11px] text-brand-blue-500/75">
-                Corte LowCost: 13:00 hs · Corte Express: 15:00 hs
-              </p>
-            </div>
-
-            <div className="pt-4 mt-4 border-t border-brand-blue-50">
-              <span className="inline-flex items-center gap-1 font-mono text-[11px] text-brand-blue-400 font-bold">
-                <Shield className="w-3.5 h-3.5" /> Flota Asegurada
-              </span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Bento Grid Item 4: Email & Fiscal Notice */}
-      <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm">
-        <div className="bg-white rounded-xl p-5 border border-brand-blue-100/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-blue-50 text-brand-blue-500 flex items-center justify-center shrink-0">
-              <Mail className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="font-mono text-xs text-brand-blue-400 uppercase font-bold block">
-                Correo Institucional
-              </span>
-              <a href="mailto:matiascejas@enviosdosruedas.com" className="font-sans text-sm font-bold text-brand-blue-500 hover:underline">
-                matiascejas@enviosdosruedas.com
+                <span>Abrir en Google Maps</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
-          </div>
 
-          <div className="text-right text-xs font-sans text-brand-blue-500/80">
-            <span className="font-bold text-brand-blue-500 block">Régimen Monotributo</span>
-            <span>No emitimos Factura A.</span>
+            <div className="w-full h-64 sm:h-72 rounded-xl overflow-hidden border border-white/20 shadow-md relative bg-brand-blue-500">
+              {/* Skeleton visual placeholder mientras carga el iframe o ante conexión reducida */}
+              <div
+                className="absolute inset-0 flex items-center justify-center p-4 text-center z-0 bg-brand-blue-500"
+                aria-hidden="true"
+              >
+                <div className="space-y-2 opacity-60">
+                  <MapPin className="w-8 h-8 text-brand-yellow-500 mx-auto animate-bounce" />
+                  <p className="text-xs font-mono text-white">Cargando mapa de Google Maps...</p>
+                </div>
+              </div>
+
+              <iframe
+                title="Mapa de ubicación Friuli 1972, Mar del Plata - Envíos DosRuedas"
+                src={
+                  process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+                    ? `https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=Friuli+1972,+Mar+del+Plata,+Buenos+Aires&zoom=15&language=es&region=ar`
+                    : `https://maps.google.com/maps?q=Friuli+1972,+Mar+del+Plata,+Buenos+Aires&t=&z=15&ie=UTF8&iwloc=&output=embed`
+                }
+                className="w-full h-full border-0 relative z-10"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                aria-label="Mapa interactivo con la ubicación de la base en Friuli 1972, Mar del Plata"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </DoubleBezelCard>
     </div>
   );
 }

@@ -64,11 +64,11 @@ const jsonLdSchema = {
 
 export default function ContactoPage() {
   return (
-    <main className="min-h-dvh bg-white text-brand-blue-500 relative overflow-hidden font-sans pb-16">
+    <div className="min-h-dvh bg-slate-50/50 text-brand-blue-500 relative overflow-hidden font-sans pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }} />
       <ContactHero />
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 space-y-12 bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10 space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           <div className="lg:col-span-5 h-full">
             <ContactForm />
           </div>
@@ -77,7 +77,7 @@ export default function ContactoPage() {
           </div>
         </div>
         <ConversionBanner />
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
