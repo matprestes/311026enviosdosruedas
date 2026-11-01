@@ -155,7 +155,9 @@ export const LogosCarousel: React.FC<LogosCarouselProps> = ({
                   alt={item.alt || item.name}
                   width={120}
                   height={32}
+                  loading="lazy"
                   className="object-contain max-h-8 w-auto"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             ) : (

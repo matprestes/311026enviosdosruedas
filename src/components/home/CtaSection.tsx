@@ -28,9 +28,10 @@ export default function CtaSection() {
             <Image
               src="/elementos/escribinos_transparent.webp"
               alt="Escribinos por WhatsApp Envíos DosRuedas"
-              fill
-              sizes="48px"
-              className="object-contain"
+              width={48}
+              height={48}
+              loading="lazy"
+              className="w-12 h-12 object-contain"
               referrerPolicy="no-referrer"
             />
           </div>

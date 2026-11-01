@@ -210,7 +210,9 @@ export default function LeafletRouteMap({
               alt="Logo DosRuedas"
               width={20}
               height={20}
+              loading="lazy"
               className="object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <div className="flex flex-col leading-none">

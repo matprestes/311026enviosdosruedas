@@ -106,6 +106,8 @@ export default function FaqsPage() {
                   alt="Dudas o consultas Envíos DosRuedas"
                   fill
                   sizes="64px"
+                  loading="lazy"
+                  decoding="async"
                   className="object-contain"
                   referrerPolicy="no-referrer"
                 />

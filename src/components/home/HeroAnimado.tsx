@@ -150,6 +150,7 @@ export default function HeroAnimado() {
                 loading="eager"
                 sizes="(min-width: 1024px) 460px, 92vw"
                 className="relative z-2 h-auto w-full drop-shadow-[0_24px_40px_rgba(9,80,246,0.25)]"
+                referrerPolicy="no-referrer"
               />
 
               {fichas.map((ficha) => (

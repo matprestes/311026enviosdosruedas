@@ -224,8 +224,10 @@ export default function ContactHero() {
                     alt="Teléfono y sobre con el mensaje Escribinos hoy, de Envíos DosRuedas en Mar del Plata"
                     fill
                     priority
+                    fetchPriority="high"
                     sizes="(min-width: 1024px) 420px, 90vw"
                     className="object-cover"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
 

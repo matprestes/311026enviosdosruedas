@@ -24,6 +24,8 @@ export default function EnviosExpressPage() {
                 alt="Ícono Servicio Express Envíos DosRuedas"
                 fill
                 sizes="40px"
+                priority
+                fetchPriority="high"
                 className="object-contain"
                 referrerPolicy="no-referrer"
               />

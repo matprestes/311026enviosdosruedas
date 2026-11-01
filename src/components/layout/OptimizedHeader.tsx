@@ -166,6 +166,7 @@ export default function OptimizedHeader() {
                     sizes="40px"
                     className="object-contain"
                     priority
+                    referrerPolicy="no-referrer"
                   />
                 </motion.div>
                 <span className="font-display text-2xl sm:text-3xl tracking-tight leading-none uppercase select-none flex flex-col sm:flex-row sm:gap-1 items-start sm:items-center">

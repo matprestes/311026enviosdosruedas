@@ -58,6 +58,8 @@ export default function NuestrasRedesPage() {
                 alt="Seguinos en redes oficiales Envíos DosRuedas"
                 fill
                 sizes="48px"
+                priority
+                fetchPriority="high"
                 className="object-contain"
                 referrerPolicy="no-referrer"
               />

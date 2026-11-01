@@ -9,9 +9,11 @@ export default function CotizadorHero() {
             <Image
               src="/elementos/planifica_transparent.webp"
               alt="Planificá tu recorrido en moto Mar del Plata"
-              fill
-              sizes="48px"
-              className="object-contain"
+              width={48}
+              height={48}
+              priority
+              fetchPriority="high"
+              className="w-12 h-12 object-contain"
               referrerPolicy="no-referrer"
             />
           </div>

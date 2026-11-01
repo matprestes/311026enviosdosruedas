@@ -91,8 +91,10 @@ export default function ContactChannels() {
                           alt=""
                           width={20}
                           height={20}
+                          loading="lazy"
                           className="w-5 h-5 object-contain"
                           aria-hidden="true"
+                          referrerPolicy="no-referrer"
                         />
                       ) : (
                         <IconComp className="w-5 h-5 text-brand-blue-500" aria-hidden="true" />

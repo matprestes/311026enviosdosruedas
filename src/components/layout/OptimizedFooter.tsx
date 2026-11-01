@@ -141,7 +141,9 @@ export default function OptimizedFooter() {
                   alt="Logo Envíos DosRuedas"
                   width={32}
                   height={32}
+                  loading="lazy"
                   className="object-contain"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="flex flex-col leading-none">
