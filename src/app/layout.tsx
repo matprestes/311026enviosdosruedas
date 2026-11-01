@@ -12,7 +12,8 @@ const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  preload: false,
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 const anton = Anton({
@@ -21,6 +22,7 @@ const anton = Anton({
   variable: '--font-display',
   display: 'swap',
   preload: true,
+  fallback: ['Impact', 'Haettenschweiler', 'Arial Black', 'sans-serif'],
 });
 
 const bebasNeue = Bebas_Neue({
@@ -29,13 +31,15 @@ const bebasNeue = Bebas_Neue({
   variable: '--font-subheading',
   display: 'swap',
   preload: true,
+  fallback: ['Impact', 'Arial Narrow', 'sans-serif'],
 });
 
 const geistMono = Geist_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   display: 'swap',
-  preload: true,
+  preload: false,
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
 });
 
 const baseUrl = 'https://www.enviosdosruedas.com';
@@ -183,9 +187,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://analytics.ahrefs.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
         <link rel="dns-prefetch" href="https://api.whatsapp.com" />
+        <link rel="dns-prefetch" href="https://web.whatsapp.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -274,8 +279,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Script
             src="https://analytics.ahrefs.com/analytics.js"
             data-key={AHREFS_ANALYTICS_KEY}
-            strategy="afterInteractive"
-            async
+            strategy="lazyOnload"
           />
         )}
       </head>
