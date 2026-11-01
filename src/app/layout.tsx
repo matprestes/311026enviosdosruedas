@@ -111,30 +111,72 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                function makeWritable(obj, prop) {
-                  try {
-                    var current = obj[prop];
-                    try {
-                      Object.defineProperty(obj, prop, {
-                        configurable: true,
-                        enumerable: true,
-                        writable: true,
-                        value: current
-                      });
-                    } catch (_) {
-                      var _val = current;
-                      Object.defineProperty(obj, prop, {
-                        configurable: true,
-                        enumerable: true,
-                        get: function() { return _val; },
-                        set: function(v) { _val = v; }
-                      });
+                if (typeof window !== 'undefined') {
+                  var isSuppressed = function(msg, src) {
+                    var m = (typeof msg === 'string') ? msg : '';
+                    var s = (typeof src === 'string') ? src : '';
+                    return (
+                      m.indexOf('Cannot set property fetch') !== -1 ||
+                      m.indexOf('which has only a getter') !== -1 ||
+                      s.indexOf('chrome-extension://') !== -1
+                    );
+                  };
+
+                  window.addEventListener('error', function(e) {
+                    if (e && isSuppressed(e.message, e.filename)) {
+                      e.preventDefault();
+                      e.stopImmediatePropagation();
+                      return true;
                     }
-                  } catch (e) {}
-                }
-                makeWritable(window, 'fetch');
-                if (typeof Window !== 'undefined' && Window.prototype) {
-                  makeWritable(Window.prototype, 'fetch');
+                  }, true);
+
+                  var _oldOnError = window.onerror;
+                  window.onerror = function(msg, url, line, col, err) {
+                    var m = (typeof msg === 'string') ? msg : (err && err.message) || '';
+                    var s = (typeof url === 'string') ? url : '';
+                    if (isSuppressed(m, s)) {
+                      return true;
+                    }
+                    if (_oldOnError) return _oldOnError.apply(this, arguments);
+                  };
+
+                  window.addEventListener('unhandledrejection', function(e) {
+                    var reason = e && e.reason;
+                    var m = (reason && reason.message) || String(reason || '');
+                    if (isSuppressed(m, '')) {
+                      e.preventDefault();
+                    }
+                  });
+
+                  try {
+                    var origDef = Object.defineProperty;
+                    Object.defineProperty = function(obj, prop, desc) {
+                      if (prop === 'fetch' && desc && typeof desc === 'object') {
+                        if (desc.get && !desc.set) {
+                          var override;
+                          var origGet = desc.get;
+                          desc.set = function(v) { override = v; };
+                          desc.get = function() { return override !== undefined ? override : origGet.call(this); };
+                          desc.configurable = true;
+                        }
+                      }
+                      return origDef.call(Object, obj, prop, desc);
+                    };
+                  } catch (_) {}
+
+                  try {
+                    var _fetch = window.fetch;
+                    var fetchDesc = {
+                      configurable: true,
+                      enumerable: true,
+                      get: function() { return _fetch; },
+                      set: function(v) { _fetch = v; }
+                    };
+                    try { Object.defineProperty(window, 'fetch', fetchDesc); } catch (_) {}
+                    if (typeof Window !== 'undefined' && Window.prototype) {
+                      try { Object.defineProperty(Window.prototype, 'fetch', fetchDesc); } catch (_) {}
+                    }
+                  } catch (_) {}
                 }
               })();
             `,
