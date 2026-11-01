@@ -107,6 +107,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
+        <script
+          id="extension-attribute-cleaner"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (typeof window === 'undefined') return;
+                function cleanAttrs(node) {
+                  if (!node || !node.attributes) return;
+                  var attrs = Array.from(node.attributes);
+                  for (var i = 0; i < attrs.length; i++) {
+                    var name = attrs[i].name;
+                    if (
+                      name.indexOf('bis_') === 0 ||
+                      name.indexOf('__processed_') === 0 ||
+                      name.indexOf('data-extension') === 0 ||
+                      name.indexOf('data-new-gr-c-s') === 0 ||
+                      name === 'cz-shortcut-listen'
+                    ) {
+                      node.removeAttribute(name);
+                    }
+                  }
+                }
+                function cleanAll() {
+                  cleanAttrs(document.documentElement);
+                  cleanAttrs(document.body);
+                }
+                cleanAll();
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', cleanAll);
+                }
+              })();
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://analytics.ahrefs.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
