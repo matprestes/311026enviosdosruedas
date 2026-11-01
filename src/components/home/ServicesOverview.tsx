@@ -51,6 +51,7 @@ interface ServiceItem {
   descColor: string;
   imgBlend: string;
   badgeStyle: string;
+  iconBoxStyle: string;
   statBoxStyle: string;
   statValStyle: string;
   statLabelStyle: string;
@@ -134,21 +135,22 @@ export default function ServicesOverview() {
       city: 'Todo Mar del Plata',
       founded: '+7 Años de Trayectoria',
       imageUrl: '/elementos/envios_express.webp',
-      cardStyleCenter: 'border-brand-yellow-500 bg-linear-to-br from-brand-blue-500 to-brand-blue-500 shadow-cta-glow text-white',
-      cardStyleSide: 'border-brand-blue-500/20 bg-brand-blue-500 text-white/90',
+      cardStyleCenter: 'border-brand-yellow-500 bg-gradient-to-br from-[#0950F6] via-[#0840C8] to-[#052885] shadow-[0_16px_40px_rgba(9,80,246,0.6)] text-white',
+      cardStyleSide: 'border-[#0950F6]/40 bg-[#0950F6]/90 text-white/90 shadow-md',
       textColor: 'text-white',
-      titleColor: 'text-white group-hover:text-brand-yellow-500',
+      titleColor: 'text-white group-hover:text-brand-yellow-400',
       descColor: 'text-brand-blue-50',
-      imgBlend: 'opacity-25 mix-blend-overlay',
-      badgeStyle: 'bg-brand-yellow-500 text-brand-blue-500 border-brand-yellow-400',
-      statBoxStyle: 'bg-white/10 border border-white/10 text-white',
-      statValStyle: 'text-brand-yellow-500',
+      imgBlend: 'opacity-30 mix-blend-overlay',
+      badgeStyle: 'bg-brand-yellow-500 text-brand-blue-900 border-brand-yellow-400 font-extrabold shadow-sm',
+      iconBoxStyle: 'bg-brand-yellow-500 text-brand-blue-900 shadow-md',
+      statBoxStyle: 'bg-white/10 border border-white/15 text-white',
+      statValStyle: 'text-brand-yellow-400',
       statLabelStyle: 'text-brand-blue-50',
-      hintColor: 'text-brand-yellow-500',
+      hintColor: 'text-brand-yellow-400 font-bold',
       stats: {
         time: EXPRESS_WINDOW_SHORT,
         price: `${formatArs(EXPRESS_TIERS[0].price)} Base`,
-        weight: `Sin recargo hasta ${STANDARD_WEIGHT_KG} kg`,
+        weight: `Hasta ${STANDARD_WEIGHT_KG} kg`,
       },
       details: {
         summary: `Servicio de mensajería urbana con horario a elección, ideal para trámites urgentes, despacho de encomiendas y entrega de documentación. Coordinás la franja horaria que te conviene y se asigna un repartidor exclusivo para tu envío.`,
@@ -171,21 +173,22 @@ export default function ServicesOverview() {
       city: 'Todo Gral. Pueyrredón',
       founded: 'Tarifa Fija Especial',
       imageUrl: '/elementos/envios_lowcost.webp',
-      cardStyleCenter: 'border-brand-blue-500 bg-linear-to-br from-white to-brand-blue-50 shadow-float text-brand-blue-500',
-      cardStyleSide: 'border-brand-blue-100 bg-white text-brand-blue-500',
-      textColor: 'text-brand-blue-500',
-      titleColor: 'text-brand-blue-500 group-hover:text-brand-blue-500',
-      descColor: 'text-brand-blue-500',
-      imgBlend: 'opacity-[0.15] grayscale mix-blend-multiply',
-      badgeStyle: 'bg-brand-blue-500 text-brand-yellow-500 border-brand-blue-400',
-      statBoxStyle: 'bg-brand-blue-50/80 border border-brand-blue-100 text-brand-blue-500',
-      statValStyle: 'text-brand-blue-500',
-      statLabelStyle: 'text-brand-blue-500',
-      hintColor: 'text-brand-blue-500',
+      cardStyleCenter: 'border-[#2ECC85] bg-gradient-to-br from-[#032E1F] via-[#054831] to-[#021A12] shadow-[0_16px_40px_rgba(46,204,133,0.45)] text-white',
+      cardStyleSide: 'border-[#2ECC85]/40 bg-[#032E1F]/90 text-white/90 shadow-md',
+      textColor: 'text-white',
+      titleColor: 'text-white group-hover:text-[#2ECC85]',
+      descColor: 'text-[#FAFCFB]/85',
+      imgBlend: 'opacity-25 mix-blend-overlay',
+      badgeStyle: 'bg-[#2ECC85] text-[#031811] border-[#2ECC85] font-extrabold shadow-sm',
+      iconBoxStyle: 'bg-[#2ECC85] text-[#031811] shadow-md',
+      statBoxStyle: 'bg-[#2ECC85]/15 border border-[#2ECC85]/25 text-[#2ECC85]',
+      statValStyle: 'text-[#2ECC85]',
+      statLabelStyle: 'text-[#FAFCFB]/70',
+      hintColor: 'text-[#2ECC85] font-bold',
       stats: {
-        time: 'Programado en el día',
+        time: 'En el día',
         price: `${formatArs(LOW_COST_TIERS[0].price)} Base`,
-        weight: `Sin recargo hasta ${STANDARD_WEIGHT_KG} kg`,
+        weight: `Hasta ${STANDARD_WEIGHT_KG} kg`,
       },
       details: {
         summary: 'La alternativa ideal para comercios y e-commerce que buscan optimizar costos de envío. Es un reparto económico programado para el día, no un agrupamiento de tus propios envíos: lo pedís antes del corte y se entrega a lo largo de la jornada.',
@@ -208,21 +211,22 @@ export default function ServicesOverview() {
       city: 'Mar del Plata urbana',
       founded: `Corte extendido ${FLEX_CUTOFF_TIME}`,
       imageUrl: '/elementos/envios_flex.webp',
-      cardStyleCenter: 'border-brand-blue-500 bg-linear-to-br from-brand-yellow-500 to-brand-yellow-400 shadow-accent text-brand-blue-500',
-      cardStyleSide: 'border-brand-yellow-500/30 bg-brand-yellow-500 text-brand-blue-500',
-      textColor: 'text-brand-blue-500',
-      titleColor: 'text-brand-blue-500 group-hover:text-brand-blue-500',
-      descColor: 'text-brand-blue-500',
+      cardStyleCenter: 'border-brand-blue-600 bg-gradient-to-br from-[#FFEC01] via-[#F3BB0A] to-[#D89B00] shadow-[0_16px_40px_rgba(255,236,1,0.5)] text-brand-blue-950',
+      cardStyleSide: 'border-[#FFEC01]/50 bg-[#FFEC01]/95 text-brand-blue-950 shadow-md',
+      textColor: 'text-brand-blue-950',
+      titleColor: 'text-brand-blue-950 group-hover:text-brand-blue-700',
+      descColor: 'text-brand-blue-950 font-medium',
       imgBlend: 'opacity-20 mix-blend-multiply',
-      badgeStyle: 'bg-brand-blue-500 text-white border-brand-blue-500/30',
-      statBoxStyle: 'bg-brand-yellow-500 border border-brand-blue-500/30 text-brand-blue-500',
-      statValStyle: 'text-brand-blue-500',
-      statLabelStyle: 'text-brand-blue-500',
-      hintColor: 'text-brand-blue-500',
+      badgeStyle: 'bg-brand-blue-500 text-white border-brand-blue-600 font-extrabold shadow-sm',
+      iconBoxStyle: 'bg-brand-blue-500 text-white shadow-md',
+      statBoxStyle: 'bg-brand-blue-500/15 border border-brand-blue-500/25 text-brand-blue-950 font-bold',
+      statValStyle: 'text-brand-blue-950',
+      statLabelStyle: 'text-brand-blue-900',
+      hintColor: 'text-brand-blue-950 font-bold',
       stats: {
         time: 'En el día',
         price: 'Zonificado LowCost',
-        weight: 'Apto Moto / Auto',
+        weight: 'Moto / Auto',
       },
       details: {
         summary: 'Habilitá Envíos Flex en tu cuenta de MercadoLibre y despachá todas tus ventas en el mismo día. Mejorá tu reputación y convertite en vendedor destacado con recolección gratuita.',
@@ -238,24 +242,25 @@ export default function ServicesOverview() {
     {
       id: '3pl',
       title: 'E-Commerce Same Day',
-      description: 'Guardamos tu stock y lo despachamos el mismo día, o E-Commerce 24HS si lo necesitás al día siguiente.',
+      description: 'Guardamos tu stock y lo despachamos el mismo día en Friuli 1972.',
       href: '/servicios/deposito-fulfillment',
       icon: Warehouse,
-      badge: 'E-COMMERCE',
+      badge: 'E-COMMERCE 3PL',
       city: 'Depósito Friuli 1972',
       founded: 'Stock guardado',
       imageUrl: '/elementos/envios_emprendedores.webp',
-      cardStyleCenter: 'border-brand-blue-500 bg-linear-to-br from-brand-blue-500 to-brand-blue-500 shadow-2xl text-white',
-      cardStyleSide: 'border-brand-blue-500/20 bg-brand-blue-500 text-white/90',
+      cardStyleCenter: 'border-[#00D2FF] bg-gradient-to-br from-[#0A162B] via-[#102242] to-[#050C19] shadow-[0_16px_40px_rgba(0,210,255,0.4)] text-white',
+      cardStyleSide: 'border-[#00D2FF]/40 bg-[#0A162B]/90 text-white/90 shadow-md',
       textColor: 'text-white',
-      titleColor: 'text-white group-hover:text-brand-yellow-500',
-      descColor: 'text-brand-blue-50',
+      titleColor: 'text-white group-hover:text-[#00D2FF]',
+      descColor: 'text-slate-200/90',
       imgBlend: 'opacity-25 mix-blend-overlay',
-      badgeStyle: 'bg-brand-blue-500 text-white border-brand-blue-500/30',
-      statBoxStyle: 'bg-white/10 border border-white/10 text-white',
-      statValStyle: 'text-brand-yellow-500',
-      statLabelStyle: 'text-brand-blue-50',
-      hintColor: 'text-brand-yellow-500',
+      badgeStyle: 'bg-[#00D2FF] text-[#081224] border-[#00D2FF] font-extrabold shadow-sm',
+      iconBoxStyle: 'bg-[#00D2FF] text-[#081224] shadow-md',
+      statBoxStyle: 'bg-[#00D2FF]/15 border border-[#00D2FF]/25 text-[#00D2FF]',
+      statValStyle: 'text-[#00D2FF]',
+      statLabelStyle: 'text-slate-300',
+      hintColor: 'text-[#00D2FF] font-bold',
       stats: {
         time: 'Same Day / 24 hs',
         price: `${formatArs(SAME_DAY_FIXED_PRICE)} fijo`,
@@ -334,6 +339,33 @@ export default function ServicesOverview() {
     [handlePrev, handleNext, selectedService]
   );
 
+  // Touch gesture support for mobile carousel swiping
+  const touchStartXRef = useRef<number>(0);
+  const touchEndXRef = useRef<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartXRef.current || !touchEndXRef.current) return;
+    const distance = touchStartXRef.current - touchEndXRef.current;
+    const minSwipeDistance = 40;
+
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
+
+    touchStartXRef.current = 0;
+    touchEndXRef.current = 0;
+  };
+
   // Calculate card transforms using spring-based derived values
   const getCardTransform = (index: number) => {
     const offset = ((((index - activeIndex + total / 2) % total) + total) % total) - Math.floor(total / 2);
@@ -355,9 +387,9 @@ export default function ServicesOverview() {
 
     const rotateY = isSmallScreen ? 0 : offset * -28;
     const translateZ = isSmallScreen ? 0 : isCenter ? 120 : -absOffset * 180;
-    const translateX = offset * (isSmallScreen ? 140 : 260);
+    const translateX = offset * (isSmallScreen ? 115 : 260);
     const opacity = isCenter ? 1 : Math.max(0.15, 1 - absOffset * 0.4);
-    const scale = isCenter ? 1.05 : Math.max(0.65, 1 - absOffset * 0.18);
+    const scale = isCenter ? (isSmallScreen ? 1.02 : 1.05) : Math.max(0.65, 1 - absOffset * 0.18);
 
     return { offset, isCenter, rotateY, translateZ, translateX, opacity, scale, zIndex: total - absOffset };
   };
@@ -454,10 +486,34 @@ export default function ServicesOverview() {
           </div>
         </motion.div>
 
+        {/* Mobile Quick Service Selector Pills */}
+        <div className="flex sm:hidden overflow-x-auto gap-2 pb-3 mb-4 no-scrollbar border-b border-white/10">
+          {services.map((s, idx) => (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => {
+                setActiveIndex(idx);
+                setIsAutoRotate(false);
+              }}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-colors border ${
+                idx === activeIndex
+                  ? 'bg-brand-yellow-500 text-brand-blue-500 border-brand-yellow-500 shadow-accent-sm'
+                  : 'bg-white/10 text-white/90 border-white/20'
+              }`}
+            >
+              {s.title}
+            </button>
+          ))}
+        </div>
+
         {/* 3D Tilted Card Carousel Container */}
         <div
           ref={carouselRef}
-          className="relative h-125 sm:h-135 flex items-center justify-center my-8 transform-3d max-w-full overflow-visible"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="relative h-125 sm:h-135 flex items-center justify-center my-4 sm:my-8 transform-3d max-w-full overflow-visible touch-pan-y select-none"
         >
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -556,7 +612,7 @@ export default function ServicesOverview() {
                       className="flex items-center gap-2.5"
                       whileHover={reduceMotion ? undefined : { scale: 1.05, transition: springConfigSnappy }}
                     >
-                      <div className="p-3 bg-brand-yellow-500 text-brand-blue-500 rounded-xl shadow-[2px_2px_0px_var(--color-brand-blue-500)]" aria-hidden="true">
+                      <div className={`p-3 rounded-xl shadow-md ${service.iconBoxStyle}`} aria-hidden="true">
                         <Icon className="h-5 w-5" />
                       </div>
                       <span className={`text-2xs font-bold font-subheading px-2.5 py-1 rounded-full border shadow-sm ${service.badgeStyle}`}>

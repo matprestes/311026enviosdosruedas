@@ -65,7 +65,7 @@ function fallbackPrice(distanceKm: number, tiers: readonly PriceTier[], pricePer
  */
 export function calculateExpressPrice(
   distanceKm: number,
-  priceRanges: PriceRangeProp[] = []
+  priceRanges: PriceRangeProp[]
 ): number | 'consultar' {
   if (distanceKm > 20) return 'consultar';
 
@@ -107,7 +107,7 @@ export function calculateExpressPrice(
  */
 export function calculateLowCostPrice(
   distanceKm: number,
-  priceRanges: PriceRangeProp[] = []
+  priceRanges: PriceRangeProp[]
 ): number | 'consultar' {
   if (distanceKm > 20) return 'consultar';
 

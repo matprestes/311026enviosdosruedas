@@ -1,18 +1,31 @@
-import { SUPPORT_PHONE } from '@/lib/promises';
+/**
+ * Helper unificado para generación de URLs de WhatsApp con trazabilidad y UTMs.
+ * Conforme a BL-25 (CAMP-03, CAMP-05).
+ */
+import { getStoredUtms } from './analytics';
 
-export const WHATSAPP_PHONE = '5492236602699';
+export const WHATSAPP_PHONE = '542236602699';
 
 export interface BuildWhatsAppUrlOptions {
-  message: string;
+  message?: string;
   source?: string;
-  phone?: string;
 }
 
-export function buildWhatsAppUrl({
-  message,
-  phone = WHATSAPP_PHONE,
-}: BuildWhatsAppUrlOptions): string {
-  const cleanPhone = (phone || SUPPORT_PHONE).replace(/[^0-9]/g, '');
-  const encodedText = encodeURIComponent(message);
-  return `https://wa.me/${cleanPhone}?text=${encodedText}`;
+/**
+ * Genera la URL de WhatsApp oficial con mensaje prearmado y trazabilidad UTM limpia.
+ * Respeta el formato internacional y agrega etiqueta de origen [ref: ...] si existen UTMs.
+ */
+export function buildWhatsAppUrl({ message, source }: BuildWhatsAppUrlOptions = {}): string {
+  const defaultMsg = 'Hola Envíos DosRuedas! Quiero consultar por un servicio de mensajería.';
+  let text = message || defaultMsg;
+
+  if (typeof window !== 'undefined') {
+    const utms = getStoredUtms();
+    const utmTag = utms.utm_source || utms.utm_campaign || source;
+    if (utmTag && !text.includes('[ref:')) {
+      text += ` [ref: ${utmTag}]`;
+    }
+  }
+
+  return `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(text)}`;
 }

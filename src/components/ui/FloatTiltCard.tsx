@@ -1,7 +1,21 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useSyncExternalStore } from 'react';
 import { cn } from '@/lib/utils';
+
+const subscribeReducedMotion = (callback: () => void) => {
+  if (typeof window === 'undefined') return () => {};
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  mediaQuery.addEventListener('change', callback);
+  return () => mediaQuery.removeEventListener('change', callback);
+};
+
+const getReducedMotionSnapshot = () => {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
+const getReducedMotionServerSnapshot = () => false;
 
 export interface FloatTiltCardProps {
   children: React.ReactNode;
@@ -29,23 +43,11 @@ export const FloatTiltCard: React.FC<FloatTiltCardProps> = ({
   const cardRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [reducedMotion, setReducedMotion] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setReducedMotion(e.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  const reducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (disabled || reducedMotion || !cardRef.current) return;

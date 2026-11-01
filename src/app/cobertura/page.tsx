@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MapPin, AlertCircle, ArrowRight } from 'lucide-react';
+import InteractiveZoneMap from '@/components/cobertura/InteractiveZoneMap';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 
@@ -14,49 +15,6 @@ export const metadata: Metadata = {
     url: `${baseUrl}/cobertura`,
   },
 };
-
-const ZONAS = [
-  {
-    id: 'z1',
-    name: 'Zona 1: Centro y Macrocentro',
-    barrios: 'Plaza San Martín, Güemes, Plaza Mitre, La Perla, Terminal Vieja (Paseo Aldrey), Estación Ferroautomotora y Microcentro.',
-    status: 'Frecuencia Continua',
-    color: 'border-l-4 border-l-brand-blue-500',
-    tiempo: 'Entrega ágil en el día',
-  },
-  {
-    id: 'z2',
-    name: 'Zona 2: Puerto y Sur Urbano',
-    barrios: 'Puerto Comercial, Alem, Playa Grande, Bosque Peralta Ramos, Punta Mogotes, Alfar hasta el Faro de la Memoria.',
-    status: 'Frecuencia Diaria',
-    color: 'border-l-4 border-l-brand-blue-400',
-    tiempo: 'Rondas fijas mañana y tarde',
-  },
-  {
-    id: 'z3',
-    name: 'Zona 3: Norte y Constitución',
-    barrios: 'Parque Luro, Av. Constitución comercial, Barrio Estrada, Zacagnini, Aeropuerto Astor Piazzolla y Estación Camet.',
-    status: 'Frecuencia Diaria',
-    color: 'border-l-4 border-l-brand-blue-300',
-    tiempo: 'Rondas fijas mañana y tarde',
-  },
-  {
-    id: 'z4',
-    name: 'Zona 4: Oeste Urbano',
-    barrios: 'Los Galpones, Regional, Libertad, San Cayetano, Av. Colón al fondo, Autódromo y Barrio Belgrano.',
-    status: 'Frecuencia Diaria',
-    color: 'border-l-4 border-l-brand-blue-200',
-    tiempo: 'Rondas diarias programadas',
-  },
-  {
-    id: 'z5',
-    name: 'Zona 5: Periferia y Destinos Especiales',
-    barrios: 'Batán, Sierra de los Padres, Camet Norte, Santa Clara del Mar, Chapadmalal y Acantilados.',
-    status: 'Tarifa por Km ($1.000/km)',
-    color: 'border-l-4 border-l-brand-yellow-500',
-    tiempo: 'Coordinación con anticipación',
-  },
-];
 
 export default function CoberturaPage() {
   return (
@@ -108,43 +66,8 @@ export default function CoberturaPage() {
           </div>
         </div>
 
-        {/* Zones Grid */}
-        <div>
-          <div className="mb-6">
-            <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-brand-blue-500">
-              Detalle de los 5 Radios Zonales
-            </h2>
-            <p className="font-sans text-sm text-brand-blue-500/80">
-              Nuestra red cubre desde el microcentro hasta los accesos por rutas 2, 11 y 88.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ZONAS.map((z) => (
-              <div key={z.id} className="p-1.5 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-xs hover:-translate-y-1 transition-transform">
-                <div className={`bg-white rounded-xl p-6 h-full flex flex-col justify-between ${z.color}`}>
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="font-display text-xl uppercase tracking-tight text-brand-blue-500 flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-brand-blue-500" />
-                        {z.name}
-                      </span>
-                    </div>
-
-                    <p className="font-sans text-xs sm:text-sm text-brand-blue-500/85 leading-relaxed mb-6">
-                      {z.barrios}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-brand-blue-50 flex items-center justify-between text-xs font-mono">
-                    <span className="font-bold text-brand-blue-500">{z.status}</span>
-                    <span className="text-brand-blue-400">{z.tiempo}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Interactive Zone Map & Cards */}
+        <InteractiveZoneMap />
 
         {/* Periferia Callout */}
         <div className="p-2 rounded-2xl bg-brand-blue-500 text-white shadow-md border border-brand-blue-400">

@@ -39,6 +39,54 @@ const EmprendedoresHome = dynamic(() => import('@/components/home/EmprendedoresH
   ),
 });
 
+const LogisticaHomeSection = dynamic(() => import('@/components/home/LogisticaHomeSection'), {
+  loading: () => (
+    <div
+      aria-label="Cargando sección de logística digital"
+      className="w-full min-h-[460px] bg-white flex items-center justify-center py-16"
+    >
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-8 w-8 rounded-full border-2 border-brand-blue-500 border-t-transparent animate-spin" />
+        <span className="font-mono text-xs text-brand-blue-500/60 uppercase tracking-widest">
+          Cargando sistema logístico...
+        </span>
+      </div>
+    </div>
+  ),
+});
+
+const MarDeliveryHomeSection = dynamic(() => import('@/components/home/MarDeliveryHomeSection'), {
+  loading: () => (
+    <div
+      aria-label="Cargando sección de MarDelivery"
+      className="w-full min-h-[460px] bg-[#031811] flex items-center justify-center py-16 text-white"
+    >
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-8 w-8 rounded-full border-2 border-[#2ECC85] border-t-transparent animate-spin" />
+        <span className="font-mono text-xs text-[#2ECC85]/80 uppercase tracking-widest">
+          Cargando soluciones MarDelivery...
+        </span>
+      </div>
+    </div>
+  ),
+});
+
+const CustomerSuccessStories = dynamic(() => import('@/components/home/CustomerSuccessStories'), {
+  loading: () => (
+    <div
+      aria-label="Cargando historias de éxito de comercios"
+      className="w-full min-h-[460px] bg-white flex items-center justify-center py-16"
+    >
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-8 w-8 rounded-full border-2 border-brand-blue-500 border-t-transparent animate-spin" />
+        <span className="font-mono text-xs text-brand-blue-500/60 uppercase tracking-widest">
+          Cargando experiencias de comercios locales...
+        </span>
+      </div>
+    </div>
+  ),
+});
+
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 
 export const metadata: Metadata = {
@@ -61,7 +109,10 @@ export default function HomePage() {
       <HeroAnimado />
       <SegmentosHome />
       <ServicesOverview />
+      <LogisticaHomeSection />
+      <MarDeliveryHomeSection />
       <EmprendedoresHome />
+      <CustomerSuccessStories />
       <SocialProofSection />
       <CtaSection />
     </div>
