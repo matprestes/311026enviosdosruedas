@@ -6,7 +6,6 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, MapPin, Zap } from 'lucide-react';
 import { CTANestedPill } from '@/components/ui/CTANestedPill';
 import { Knockout } from '@/components/ui/Knockout';
-import Badge from '@/components/ui/Badge';
 import HeroProceduralBackground from '@/components/ui/HeroProceduralBackground';
 
 /** Diferenciales del ticker. La lista se repite dos veces para que el bucle no se vea. */
@@ -59,18 +58,16 @@ export default function HeroAnimado() {
             transition={shouldReduceMotion ? { duration: 0 } : spring}
             className="space-y-6 lg:col-span-7"
           >
-            <motion.div
-              whileHover={shouldReduceMotion ? undefined : { scale: 1.02, transition: fastSpring }}
-              className="inline-flex"
-            >
-              <Badge
-                variant="accent"
-                size="lg"
-                icon={<Zap className="h-4 w-4" aria-hidden="true" />}
-              >
-                Flota propia · Todo Mar del Plata
-              </Badge>
-            </motion.div>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-brand-yellow-400 font-semibold">
+              <span className="inline-flex items-center gap-1.5 text-white">
+                <Zap className="h-3.5 w-3.5 text-brand-yellow-400 fill-brand-yellow-400" aria-hidden="true" />
+                Flota propia
+              </span>
+              <span className="text-white/40" aria-hidden="true">·</span>
+              <span className="text-brand-yellow-400">Todo Mar del Plata</span>
+              <span className="text-white/40" aria-hidden="true">·</span>
+              <span className="text-white/80">Sin Tercerizar</span>
+            </div>
 
             <motion.h1
               initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
@@ -89,10 +86,10 @@ export default function HeroAnimado() {
               initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={shouldReduceMotion ? { duration: 0 } : { ...spring, delay: 0.15 }}
-              className="font-sans text-base font-light leading-relaxed text-white/85 sm:text-lg max-w-[56ch]"
+              className="font-sans text-base font-light leading-relaxed text-white/90 sm:text-lg max-w-[56ch]"
             >
-              Mensajería y logística e-commerce en Mar del Plata: envíos en el día con motos
-              propias. Llegamos a toda la ciudad y los repartidores son nuestros, sin tercerizar.
+              Mensajería urbana y logística e-commerce en Mar del Plata: envíos en el día con motos
+              propias. Llegamos a toda la ciudad y los repartidores son nuestros, sin intermediarios.
             </motion.p>
 
             <motion.div
@@ -106,13 +103,13 @@ export default function HeroAnimado() {
                 id="hero-cta-cotizar"
                 variant="primary"
                 size="large"
-                className="w-full sm:w-auto justify-center focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500"
+                className="w-full sm:w-auto justify-center focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 shadow-[0_10px_25px_rgba(255,236,1,0.25)]"
               >
                 Cotizá tu envío
               </CTANestedPill>
               <Link
                 href="/servicios"
-                className="inline-flex min-h-11 w-full sm:w-auto justify-center items-center gap-2 rounded-md font-subheading text-sm uppercase tracking-wider text-white underline decoration-brand-yellow-500 decoration-2 underline-offset-4 transition-colors hover:text-brand-yellow-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 sm:text-base"
+                className="inline-flex min-h-11 w-full sm:w-auto justify-center items-center gap-2 rounded-lg font-subheading text-sm uppercase tracking-wider text-white border border-white/20 hover:border-brand-yellow-400 hover:text-brand-yellow-400 bg-white/5 hover:bg-white/10 px-6 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 sm:text-base"
               >
                 Ver servicios
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -152,21 +149,23 @@ export default function HeroAnimado() {
                 fetchPriority="high"
                 loading="eager"
                 sizes="(min-width: 1024px) 460px, 92vw"
-                className="relative z-2 h-auto w-full drop-shadow-[0_24px_40px_rgba(9,80,246,0.15)]"
+                className="relative z-2 h-auto w-full drop-shadow-[0_24px_40px_rgba(9,80,246,0.25)]"
               />
 
               {fichas.map((ficha) => (
                 <motion.div
                   key={ficha.id}
-                  whileHover={shouldReduceMotion ? undefined : { scale: 1.03, transition: fastSpring }}
-                  className={`absolute z-3 inline-flex items-center gap-2 rounded-xl px-3 py-2.5 shadow-[0_12px_30px_rgba(9,80,246,0.25)] ${ficha.posicion} bg-white text-brand-blue-500 ring-1 ring-brand-blue-100`}
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.04, transition: fastSpring }}
+                  className={`absolute z-3 inline-flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 shadow-[0_12px_30px_rgba(9,80,246,0.3)] ${ficha.posicion} bg-white text-brand-blue-500 border border-brand-blue-100/80 backdrop-blur-sm`}
                 >
-                  <MapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span className="font-mono text-2xs font-medium leading-tight">
-                    <b className="block font-subheading text-xs uppercase tracking-wider">
+                  <div className="w-7 h-7 rounded-lg bg-brand-yellow-500 text-brand-blue-500 flex items-center justify-center shrink-0 font-bold shadow-xs">
+                    <MapPin className="h-4 w-4" aria-hidden="true" />
+                  </div>
+                  <span className="font-mono text-2xs font-medium leading-tight text-left">
+                    <b className="block font-subheading text-xs uppercase tracking-wider text-brand-blue-500">
                       {ficha.titulo}
                     </b>
-                    {ficha.detalle}
+                    <span className="text-brand-blue-500/80">{ficha.detalle}</span>
                   </span>
                 </motion.div>
               ))}

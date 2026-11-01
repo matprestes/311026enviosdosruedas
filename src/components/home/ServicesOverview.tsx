@@ -401,14 +401,14 @@ export default function ServicesOverview() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-white/10 pb-8"
         >
           <div>
-            <div className="px-4 py-1.5 bg-brand-blue-500 text-brand-yellow-400 rounded-full text-xs font-subheading font-bold tracking-widest inline-block uppercase shadow-glow-yellow mb-3 border border-brand-yellow-400/40">
-              NUESTROS SERVICIOS
+            <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.24em] text-brand-yellow-400 mb-3">
+              <span>02</span>
+              <span className="text-white/40" aria-hidden="true">/</span>
+              <span>Catálogo Operativo & Tarifas 2026</span>
             </div>
-            <h2 id="services-overview-title" className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[0.92] tracking-tight uppercase text-white text-balance">
-              SOLUCIONES LOGÍSTICAS <br />
-              <span className="text-brand-yellow-400 drop-shadow-[0_2px_10px_rgba(255,241,46,0.35)] underline decoration-brand-yellow-400/60 underline-offset-8">
-                A TU MEDIDA
-              </span>
+            <h2 id="services-overview-title" className="font-display text-3xl sm:text-5xl lg:text-6xl leading-[0.92] tracking-tight uppercase text-white text-balance">
+              Soluciones Logísticas <br />
+              <span className="text-brand-yellow-400">a tu medida</span>
             </h2>
           </div>
 
@@ -419,13 +419,14 @@ export default function ServicesOverview() {
               aria-pressed={isAutoRotate}
               whileHover={reduceMotion ? undefined : { scale: 1.02 }}
               whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-              className={`min-h-11 px-4 py-2 rounded-full text-xs font-bold font-subheading tracking-wider border transition-colors cursor-pointer inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 ${
+              className={`min-h-11 px-5 py-2.5 rounded-full text-xs font-bold font-subheading tracking-wider border transition-colors cursor-pointer inline-flex items-center gap-2 justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 ${
                 isAutoRotate
-                  ? 'bg-brand-yellow-400 text-brand-blue-500 border-brand-yellow-400 shadow-glow-yellow'
+                  ? 'bg-brand-yellow-400 text-brand-blue-500 border-brand-yellow-400 shadow-[0_4px_16px_rgba(255,236,1,0.3)]'
                   : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
               }`}
             >
-              {isAutoRotate ? '⚡ ROTACIÓN AUTOMÁTICA' : 'ROTACIÓN PAUSADA'}
+              <span className={`w-2 h-2 rounded-full ${isAutoRotate ? 'bg-brand-blue-500' : 'bg-white/40'}`} aria-hidden="true" />
+              <span>{isAutoRotate ? 'Rotación Automática' : 'Rotación Pausada'}</span>
             </motion.button>
 
             <div className="flex items-center gap-2">

@@ -66,64 +66,44 @@ const REVIEWS: Review[] = [
 ];
 
 function ReviewCard({ review }: { review: Review }) {
-  const cardStyles = {
-    blue: {
-      article: 'bg-brand-blue-500 text-white shadow-elevated',
-      dateBadge: 'bg-brand-yellow-500 text-brand-blue-500',
-      starsColor: 'text-brand-yellow-500',
-      headingColor: 'text-white',
-      bodyColor: 'text-white/90',
-      borderColor: 'border-white/20',
-      avatarBg: 'bg-brand-yellow-500 text-brand-blue-500',
-      authorColor: 'text-white',
-    },
-    white: {
-      article: 'bg-white border-2 border-brand-yellow-500 shadow-[0_16px_40px_rgba(9,80,246,0.08)]',
-      dateBadge: 'bg-brand-blue-50 text-brand-blue-500',
-      starsColor: 'text-brand-blue-500',
-      headingColor: 'text-brand-blue-500',
-      bodyColor: 'text-brand-blue-500/85',
-      borderColor: 'border-brand-blue-100/40',
-      avatarBg: 'bg-brand-blue-500 text-white',
-      authorColor: 'text-brand-blue-500',
-    },
-    yellow: {
-      article: 'bg-brand-yellow-500 text-brand-blue-500 shadow-[0_16px_40px_rgba(255,236,1,0.3)]',
-      dateBadge: 'bg-white text-brand-blue-500 shadow-sm',
-      starsColor: 'text-brand-blue-500',
-      headingColor: 'text-brand-blue-500',
-      bodyColor: 'text-brand-blue-500',
-      borderColor: 'border-brand-blue-500/20',
-      avatarBg: 'bg-brand-blue-500 text-white',
-      authorColor: 'text-brand-blue-500',
-    },
-  }[review.variant];
+  const isFeatured = review.variant === 'blue';
 
   return (
     <article
       className={cn(
-        'card-token w-full rounded-2xl flex flex-col justify-between p-8 min-h-85',
-        cardStyles.article
+        'group w-full rounded-2xl flex flex-col justify-between p-7 lg:p-8 min-h-80 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_-12px_rgba(9,80,246,0.12)] border relative overflow-hidden',
+        isFeatured
+          ? 'bg-brand-blue-500 text-white border-brand-blue-400 shadow-md'
+          : 'bg-white text-slate-900 border-slate-200/80 shadow-xs'
       )}
     >
+      {/* Top subtle highlight */}
+      <div
+        className={cn(
+          'absolute top-0 inset-x-0 h-1 transition-opacity duration-300 opacity-0 group-hover:opacity-100',
+          isFeatured ? 'bg-brand-yellow-400' : 'bg-brand-blue-500'
+        )}
+        aria-hidden="true"
+      />
+
       <div>
         {/* Top Row: Rating & Date */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5">
           <div
             role="img"
             aria-label="Calificación: 5 de 5 estrellas"
-            className={cn('flex gap-1', cardStyles.starsColor)}
+            className={cn('flex gap-1 text-base', isFeatured ? 'text-brand-yellow-400' : 'text-amber-400')}
           >
-            <span aria-hidden="true" className="text-xl">★</span>
-            <span aria-hidden="true" className="text-xl">★</span>
-            <span aria-hidden="true" className="text-xl">★</span>
-            <span aria-hidden="true" className="text-xl">★</span>
-            <span aria-hidden="true" className="text-xl">★</span>
+            <span aria-hidden="true">★</span>
+            <span aria-hidden="true">★</span>
+            <span aria-hidden="true">★</span>
+            <span aria-hidden="true">★</span>
+            <span aria-hidden="true">★</span>
           </div>
           <span
             className={cn(
-              'text-xs font-bold px-3.5 py-1 rounded-full font-mono',
-              cardStyles.dateBadge
+              'text-xs font-mono tracking-wider',
+              isFeatured ? 'text-brand-yellow-400/90' : 'text-slate-400'
             )}
           >
             {review.timeAgo}
@@ -133,32 +113,59 @@ function ReviewCard({ review }: { review: Review }) {
         {/* Review Heading */}
         <h3
           className={cn(
-            'font-subheading text-xl lg:text-2xl uppercase leading-none mb-3 tracking-wide',
-            cardStyles.headingColor
+            'font-display text-lg sm:text-xl uppercase leading-snug mb-3 tracking-tight',
+            isFeatured ? 'text-white' : 'text-brand-blue-500'
           )}
         >
           {review.quoteHighlight}
         </h3>
 
         {/* Review Body */}
-        <p className={cn('text-sm leading-relaxed font-normal', cardStyles.bodyColor)}>
+        <p
+          className={cn(
+            'text-sm leading-relaxed font-sans',
+            isFeatured ? 'text-brand-blue-50/90' : 'text-slate-600'
+          )}
+        >
           {review.text}
         </p>
       </div>
 
       {/* Author / Footer */}
-      <div className={cn('pt-6 mt-6 border-t flex items-center gap-3', cardStyles.borderColor)}>
-        <div
-          aria-hidden="true"
+      <div
+        className={cn(
+          'pt-5 mt-6 border-t flex items-center justify-between gap-3',
+          isFeatured ? 'border-white/15' : 'border-slate-100'
+        )}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            aria-hidden="true"
+            className={cn(
+              'w-9 h-9 rounded-full font-bold flex items-center justify-center text-xs shrink-0',
+              isFeatured
+                ? 'bg-brand-yellow-400 text-brand-blue-500 shadow-xs'
+                : 'bg-brand-blue-50 text-brand-blue-500 border border-brand-blue-100'
+            )}
+          >
+            {review.author.charAt(0)}
+          </div>
+          <span
+            className={cn(
+              'font-semibold text-sm tracking-tight',
+              isFeatured ? 'text-white' : 'text-slate-900'
+            )}
+          >
+            {review.author}
+          </span>
+        </div>
+        <span
           className={cn(
-            'w-10 h-10 rounded-full font-bold flex items-center justify-center text-sm shrink-0 shadow-sm',
-            cardStyles.avatarBg
+            'text-2xs font-mono uppercase tracking-wider',
+            isFeatured ? 'text-white/60' : 'text-slate-400'
           )}
         >
-          {review.author.charAt(0)}
-        </div>
-        <span className={cn('font-bold text-sm tracking-wide', cardStyles.authorColor)}>
-          {review.author}
+          Google Maps
         </span>
       </div>
     </article>
@@ -170,30 +177,32 @@ export default function SocialProofSection() {
     <section
       id="social-proof"
       aria-labelledby="social-proof-title"
-      className="content-auto relative py-20 lg:py-24 bg-brand-blue-50 border-y border-brand-blue-100/60"
+      className="content-auto relative py-20 lg:py-24 bg-slate-50/70 border-y border-slate-200/80"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-10 lg:mb-14">
-          {/* Rating Trust Badge */}
-          <div className="inline-flex items-center mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-brand-blue-500 text-white text-[12px] sm:text-[13px] font-mono font-bold px-5 py-2 rounded-full tracking-wider uppercase shadow-md">
-              5.0 / 5.0 EN GOOGLE · +120 VALORACIONES
-            </span>
+        <header className="mb-12 lg:mb-16">
+          {/* Rating Trust Kicker (Unboxed metadata with typographic separators) */}
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.22em] text-brand-blue-500 mb-3">
+            <span>04</span>
+            <span className="text-brand-blue-300" aria-hidden="true">/</span>
+            <span className="text-amber-500 font-bold" aria-hidden="true">★★★★★</span>
+            <span>5.0 / 5.0 en Google</span>
+            <span className="text-brand-blue-300" aria-hidden="true">·</span>
+            <span className="text-slate-500">+120 valoraciones auditadas</span>
           </div>
 
-          {/* Main Title & CTA Button */}
+          {/* Main Title & Action Button */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            {/* Title with highlighted keyword */}
             <h2
               id="social-proof-title"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[0.92] tracking-tight uppercase text-brand-blue-500 max-w-4xl"
+              className="font-display text-3xl sm:text-5xl lg:text-6xl leading-[0.92] tracking-tight uppercase text-brand-blue-500 max-w-4xl text-balance"
             >
-              LA PALABRA DE QUIENES{' '}
-              <span className="inline-block relative mx-1 my-1 px-4 sm:px-5 py-1 rounded-full bg-brand-yellow-500 text-brand-blue-500 shadow-cta-glow">
-                VENDEN Y ENVÍAN
+              La palabra de quienes{' '}
+              <span className="text-brand-blue-600 underline decoration-brand-yellow-500 decoration-4 underline-offset-8">
+                venden y envían
               </span>{' '}
-              EN MDQ
+              en MDQ
             </h2>
 
             {/* Google Maps Link Button */}
@@ -202,10 +211,10 @@ export default function SocialProofSection() {
                 href="https://www.google.com/maps?q=Friuli+1972,+Mar+del+Plata"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="button-pill rounded-full inline-flex items-center gap-2.5 border-2 border-brand-blue-500 text-brand-blue-500 hover:bg-brand-blue-500 hover:text-white px-7 py-3 min-h-11 font-subheading text-lg sm:text-xl tracking-wider uppercase shadow-sm hover:shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500 focus-visible:ring-offset-2"
+                className="rounded-full inline-flex items-center gap-2.5 border-2 border-brand-blue-500 text-brand-blue-500 hover:bg-brand-blue-500 hover:text-white px-7 py-3 min-h-11 font-subheading text-base sm:text-lg tracking-wider uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500 focus-visible:ring-offset-2"
                 aria-label="Ver todas las opiniones en Google Maps"
               >
-                <span>VER EN GOOGLE MAPS</span>
+                <span>Ver en Google Maps</span>
                 <ExternalLink className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
               </Link>
             </div>
