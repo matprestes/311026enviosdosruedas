@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Zap, PiggyBank, Package, Warehouse, Building2, Banknote, Rocket, Shield } from 'lucide-react';
+import { ArrowRight, Zap, PiggyBank, Package, Warehouse, Building2, Banknote, Rocket } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

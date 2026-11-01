@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { MapPin, Navigation, Compass, AlertCircle, CheckCircle, ArrowRight, Shield } from 'lucide-react';
+import { MapPin, AlertCircle, ArrowRight } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

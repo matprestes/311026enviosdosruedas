@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { calculateExpressPrice, calculateLowCostPrice } from '@/lib/pricing';
-import { MapPin, Navigation, ArrowRight, Phone, Clock, CloudRain, Package, CheckCircle2, RotateCcw } from 'lucide-react';
+import { MapPin, Navigation, Phone, Clock, CloudRain, Package, CheckCircle2 } from 'lucide-react';
 
 const MDQ_PRESETS = [
   { name: 'Base Central (Friuli 1972)', address: 'Friuli 1972, Mar del Plata', kmOffset: 0 },
@@ -206,6 +206,20 @@ export default function CotizadorUnificado() {
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
                 placeholder="Ej: 223 123-4567"
+                className="w-full text-xs p-2.5 rounded-lg border border-brand-blue-100 text-brand-blue-500 outline-none focus:border-brand-blue-500"
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <label htmlFor="client-detail" className="block text-xs font-mono font-bold text-brand-blue-500 uppercase mb-1">
+                Detalle del Paquete / Observaciones
+              </label>
+              <input
+                id="client-detail"
+                type="text"
+                value={paquete}
+                onChange={(e) => setPaquete(e.target.value)}
+                placeholder="Ej: Sobre con documentos, repuesto de moto, indumentaria..."
                 className="w-full text-xs p-2.5 rounded-lg border border-brand-blue-100 text-brand-blue-500 outline-none focus:border-brand-blue-500"
               />
             </div>

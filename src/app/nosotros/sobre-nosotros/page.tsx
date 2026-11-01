@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ShieldCheck, MapPin, Award, Users, ArrowRight, Bike } from 'lucide-react';
+import { ShieldCheck, MapPin, Award, ArrowRight } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

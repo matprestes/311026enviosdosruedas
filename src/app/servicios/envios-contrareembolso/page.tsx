@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Banknote, ShieldCheck, Clock, ArrowRight, Phone } from 'lucide-react';
+import { Banknote, ShieldCheck, Clock, Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

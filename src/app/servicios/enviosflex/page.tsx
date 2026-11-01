@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Package, Clock, ShieldCheck, ArrowRight, Phone, CheckCircle2 } from 'lucide-react';
+import { Clock, ShieldCheck, Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

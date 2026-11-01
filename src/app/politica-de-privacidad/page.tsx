@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Lock, ShieldCheck } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

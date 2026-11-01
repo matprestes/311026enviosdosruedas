@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Warehouse, Percent, ShieldCheck, ArrowRight, Phone, Check } from 'lucide-react';
+import { Warehouse, Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Users, HelpCircle, Share2, MapPin, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Users, HelpCircle, Share2, ArrowRight } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

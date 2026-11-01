@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Building2, FileText, CheckCircle2, AlertCircle, ArrowRight, Phone } from 'lucide-react';
+import { Building2, FileText, CheckCircle2, AlertCircle, Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 

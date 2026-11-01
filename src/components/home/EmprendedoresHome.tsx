@@ -11,7 +11,6 @@ export default function EmprendedoresHome() {
   const [isMarqueePaused, setIsMarqueePaused] = useState<boolean>(false);
 
   const descriptionText = "Si vendés online, necesitás un socio logístico que responda al toque. Creamos planes a tu medida con tarifas dinámicas transparentes y recolección programada a domicilio en Mar del Plata.";
-  const words = descriptionText.split(" ");
 
   const partners = [
     'TOY PIOLA JUGUETERÍA', 'AMA & POLA', 'DROPIX 3D', 'EL CÓNDOR',
@@ -44,9 +43,13 @@ export default function EmprendedoresHome() {
   };
 
   return (
-    <section
+    <motion.section
       id="emprendedores-home"
       aria-labelledby="emprendedores-home-title"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-50px' }}
       className="py-16 sm:py-24 lg:py-32 bg-brand-blue-500 relative overflow-hidden text-white border-y border-white/10"
     >
       {/* Background Decorative Asymmetric Glows */}
@@ -301,6 +304,6 @@ export default function EmprendedoresHome() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

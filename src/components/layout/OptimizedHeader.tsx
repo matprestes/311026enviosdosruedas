@@ -304,21 +304,54 @@ export default function OptimizedHeader() {
               </div>
             </div>
 
-            <div className="lg:hidden flex items-center gap-3">
+            {/* Mobile / Tablet Quick Controls */}
+            <div className="lg:hidden flex items-center gap-2 sm:gap-3">
+              <Link
+                href="/cotizar"
+                className="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-500 font-subheading text-xs font-bold uppercase tracking-wider transition-all duration-150 shadow-accent-sm hover:shadow-cta-glow min-h-11 active:scale-95 select-none"
+              >
+                <span>Cotizar</span>
+              </Link>
+
               <a
                 href={PHONE_HREF}
                 onClick={() => trackAnalytics.phoneClick(SUPPORT_PHONE, 'header_mobile')}
-                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white hover:text-brand-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 transition-all min-w-11 min-h-11 flex items-center justify-center"
-                aria-label="Llamar"
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 text-white hover:text-brand-yellow-500 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 transition-all min-w-11 min-h-11 flex items-center justify-center"
+                aria-label="Llamar a soporte"
               >
                 <Phone className="h-5 w-5 text-brand-yellow-500" aria-hidden="true" />
               </a>
-              <button onClick={() => setIsOpen(!isOpen)} id="mobile-menu-toggle-opt" className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white hover:text-brand-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 transition-all cursor-pointer min-w-11 min-h-11 flex items-center justify-center" aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={isOpen} aria-controls="mobile-navigation-dialog">
+
+              <button
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                id="mobile-menu-toggle-opt"
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 text-white hover:text-brand-yellow-500 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 transition-all cursor-pointer min-w-11 min-h-11 flex items-center justify-center"
+                aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation-dialog"
+              >
                 <AnimatePresence mode="wait" initial={false}>
                   {isOpen ? (
-                    <motion.span key="close" initial={prefersReducedMotion ? false : { rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={prefersReducedMotion ? {} : { rotate: 90, opacity: 0 }} transition={{ duration: 0.18 }}><X className="h-6 w-6" /></motion.span>
+                    <motion.span
+                      key="close"
+                      initial={prefersReducedMotion ? false : { rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={prefersReducedMotion ? {} : { rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.18 }}
+                    >
+                      <X className="h-6 w-6" />
+                    </motion.span>
                   ) : (
-                    <motion.span key="menu" initial={prefersReducedMotion ? false : { rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={prefersReducedMotion ? {} : { rotate: -90, opacity: 0 }} transition={{ duration: 0.18 }}><Menu className="h-6 w-6" /></motion.span>
+                    <motion.span
+                      key="menu"
+                      initial={prefersReducedMotion ? false : { rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={prefersReducedMotion ? {} : { rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.18 }}
+                    >
+                      <Menu className="h-6 w-6" />
+                    </motion.span>
                   )}
                 </AnimatePresence>
               </button>
