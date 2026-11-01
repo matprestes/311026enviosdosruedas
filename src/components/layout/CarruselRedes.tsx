@@ -124,18 +124,18 @@ export default function CarruselRedes() {
         
         {/* Header Segment */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="px-4 py-1.5 bg-brand-yellow-500 text-brand-blue-500 rounded-full text-xs font-bold tracking-widest inline-block font-subheading uppercase shadow-accent-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow-500 text-brand-blue-500 font-subheading text-xs font-bold uppercase tracking-wider shadow-accent-sm">
             Nuestra Comunidad Digital
-          </span>
+          </div>
           
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[0.92] tracking-tight uppercase text-white text-center">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-hero tracking-tight uppercase text-white text-center text-balance">
             SEGUÍ NUESTRO <span className="text-brand-yellow-500">MOVIMIENTO</span>
           </h2>
 
-          <p className="text-brand-blue-50 text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto opacity-90">
+          <p className="text-white/90 text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto font-light text-balance">
             Sumate a nuestros canales digitales y enterate al toque de todas las novedades operativas en Mar del Plata.
           </p>
-          <div className="h-0.5 w-20 bg-brand-yellow-500 mx-auto rounded-full mt-4" />
+          <div className="h-0.5 w-20 bg-brand-yellow-500 mx-auto rounded-full mt-4" aria-hidden="true" />
         </div>
 
         {/* Networks Grid: 3 Unique Branded Cards */}

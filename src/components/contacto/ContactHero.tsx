@@ -172,7 +172,7 @@ export default function ContactHero() {
               {/* El conmutador: dos canales, y cada uno con su acción. En móvil
                   la acción baja a una segunda fila porque 44px de glifo + número
                   + botón no entran en 320px. */}
-              <ul className="grid gap-2.5 border-t border-white/15 pt-6">
+              <ul className="grid gap-2.5 border-t border-white/15 pt-6 list-none p-0 m-0">
                 <li className="grid grid-cols-[44px_1fr] items-center gap-3 rounded-2xl border border-white/15 bg-white/8 p-3 sm:grid-cols-[44px_1fr_auto] sm:pr-4">
                   {/* Amarillo de fondo con el glifo verde: la única excepción
                       cromática que autoriza `tokens-colores.md` §7.6. El verde

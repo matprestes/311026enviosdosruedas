@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import ContactHero from '@/components/contacto/ContactHero';
+import ContactChannels from '@/components/contacto/ContactChannels';
 import ContactForm from '@/components/contacto/ContactForm';
 import ContactInfo from '@/components/contacto/ContactInfo';
 import ConversionBanner from '@/components/contacto/ConversionBanner';
@@ -67,7 +68,8 @@ export default function ContactoPage() {
     <div className="min-h-dvh bg-slate-50/50 text-brand-blue-500 relative overflow-hidden font-sans pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }} />
       <ContactHero />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10 space-y-12 sm:space-y-16">
+        <ContactChannels />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           <div className="lg:col-span-5 h-full">
             <ContactForm />

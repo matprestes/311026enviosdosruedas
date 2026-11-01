@@ -103,13 +103,13 @@ export default function HeroAnimado() {
                 id="hero-cta-cotizar"
                 variant="primary"
                 size="large"
-                className="w-full sm:w-auto justify-center focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 shadow-[0_10px_25px_rgba(255,236,1,0.25)]"
+                className="w-full sm:w-auto justify-center focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 shadow-accent"
               >
                 Cotizá tu envío
               </CTANestedPill>
               <Link
                 href="/servicios"
-                className="inline-flex min-h-11 w-full sm:w-auto justify-center items-center gap-2 rounded-lg font-subheading text-sm uppercase tracking-wider text-white border border-white/20 hover:border-brand-yellow-400 hover:text-brand-yellow-400 bg-white/5 hover:bg-white/10 px-6 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 sm:text-base"
+                className="inline-flex min-h-11 w-full sm:w-auto justify-center items-center gap-2 rounded-lg font-subheading text-sm uppercase tracking-wider text-white border border-white/20 hover:border-brand-yellow-500 hover:text-brand-yellow-500 bg-white/5 hover:bg-white/10 px-6 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-500 sm:text-base"
               >
                 Ver servicios
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />

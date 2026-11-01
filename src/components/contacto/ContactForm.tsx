@@ -79,8 +79,12 @@ export default function ContactForm() {
   };
 
   return (
-    <section aria-label="Formulario de contacto comercial" className="h-full flex flex-col justify-between">
-      <DoubleBezelCard>
+    <section
+      id="contact-form"
+      aria-label="Formulario de contacto comercial"
+      className="h-full flex flex-col justify-between scroll-mt-24"
+    >
+      <DoubleBezelCard className="h-full">
         <div className="space-y-6 relative overflow-hidden h-full flex flex-col justify-between">
           <div className="relative z-10 space-y-6">
             {/* Header & Badges */}

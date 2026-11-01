@@ -3,6 +3,11 @@
 import React, { useEffect, useRef } from 'react';
 import { useReducedMotion } from 'motion/react';
 
+// Design System Official Canvas Palette (Matches @theme tokens)
+const COLOR_YELLOW_VIAL = '#FFEC01';       // var(--color-brand-yellow-500)
+const COLOR_BLUE_STRUCTURAL = '#BACEFD';   // var(--color-brand-blue-100)
+const COLOR_CANVAS_WHITE = '#FFFFFF';      // var(--color-white)
+
 interface Node {
   x: number;
   y: number;
@@ -62,20 +67,20 @@ export default function NetworkCanvasWrapper() {
           vx: (Math.random() - 0.5) * 0.35,
           vy: (Math.random() - 0.5) * 0.35,
           radius: isHub ? 3.5 : 2,
-          color: isHub ? '#FFEC01' : '#BACEFD',
+          color: isHub ? COLOR_YELLOW_VIAL : COLOR_BLUE_STRUCTURAL,
           isHub,
           label: isHub ? HUB_LABELS[i] : undefined,
         });
       }
 
-      // Initial pulses along nearby connections
+      // Initial pulses along logistics routes
       for (let i = 0; i < 4; i++) {
         pulses.push({
           fromNode: Math.floor(Math.random() * nodes.length),
           toNode: Math.floor(Math.random() * nodes.length),
           progress: Math.random(),
           speed: 0.004 + Math.random() * 0.006,
-          color: Math.random() > 0.4 ? '#FFEC01' : '#FFFFFF',
+          color: Math.random() > 0.4 ? COLOR_YELLOW_VIAL : COLOR_CANVAS_WHITE,
         });
       }
     };
@@ -102,7 +107,6 @@ export default function NetworkCanvasWrapper() {
       for (let i = 0; i < nodes.length; i++) {
         const n1 = nodes[i];
 
-        // Slight drift
         if (!shouldReduceMotion) {
           n1.x += n1.vx;
           n1.y += n1.vy;
@@ -121,7 +125,7 @@ export default function NetworkCanvasWrapper() {
           ctx.stroke();
         }
 
-        // Connections to other nodes
+        // Connections between nodes
         for (let j = i + 1; j < nodes.length; j++) {
           const n2 = nodes[j];
           const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
@@ -139,7 +143,7 @@ export default function NetworkCanvasWrapper() {
         }
       }
 
-      // Draw moving delivery pulses along logistics routes
+      // Draw moving delivery pulses along routes
       if (!shouldReduceMotion) {
         for (let p of pulses) {
           p.progress += p.speed;
@@ -175,16 +179,16 @@ export default function NetworkCanvasWrapper() {
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fillStyle = node.color;
         if (node.isHub) {
-          ctx.shadowColor = '#FFEC01';
+          ctx.shadowColor = COLOR_YELLOW_VIAL;
           ctx.shadowBlur = 8;
         }
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Label for key hubs
+        // Label for key hubs using Geist Mono font variable
         if (node.isHub && node.label && width > 640) {
-          ctx.font = '10px monospace';
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+          ctx.font = '10px var(--font-mono), monospace';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
           ctx.fillText(node.label, node.x + 6, node.y + 3);
         }
       }

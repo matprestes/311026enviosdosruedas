@@ -1,11 +1,18 @@
-import Link from 'next/link';
+'use client';
+
+import React from 'react';
 import Image from 'next/image';
-import { MessageSquare, ArrowRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
+import { MessageSquare, ShieldCheck, Clock, MapPin, Calculator } from 'lucide-react';
+import { CTANestedPill } from '@/components/ui/CTANestedPill';
+import { WHATSAPP_PHONE } from '@/lib/whatsapp';
 
 export default function CtaSection() {
   return (
-    <section className="bg-brand-blue-500 text-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background radial glow & speed vectors */}
+    <section
+      aria-labelledby="cta-home-heading"
+      className="bg-brand-blue-500 text-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
+      {/* Background ambient lighting and depth halos */}
       <div
         className="absolute inset-0 pointer-events-none select-none opacity-20"
         aria-hidden="true"
@@ -27,7 +34,7 @@ export default function CtaSection() {
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.24em] text-brand-yellow-400">
+          <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.24em] text-brand-yellow-500">
             <span>05</span>
             <span className="text-white/40" aria-hidden="true">/</span>
             <span>Respuesta Inmediata</span>
@@ -36,50 +43,56 @@ export default function CtaSection() {
           </div>
         </div>
 
-        {/* Display Headline */}
-        <h2 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-none text-balance">
-          ¿Tenés un paquete listo para despachar en <span className="text-brand-yellow-400">Mar del Plata</span>?
+        {/* Display Headline with standardized type styles */}
+        <h2
+          id="cta-home-heading"
+          className="font-display text-3xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-hero text-balance"
+        >
+          ¿Tenés un paquete listo para despachar en <span className="text-brand-yellow-500">Mar del Plata</span>?
         </h2>
 
-        {/* Paragraph */}
-        <p className="font-sans text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-light text-balance">
-          Cotizá online de forma instantánea según la distancia vial real o escribinos directo a nuestro WhatsApp comercial para coordinar con un operador en vivo.
+        {/* Paragraph with controlled legibility */}
+        <p className="font-sans text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-light text-balance">
+          Cotizá online de forma instantánea según la distancia vial real o escribinos directo a nuestro WhatsApp comercial para coordinar con un operador en base.
         </p>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-          <Link
+        {/* Standardized Canonical CTA Controls */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3">
+          <CTANestedPill
             href="/cotizar"
-            className="w-full sm:w-auto bg-brand-yellow-500 hover:bg-brand-yellow-400 active:bg-brand-yellow-600 text-brand-blue-500 font-subheading text-xl font-bold uppercase tracking-wider px-9 py-4 rounded-full shadow-[0_12px_28px_rgba(255,236,1,0.3)] transition-all duration-200 hover:scale-105 inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 focus-visible:ring-offset-2"
+            variant="primary"
+            size="large"
+            icon={<Calculator className="w-4 h-4 text-brand-blue-500" aria-hidden="true" />}
           >
-            <span>Cotizá tu Envío Online</span>
-            <ArrowRight className="w-5 h-5 stroke-[2.5]" aria-hidden="true" />
-          </Link>
-          <a
-            href="https://wa.me/5492236602699?text=Hola!%20Quiero%20coordinar%20un%20env%C3%ADo%20en%20Mar%20del%20Plata"
+            Cotizá tu Envío Online
+          </CTANestedPill>
+
+          <CTANestedPill
+            href={`https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=Hola!%20Quiero%20coordinar%20un%20env%C3%ADo%20en%20Mar%20del%20Plata`}
+            variant="elevated"
+            size="large"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto border-2 border-white/80 hover:bg-white/10 text-white font-subheading text-xl font-bold uppercase tracking-wider px-9 py-4 rounded-full transition-colors inline-flex items-center justify-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+            icon={<MessageSquare className="w-4 h-4 text-brand-blue-500" aria-hidden="true" />}
           >
-            <MessageSquare className="w-5 h-5 text-brand-yellow-400" aria-hidden="true" />
-            <span>WhatsApp: 223 660-2699</span>
-          </a>
+            WhatsApp: 223 660-2699
+          </CTANestedPill>
         </div>
 
-        {/* Trust Badges Strip */}
-        <div className="pt-8 border-t border-white/15 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs font-mono text-white/80">
+        {/* Trust Badges Strip with pure tokens */}
+        <div className="pt-8 border-t border-white/15 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs font-mono text-white/85">
           <span className="inline-flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-brand-yellow-400" aria-hidden="true" />
+            <MapPin className="w-3.5 h-3.5 text-brand-yellow-500" aria-hidden="true" />
             Base Central: Friuli 1972
           </span>
           <span className="text-white/30 hidden sm:inline" aria-hidden="true">·</span>
           <span className="inline-flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-brand-yellow-400" aria-hidden="true" />
+            <Clock className="w-3.5 h-3.5 text-brand-yellow-500" aria-hidden="true" />
             Lun a Vie 09:00 a 18:00 / Sáb 10:00 a 15:00
           </span>
           <span className="text-white/30 hidden sm:inline" aria-hidden="true">·</span>
           <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-brand-yellow-400" aria-hidden="true" />
+            <ShieldCheck className="w-3.5 h-3.5 text-brand-yellow-500" aria-hidden="true" />
             Flota Propia · Cero Tercerización
           </span>
         </div>
