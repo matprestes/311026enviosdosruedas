@@ -1,25 +1,19 @@
-import 'dotenv/config'
-import { Pool } from 'pg'
-import { PrismaPg } from '@prisma/adapter-pg'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-const prismaClientSingleton = () => {
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL?.includes('sslmode=verify-full')
-      ? { rejectUnauthorized: true }
-      : process.env.DATABASE_URL?.includes('sslmode=no-verify')
-      ? { rejectUnauthorized: false }
-      : undefined,
-  })
-  const adapter = new PrismaPg(pool)
-  return new PrismaClient({ adapter })
-}
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefined };
 
-declare const globalThis: {
-  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
-} & typeof global;
+const defaultDbUrl = process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/envios_dosruedas?schema=public';
 
-export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    datasources: {
+      db: {
+        url: defaultDbUrl,
+      },
+    },
+  });
 
-if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+export default prisma;

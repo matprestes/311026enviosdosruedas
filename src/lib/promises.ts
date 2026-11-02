@@ -1,25 +1,3 @@
-/**
- * Constantes únicas de promesas de servicio y umbrales operativos (BL-03).
- * Fuente de verdad unificada para cotizadores, páginas informativas, JSON-LD y llms.txt.
- *
- * Nota: Si se modifican estas promesas, recordar actualizar sincronizadamente también
- * public/llms.txt y public/llms-full.txt.
- *
- * Contexto del dueño (definiciones verbatim de servicio, recargos, protocolos y lo que
- * niega explícitamente): docs/knowledge_base/00-negocio/servicios.md y voz-y-lineas-rojas.md
- */
-
-// Ventana de entrega Express.
-// Cambio 2026-09-29 (decisión del dueño, relevamiento con Matías Cejas): la promesa de
-// "60 a 90 min" se retiró por inexacta. Express coordina hoy una franja horaria acotada
-// a elección del cliente, con 2 hs de anticipación mínima.
-//
-// Contrato de las dos formas, porque se interpolan en oraciones distintas:
-//   EXPRESS_WINDOW       → forma larga. SIEMPRE después de "en" o "Entrega en":
-//                          "Entrega en franja horaria de 3 hs".
-//   EXPRESS_WINDOW_SHORT → forma compacta, para chips, tablas y rótulos sueltos:
-//                          "Franja de 3 hs". NUNCA dentro de una oración con "en",
-//                          porque "en 3 hs" se leería como duración de la entrega.
 export const EXPRESS_WINDOW = 'franja horaria de 3 hs';
 export const EXPRESS_WINDOW_SHORT = 'Franja de 3 hs';
 

@@ -1,93 +1,67 @@
-import React from 'react';
-import {
-  BULK_EXTRA_FROM_ARS,
-  EXTRA_STOP_MAX_DETOUR_KM,
-  EXTRA_STOP_SURCHARGE_PERCENT,
-  PERIPHERY_PRICE_PER_KM,
-  RAIN_SURCHARGE_PERCENT,
-  RAIN_SURCHARGE_PERCENT_EXPRESS_LOWCOST,
-  RETRY_CHARGE_PERCENT,
-  STANDARD_BULLET_DIMENSIONS_CM,
-  STANDARD_WEIGHT_KG,
-  WAIT_CHARGE_ARS,
-  WAIT_CHARGE_BLOCK_MIN,
-  WAIT_TOLERANCE_MIN,
-} from '@/lib/promises';
+import { CloudRain, Clock, PackageCheck, MapPin, AlertCircle } from 'lucide-react';
 
-const formatArs = (value: number) => `$${value.toLocaleString('es-AR')}`;
-
-/**
- * Lo que el cotizador no suma solo. El precio de arriba es por distancia; estos
- * recargos dependen de lo que pase en el viaje, así que se informan antes de
- * confirmar en vez de aparecer después. Todos los valores salen de `promises.ts`.
- */
-const RECARGOS: { situacion: string; costo: string; detalle: string }[] = [
+const RECARGOS = [
   {
-    situacion: 'Lluvia o calzada mojada',
-    costo: `+${RAIN_SURCHARGE_PERCENT_EXPRESS_LOWCOST} %`,
-    detalle: `Sobre la tarifa Express o LowCost. En Flex y cuentas corrientes es ${RAIN_SURCHARGE_PERCENT} %.`,
+    icon: CloudRain,
+    title: 'Recargo por Lluvia',
+    desc: '30% en servicios generales (hasta 50% en despachos inmediatos). Por seguridad vial de nuestros cadetes en asfalto mojado.',
   },
   {
-    situacion: 'Espera en puerta',
-    costo: `${formatArs(WAIT_CHARGE_ARS)} cada ${WAIT_CHARGE_BLOCK_MIN} min`,
-    detalle: `Los primeros ${WAIT_TOLERANCE_MIN} minutos no se cobran. Corre desde el minuto ${WAIT_TOLERANCE_MIN + 1}.`,
+    icon: Clock,
+    title: 'Tiempo de Espera en Puerta',
+    desc: 'Primeros 10 minutos sin cargo. A partir del minuto 11 se abonan $2.200 por cada bloque de 10 minutos adicionales.',
   },
   {
-    situacion: 'Parada extra en el camino',
-    costo: `+${EXTRA_STOP_SURCHARGE_PERCENT} % por parada`,
-    detalle: `Si la parada queda sobre la ruta, hasta ${EXTRA_STOP_MAX_DETOUR_KM} km. Si desvía más, es un envío aparte.`,
+    icon: PackageCheck,
+    title: 'Bulto Extra o Sobredimensionado',
+    desc: 'La tarifa incluye hasta 5 kg y 40 × 40 × 30 cm. Paquetes con mayor volumen o peso extra se cotizan desde $1.800 de adicional.',
   },
   {
-    situacion: 'Destinatario ausente',
-    costo: `${RETRY_CHARGE_PERCENT} % del envío`,
-    detalle: 'La segunda visita se cobra como un envío nuevo. En zonas cercanas, a veces la hacemos sin cargo.',
-  },
-  {
-    situacion: `Bulto de más de ${STANDARD_WEIGHT_KG} kg o ${STANDARD_BULLET_DIMENSIONS_CM}`,
-    costo: `Desde ${formatArs(BULK_EXTRA_FROM_ARS)}`,
-    detalle: 'El monto final depende del servicio. Si el bulto excede ese tamaño, escribinos y lo coordinamos.',
-  },
-  {
-    situacion: 'Destino fuera de la ciudad',
-    costo: `${formatArs(PERIPHERY_PRICE_PER_KM)} por km de ruta`,
-    detalle: 'Batán, Sierra de los Padres y otras localidades cercanas. Se cotiza por WhatsApp.',
+    icon: MapPin,
+    title: 'Paradas Intermedias',
+    desc: 'Paradas extras en el mismo trayecto urbano (hasta 2 km de desvío) adicionan un 50% del tramo correspondiente.',
   },
 ];
 
 export default function CotizadorRecargos() {
   return (
-    <section id="recargos" aria-labelledby="recargos-titulo" className="space-y-5 scroll-mt-24">
-      <div className="space-y-2">
-        <h2
-          id="recargos-titulo"
-          className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-white"
-        >
-          Lo que puede sumar al precio
-        </h2>
-        <p className="font-sans text-white/90 leading-relaxed max-w-3xl text-sm sm:text-base">
-          El cotizador calcula el viaje por distancia. Estas situaciones se cobran aparte,
-          según lo que pase en el viaje.
-        </p>
-      </div>
+    <div className="p-1.5 sm:p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 mt-12 w-full max-w-full">
+      <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8">
+        <div className="flex items-center gap-2 mb-6">
+          <AlertCircle className="w-5 h-5 text-brand-blue-500" />
+          <h3 className="font-display text-2xl uppercase tracking-tight text-brand-blue-500">
+            Condiciones y Recargos Operativos
+          </h3>
+        </div>
 
-      <dl className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md divide-y divide-white/10">
-        {RECARGOS.map((recargo) => (
-          <div
-            key={recargo.situacion}
-            className="grid gap-1 sm:grid-cols-12 sm:gap-6 px-4 sm:px-5 py-4"
-          >
-            <dt className="sm:col-span-4 font-subheading text-sm uppercase tracking-wider text-white">
-              {recargo.situacion}
-            </dt>
-            <dd className="sm:col-span-3 font-mono text-sm font-bold text-brand-yellow-500 tabular-nums">
-              {recargo.costo}
-            </dd>
-            <dd className="sm:col-span-5 font-sans text-sm text-white/85 leading-relaxed">
-              {recargo.detalle}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {RECARGOS.map((rec) => {
+            const Icon = rec.icon;
+            return (
+              <div key={rec.title} className="p-4 rounded-xl bg-brand-blue-50/50 border border-brand-blue-100/50 space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-brand-blue-100 text-brand-blue-500 flex items-center justify-center">
+                  <Icon className="w-4 h-4" />
+                </div>
+                <h4 className="font-subheading text-base font-bold uppercase tracking-wider text-brand-blue-500">
+                  {rec.title}
+                </h4>
+                <p className="font-sans text-xs text-brand-blue-500/80 leading-relaxed">
+                  {rec.desc}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 pt-4 border-t border-brand-blue-50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-sans text-brand-blue-500/70">
+          <p>
+            * Tarifas sujetas a vigencia 2026. Los tiempos de traslado pueden variar en días de lluvia o alta congestión vial.
+          </p>
+          <span className="font-bold text-brand-blue-500">
+            No emitimos Factura A. Comprobantes fiscales Monotributo.
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
