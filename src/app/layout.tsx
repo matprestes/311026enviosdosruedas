@@ -113,6 +113,58 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
               (function() {
                 if (typeof window === 'undefined') return;
+
+                try {
+                  var _realFetch = window.fetch;
+                  var _customFetch = null;
+                  var fetchProp = {
+                    configurable: true,
+                    enumerable: true,
+                    get: function() { return _customFetch || _realFetch; },
+                    set: function(v) { _customFetch = v; }
+                  };
+                  try { Object.defineProperty(window, 'fetch', fetchProp); } catch (_) {}
+                  if (typeof Window !== 'undefined' && Window.prototype) {
+                    try { Object.defineProperty(Window.prototype, 'fetch', fetchProp); } catch (_) {}
+                  }
+                } catch (_) {}
+
+                var isExtensionErr = function(msg, src) {
+                  var m = (typeof msg === 'string') ? msg : '';
+                  var s = (typeof src === 'string') ? src : '';
+                  return (
+                    m.indexOf('Cannot set property fetch') !== -1 ||
+                    m.indexOf('which has only a getter') !== -1 ||
+                    s.indexOf('chrome-extension://') !== -1
+                  );
+                };
+
+                window.addEventListener('error', function(e) {
+                  if (e && isExtensionErr(e.message || (e.error && e.error.message), e.filename)) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    return true;
+                  }
+                }, true);
+
+                var _oldOnError = window.onerror;
+                window.onerror = function(msg, url, line, col, err) {
+                  var m = (typeof msg === 'string') ? msg : (err && err.message) || '';
+                  var s = (typeof url === 'string') ? url : '';
+                  if (isExtensionErr(m, s)) {
+                    return true;
+                  }
+                  if (_oldOnError) return _oldOnError.apply(this, arguments);
+                };
+
+                window.addEventListener('unhandledrejection', function(e) {
+                  var reason = e && e.reason;
+                  var m = (reason && reason.message) || String(reason || '');
+                  if (isExtensionErr(m, '')) {
+                    e.preventDefault();
+                  }
+                });
+
                 function cleanAttrs(node) {
                   if (!node || !node.attributes) return;
                   var attrs = Array.from(node.attributes);
