@@ -1,11 +1,9 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   UtensilsCrossed,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
   QrCode,
@@ -18,7 +16,6 @@ import { trackAnalytics } from '@/lib/analytics';
 const WHATSAPP_NUMBER = SUPPORT_PHONE.replace(/\D/g, '');
 
 export function MarDeliveryHero() {
-  const reduceMotion = useReducedMotion();
 
   return (
     <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden bg-[#031811] text-white pt-24 pb-12 sm:pt-28 sm:pb-16 lg:py-16 border-b border-[#2ECC85]/15 font-sans">

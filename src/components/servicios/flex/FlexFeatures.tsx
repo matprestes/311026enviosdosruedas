@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { Truck, Clock, ShieldCheck, MapPin, CheckCircle2, MessageCircle, Users, Activity } from 'lucide-react';
+import { Truck, Clock, ShieldCheck, MapPin, MessageCircle, Users, Activity } from 'lucide-react';
 
 export default function FlexFeatures() {
   const differentials = [

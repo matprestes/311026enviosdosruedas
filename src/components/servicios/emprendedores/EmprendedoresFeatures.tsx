@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'motion/react';
 import { Container, Landmark, BarChart3, Clock, Tag, Receipt } from 'lucide-react';
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard';
 
@@ -98,7 +97,7 @@ export default function EmprendedoresFeatures() {
         {/* Stats Section Panel */}
         <div className="mt-20 border-t border-brand-blue-100 pt-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {stats.map((stat, idx) => {
+            {stats.map((stat) => {
               const Icon = stat.icon;
               return (
                 <div key={stat.label}>

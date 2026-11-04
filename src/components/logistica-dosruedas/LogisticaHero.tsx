@@ -1,22 +1,18 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import {
-  Search,
   ShieldCheck,
   MapPin,
   Clock,
   Sparkles,
   ArrowDown,
-  Layers,
 } from 'lucide-react';
 import { CTANestedPill } from '@/components/ui/CTANestedPill';
 import { trackAnalytics } from '@/lib/analytics';
 
 export function LogisticaHero() {
-  const reduceMotion = useReducedMotion();
 
   return (
     <section className="relative overflow-hidden bg-brand-blue-500 text-white pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-white/10">

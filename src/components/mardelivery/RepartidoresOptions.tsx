@@ -1,17 +1,12 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import {
   Users,
   Clock,
   Bike,
-  Shuffle,
-  ShieldCheck,
   ExternalLink,
   CheckCircle2,
-  Phone,
-  ArrowRight,
   Sparkles,
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';

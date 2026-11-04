@@ -45,12 +45,12 @@ const tiles: Tile[] = [
     i: 0,
     content: (
       <Image
-        src="/heroes/express-moto.webp"
-        alt=""
+        src="/elementos/envios_express.webp"
+        alt="Cadete Express en moto Envíos DosRuedas"
         fill
         priority
         sizes="(min-width: 1024px) 400px, 64vw"
-        className="object-cover object-top"
+        className="object-cover object-center"
       />
     ),
   },
@@ -65,8 +65,8 @@ const tiles: Tile[] = [
     i: 1,
     content: (
       <Image
-        src="/img/generales/repartidor.webp"
-        alt=""
+        src="/express-hero-inline.png"
+        alt="Repartidor de Envíos DosRuedas"
         fill
         sizes="(min-width: 1024px) 360px, 54vw"
         className="object-cover grayscale contrast-[1.05] mix-blend-screen"
@@ -96,12 +96,12 @@ const tiles: Tile[] = [
     key: 'desde',
     className: cn(
       wordClass,
-      'hidden lg:flex left-[58%] top-[80%] h-21 w-[22%] rounded-md bg-brand-yellow-500 text-[40px] text-brand-blue-500'
+      'hidden lg:flex left-[58%] top-[80%] h-21 w-[26%] rounded-xl bg-brand-yellow-500 text-[34px] font-mono font-bold text-brand-blue-500 shadow-xl border-2 border-brand-yellow-300'
     ),
     r: 4,
     d: 9,
     i: 6,
-    content: 'Desde',
+    content: '$3.700',
   },
   {
     key: 'soft',

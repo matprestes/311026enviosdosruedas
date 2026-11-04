@@ -5,18 +5,10 @@ import {
   Search,
   Package,
   CheckCircle2,
-  Clock,
-  MapPin,
-  Bike,
   AlertCircle,
-  ExternalLink,
-  ArrowRight,
-  ShieldCheck,
-  RotateCcw,
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { DoubleBezelCard } from '@/components/ui/DoubleBezelCard';
-import { CTANestedPill } from '@/components/ui/CTANestedPill';
 import { SUPPORT_PHONE } from '@/lib/promises';
 import { trackAnalytics } from '@/lib/analytics';
 
