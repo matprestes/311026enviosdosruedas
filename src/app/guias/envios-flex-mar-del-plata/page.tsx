@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
@@ -33,13 +33,13 @@ export default function GuiaFlexMarDelPlataPage() {
         <div className="p-2 rounded-2xl bg-brand-blue-50/80 border border-brand-blue-100/60 shadow-sm">
           <div className="bg-white rounded-xl p-6 sm:p-8 space-y-4">
             <div className="relative w-full h-48 sm:h-64 rounded-xl overflow-hidden border border-brand-blue-100/60 bg-brand-blue-50 mb-4">
-              <Image
+              <OptimizedImage
                 src="/elementos/envios_flex.webp"
                 alt="Mercado Envíos Flex y logística de última milla Mar del Plata"
                 fill
                 sizes="(max-width: 896px) 100vw, 800px"
                 className="object-cover object-center"
-                referrerPolicy="no-referrer"
+                aboveTheFold={false}
               />
             </div>
 

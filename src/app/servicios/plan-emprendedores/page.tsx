@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { Rocket, Percent, CheckCircle2, Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
@@ -71,14 +71,13 @@ export default function PlanEmprendedoresPage() {
 
           <div className="lg:col-span-5 space-y-4">
             <div className="relative w-full h-48 sm:h-56 rounded-2xl overflow-hidden border border-brand-blue-100 shadow-sm bg-brand-blue-50">
-              <Image
+              <OptimizedImage
                 src="/elementos/envios_emprendedores.webp"
                 alt="Envíos para emprendedores y showrooms en Mar del Plata"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center"
-                priority
-                referrerPolicy="no-referrer"
+                aboveTheFold={false}
               />
             </div>
 

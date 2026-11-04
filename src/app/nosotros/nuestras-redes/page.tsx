@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { MessageSquare, Instagram, Facebook, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
@@ -53,15 +53,13 @@ export default function NuestrasRedesPage() {
         <div className="max-w-4xl mx-auto text-center space-y-4">
           <div className="flex items-center justify-center gap-3">
             <div className="relative w-12 h-12 shrink-0 drop-shadow-md">
-              <Image
+              <OptimizedImage
                 src="/elementos/seguinos_transparent.webp"
                 alt="Seguinos en redes oficiales Envíos DosRuedas"
                 fill
                 sizes="48px"
-                priority
-                fetchPriority="high"
+                aboveTheFold={true}
                 className="object-contain"
-                referrerPolicy="no-referrer"
               />
             </div>
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-yellow-500 bg-brand-blue-400/50 px-3 py-1 rounded-full border border-brand-blue-300/40 inline-block">

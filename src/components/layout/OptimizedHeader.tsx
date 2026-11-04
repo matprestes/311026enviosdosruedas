@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion/react';
@@ -159,14 +159,13 @@ export default function OptimizedHeader() {
             <Link href="/" id="nav-logo-opt" aria-current={pathname === '/' ? 'page' : undefined} className="flex items-center gap-2 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 rounded-xl shrink min-w-0">
               <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
                 <motion.div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0" whileHover={prefersReducedMotion ? {} : { rotate: 8, scale: 1.04 }} whileTap={prefersReducedMotion ? {} : { scale: 0.97 }} transition={{ type: 'spring', duration: 0.22, bounce: 0.15 }}>
-                  <Image
+                  <OptimizedImage
                     src="/logo-envios-simplified.webp"
                     alt="Logo Envíos Dos Ruedas"
                     fill
                     sizes="40px"
                     className="object-contain"
-                    priority
-                    referrerPolicy="no-referrer"
+                    aboveTheFold={true}
                   />
                 </motion.div>
                 <span className="font-display text-xl sm:text-2xl lg:text-3xl tracking-tight leading-none uppercase select-none flex flex-col sm:flex-row sm:gap-1 items-start sm:items-center truncate">

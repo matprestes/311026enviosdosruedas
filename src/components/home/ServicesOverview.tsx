@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { ChevronLeft, ChevronRight, Zap, Package, Truck, Warehouse, Info, X, MapPin, ShieldCheck } from 'lucide-react';
 import {
   DROPOFF_DISCOUNT_PERCENT,
@@ -570,15 +570,13 @@ export default function ServicesOverview() {
                 >
                   {/* Background Image with Layer Blend */}
                   <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0" aria-hidden="true">
-                    <Image
+                    <OptimizedImage
                       src={service.imageUrl}
                       alt=""
                       fill={true}
-                      loading="lazy"
-                      decoding="async"
+                      aboveTheFold={false}
                       sizes="(max-width: 768px) 290px, 350px"
                       className={`object-cover ${service.imgBlend}`}
-                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-brand-blue-500/80 via-brand-blue-500/20 to-transparent opacity-60" />
                   </div>

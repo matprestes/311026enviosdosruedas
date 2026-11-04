@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import Image from 'next/image';
+import OptimizedImage from './OptimizedImage';
 
 interface Coordinate {
   lat: number;
@@ -205,14 +205,13 @@ export default function LeafletRouteMap({
       <div className="absolute top-3 left-3 z-400 pointer-events-none">
         <div className="bg-brand-blue-500/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-brand-blue-500/30 shadow-lg flex items-center gap-2.5">
           <div className="relative w-6 h-6 shrink-0 bg-white/10 rounded-lg p-0.5 flex items-center justify-center">
-            <Image
+            <OptimizedImage
               src="/logo-envios-simplified.webp"
               alt="Logo DosRuedas"
               width={20}
               height={20}
-              loading="lazy"
+              aboveTheFold={false}
               className="object-contain"
-              referrerPolicy="no-referrer"
             />
           </div>
           <div className="flex flex-col leading-none">

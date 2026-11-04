@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { ArrowUpRight, ShieldCheck, MessageSquare } from 'lucide-react';
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard';
 import CTANestedPill from '@/components/ui/CTANestedPill';
@@ -86,15 +86,14 @@ export default function ContactChannels() {
                   <div className="flex items-center gap-3 pt-1">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-brand-blue-50 border border-brand-blue-100 text-brand-blue-500 shadow-xs">
                       {typeof IconComp === 'string' ? (
-                        <Image
+                        <OptimizedImage
                           src={IconComp}
                           alt=""
                           width={20}
                           height={20}
-                          loading="lazy"
+                          aboveTheFold={false}
                           className="w-5 h-5 object-contain"
                           aria-hidden="true"
-                          referrerPolicy="no-referrer"
                         />
                       ) : (
                         <IconComp className="w-5 h-5 text-brand-blue-500" aria-hidden="true" />

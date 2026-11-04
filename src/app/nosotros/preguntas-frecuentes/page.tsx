@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Phone } from 'lucide-react';
 
@@ -61,14 +61,13 @@ export default function FaqsPage() {
 
           <div className="md:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm h-52 sm:h-64 rounded-2xl overflow-hidden shadow-xl border-2 border-brand-blue-400 bg-brand-blue-400/40">
-              <Image
+              <OptimizedImage
                 src="/elementos/hero_faq.webp"
                 alt="Preguntas frecuentes y atención Envíos DosRuedas"
                 fill
                 sizes="(max-width: 768px) 100vw, 400px"
                 className="object-cover object-center"
-                priority
-                referrerPolicy="no-referrer"
+                aboveTheFold={true}
               />
             </div>
           </div>
@@ -100,15 +99,13 @@ export default function FaqsPage() {
           <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
             <div className="flex items-center gap-4">
               <div className="relative w-16 h-16 shrink-0 drop-shadow-md">
-                <Image
+                <OptimizedImage
                   src="/elementos/dudas_transparent.webp"
                   alt="Dudas o consultas Envíos DosRuedas"
                   fill
                   sizes="64px"
-                  loading="lazy"
-                  decoding="async"
+                  aboveTheFold={false}
                   className="object-contain"
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <div>

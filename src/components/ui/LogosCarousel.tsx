@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from './OptimizedImage';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from 'motion/react';
 
@@ -150,14 +150,13 @@ export const LogosCarousel: React.FC<LogosCarouselProps> = ({
               </div>
             ) : item.logoUrl ? (
               <div className="relative h-8 w-32 flex items-center justify-center">
-                <Image
+                <OptimizedImage
                   src={item.logoUrl}
                   alt={item.alt || item.name}
                   width={120}
                   height={32}
-                  loading="lazy"
+                  aboveTheFold={false}
                   className="object-contain max-h-8 w-auto"
-                  referrerPolicy="no-referrer"
                 />
               </div>
             ) : (

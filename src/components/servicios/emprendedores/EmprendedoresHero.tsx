@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { Boxes, Warehouse } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { CTANestedPill } from '@/components/ui/CTANestedPill';
@@ -203,12 +203,12 @@ export default function EmprendedoresHero() {
                   className="absolute inset-x-[6%] bottom-[4%] top-[8%] -z-10 rotate-3 rounded-3xl bg-white opacity-55"
                 />
 
-                <Image
+                <OptimizedImage
                   src="/heroes/deposito-local.webp"
                   alt="Local de Envíos DosRuedas en Mar del Plata con toldo azul y mercadería preparada para despacho"
                   width={520}
                   height={520}
-                  priority
+                  aboveTheFold={true}
                   sizes="(min-width: 1024px) 420px, 90vw"
                   className="relative h-auto w-full"
                 />

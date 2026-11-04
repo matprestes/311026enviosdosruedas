@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { ArrowRight, Zap, PiggyBank, Package, Warehouse, Building2, Banknote, Rocket } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
@@ -129,13 +129,13 @@ export default function ServiciosPage() {
 
                     {s.image && (
                       <div className="relative w-full h-32 my-3 rounded-lg overflow-hidden bg-brand-blue-50/70 border border-brand-blue-100/50">
-                        <Image
+                        <OptimizedImage
                           src={s.image}
                           alt={s.title}
                           fill
+                          aboveTheFold={false}
                           sizes="(max-width: 768px) 100vw, 33vw"
                           className="object-cover object-center group-hover:scale-102 transition-transform duration-200"
-                          referrerPolicy="no-referrer"
                         />
                       </div>
                     )}
@@ -159,13 +159,13 @@ export default function ServiciosPage() {
         <div className="p-6 sm:p-8 rounded-2xl bg-brand-blue-50 border border-brand-blue-100 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left shadow-xs">
           <div className="flex items-center gap-4">
             <div className="relative w-16 h-16 shrink-0 rounded-xl overflow-hidden bg-white border border-brand-blue-200 shadow-xs">
-              <Image
+              <OptimizedImage
                 src="/elementos/planifica_transparent.webp"
                 alt="Planificá tu cotización de envíos en moto Mar del Plata"
                 fill
+                aboveTheFold={false}
                 sizes="64px"
                 className="object-contain p-1"
-                referrerPolicy="no-referrer"
               />
             </div>
             <div>

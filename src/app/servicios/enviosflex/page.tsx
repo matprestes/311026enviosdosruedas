@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { Clock, ShieldCheck, Phone } from 'lucide-react';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
@@ -76,14 +76,13 @@ export default function EnviosFlexPage() {
 
           <div className="lg:col-span-5 space-y-4">
             <div className="relative w-full h-48 sm:h-56 rounded-2xl overflow-hidden border border-brand-blue-100 shadow-sm bg-brand-blue-50">
-              <Image
+              <OptimizedImage
                 src="/elementos/envios_flex.webp"
                 alt="Mercado Envíos Flex en el día Mar del Plata"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center"
-                priority
-                referrerPolicy="no-referrer"
+                aboveTheFold={false}
               />
             </div>
 

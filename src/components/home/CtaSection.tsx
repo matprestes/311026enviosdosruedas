@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { MessageSquare, ShieldCheck, Clock, MapPin, Calculator } from 'lucide-react';
 import { CTANestedPill } from '@/components/ui/CTANestedPill';
 import { WHATSAPP_PHONE } from '@/lib/whatsapp';
@@ -25,14 +25,13 @@ export default function CtaSection() {
         {/* Unboxed Kicker with Avatar Graphic */}
         <div className="inline-flex items-center gap-3">
           <div className="relative w-12 h-12 shrink-0 drop-shadow-md">
-            <Image
+            <OptimizedImage
               src="/elementos/escribinos_transparent.webp"
               alt="Escribinos por WhatsApp Envíos DosRuedas"
               width={48}
               height={48}
-              loading="lazy"
+              aboveTheFold={false}
               className="w-12 h-12 object-contain"
-              referrerPolicy="no-referrer"
             />
           </div>
           <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.24em] text-brand-yellow-500">

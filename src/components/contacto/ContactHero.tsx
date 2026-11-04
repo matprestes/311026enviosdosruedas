@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { ChevronDown, MapPin, MessageCircle } from 'lucide-react';
 import { CTANestedPill } from '@/components/ui/CTANestedPill';
 import { DoubleBezelCard } from '@/components/ui/DoubleBezelCard';
@@ -219,15 +219,13 @@ export default function ContactHero() {
                 </div>
 
                 <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden border border-white/20">
-                  <Image
+                  <OptimizedImage
                     src="/elementos/hero_contacto.webp"
                     alt="Teléfono y sobre con el mensaje Escribinos hoy, de Envíos DosRuedas en Mar del Plata"
                     fill
-                    priority
-                    fetchPriority="high"
+                    aboveTheFold={true}
                     sizes="(min-width: 1024px) 420px, 90vw"
                     className="object-cover"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
 

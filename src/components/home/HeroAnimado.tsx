@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, MapPin, Zap } from 'lucide-react';
@@ -140,17 +140,14 @@ export default function HeroAnimado() {
                 className="animate-pulse-ring absolute left-1/2 top-[44%] aspect-square w-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brand-yellow-500/60 [animation-delay:2.13s]"
               />
 
-              <Image
+              <OptimizedImage
                 src="/assets/card_mapa.webp"
                 alt="Pin de Envíos DosRuedas sobre un mapa isométrico de Mar del Plata con una ruta amarilla"
                 width={560}
                 height={560}
-                priority
-                fetchPriority="high"
-                loading="eager"
+                aboveTheFold={true}
                 sizes="(min-width: 1024px) 460px, 92vw"
                 className="relative z-2 h-auto w-full drop-shadow-[0_24px_40px_rgba(9,80,246,0.25)]"
-                referrerPolicy="no-referrer"
               />
 
               {fichas.map((ficha) => (

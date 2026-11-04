@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { useReducedMotion } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { EXPRESS_CUTOFF_TIME } from '@/lib/promises';
@@ -44,11 +44,11 @@ const tiles: Tile[] = [
     d: 8,
     i: 0,
     content: (
-      <Image
+      <OptimizedImage
         src="/elementos/envios_express.webp"
         alt="Cadete Express en moto Envíos DosRuedas"
         fill
-        priority
+        aboveTheFold={true}
         sizes="(min-width: 1024px) 400px, 64vw"
         className="object-cover object-center"
       />
@@ -64,10 +64,11 @@ const tiles: Tile[] = [
     d: 12,
     i: 1,
     content: (
-      <Image
+      <OptimizedImage
         src="/express-hero-inline.png"
         alt="Repartidor de Envíos DosRuedas"
         fill
+        aboveTheFold={false}
         sizes="(min-width: 1024px) 360px, 54vw"
         className="object-cover grayscale contrast-[1.05] mix-blend-screen"
       />

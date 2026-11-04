@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 export default function CotizadorHero() {
   return (
@@ -6,15 +6,13 @@ export default function CotizadorHero() {
       <div className="max-w-4xl mx-auto text-center space-y-4">
         <div className="flex items-center justify-center gap-3">
           <div className="relative w-12 h-12 shrink-0 drop-shadow-md">
-            <Image
+            <OptimizedImage
               src="/elementos/planifica_transparent.webp"
               alt="Planificá tu recorrido en moto Mar del Plata"
               width={48}
               height={48}
-              priority
-              fetchPriority="high"
+              aboveTheFold={true}
               className="w-12 h-12 object-contain"
-              referrerPolicy="no-referrer"
             />
           </div>
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-yellow-500 bg-brand-blue-400/50 px-3 py-1 rounded-full border border-brand-blue-300/40 inline-block">
