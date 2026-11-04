@@ -28,7 +28,6 @@ import {
 const SPOKE_COUNT = 7;
 const SPOKE_FIRST_ANGLE = 10;
 const SPOKE_STEP = 10;
-const SPOKE_LENGTH = 84; // % del lado del cuadrado = % del alto de la banda
 
 const spokes = Array.from({ length: SPOKE_COUNT }, (_, i) => ({
   angle: SPOKE_FIRST_ANGLE + i * SPOKE_STEP,
