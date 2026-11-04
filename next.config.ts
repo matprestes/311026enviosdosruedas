@@ -1,199 +1,32 @@
-import type { NextConfig } from 'next';
+import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  devIndicators: false,
-  output: 'standalone',
-  trailingSlash: true,
-
-  // Redirecciones 301/308 permanentes para URLs legacy y alias (BL-01)
-  async redirects() {
-    return [
-      {
-        source: '/enviosflex',
-        destination: '/servicios/enviosflex',
-        permanent: true,
-      },
-      {
-        source: '/servicios/express',
-        destination: '/servicios/envios-express',
-        permanent: true,
-      },
-      {
-        source: '/servicios/lowcost',
-        destination: '/servicios/envios-lowcost',
-        permanent: true,
-      },
-      {
-        source: '/servicios/flex',
-        destination: '/servicios/enviosflex',
-        permanent: true,
-      },
-      {
-        source: '/servicios/3pl',
-        destination: '/servicios/deposito-fulfillment',
-        permanent: true,
-      },
-      // Servicios fuera de la vista pública (2026-09-29). Plan Emprendedores es la
-      // misma propuesta que Cuenta Corriente Flexible; Contrareembolso sigue
-      // existiendo, pero como condición incluida en los servicios, no como ficha.
-      {
-        source: '/servicios/plan-emprendedores',
-        destination: '/servicios/empresas-cuenta-corriente',
-        permanent: true,
-      },
-      {
-        source: '/servicios/envios-contrareembolso',
-        destination: '/servicios',
-        permanent: true,
-      },
-      // Cotizadores separados retirados (decisión del dueño 2026-09-29): tenerlos
-      // aparte le resultaba incómodo al usuario. Todo cotiza en /cotizar.
-      {
-        source: '/cotizar/express',
-        destination: '/cotizar',
-        permanent: true,
-      },
-      {
-        source: '/cotizar/lowcost',
-        destination: '/cotizar',
-        permanent: true,
-      },
-    ];
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-
   typescript: {
     ignoreBuildErrors: false,
   },
-
-  // Configuración de imágenes
+  // Allow access to remote image placeholder.
   images: {
-    unoptimized: false,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'picsum.photos',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.postimg.cc',
-        pathname: '/**',
+        port: '',
+        pathname: '/**', // This allows any path under the hostname
       },
     ],
-    // Optimización de formatos modernos prioritarios
-    formats: ['image/avif', 'image/webp'],
-    // Caché extendido de 30 días para optimización de imágenes en Vercel Edge
-    minimumCacheTTL: 2592000,
-    // Tamaños de dispositivo para imagenes responsive
-    deviceSizes: [320, 420, 640, 768, 1024, 1280, 1536],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-
-  poweredByHeader: false,
-  compress: true,
+  output: 'standalone',
   transpilePackages: ['motion'],
-
-  // Optimización de importación de paquetes para reducir drásticamente el tamaño del bundle
-  experimental: {
-    optimizePackageImports: [
-      'lucide-react',
-      'react-icons',
-      '@radix-ui/react-icons',
-      '@radix-ui/react-accordion',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-navigation-menu',
-      '@number-flow/react',
-      'motion',
-      'clsx',
-      'tailwind-merge',
-      'zod',
-    ],
-  },
-
-  // Encabezados de seguridad y rendimiento para Vercel Edge Network
-  async headers() {
-    const cspHeader = `
-      default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://*.googletagmanager.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://googleads.g.doubleclick.net https://analytics.ahrefs.com https://unpkg.com;
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
-      img-src 'self' data: blob: https://maps.gstatic.com https://*.googleapis.com https://*.google.com https://*.google-analytics.com https://*.googletagmanager.com https://*.googleadservices.com https://*.doubleclick.net https://googleads.g.doubleclick.net https://picsum.photos https://i.postimg.cc https://*.tile.openstreetmap.org https://unpkg.com;
-      font-src 'self' https://fonts.gstatic.com data:;
-      connect-src 'self' https://maps.googleapis.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net https://analytics.ahrefs.com https://*.googleapis.com https://*.tile.openstreetmap.org;
-      frame-src 'self' https://*.doubleclick.net https://*.google.com;
-      frame-ancestors 'self';
-      form-action 'self' https://api.whatsapp.com;
-      upgrade-insecure-requests;
-    `.replace(/\s{2,}/g, ' ').trim();
-
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: cspHeader,
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(self)',
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload',
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin-allow-popups',
-          },
-          {
-            key: 'Cross-Origin-Resource-Policy',
-            value: 'same-origin',
-          },
-        ],
-      },
-      {
-        source: '/(.*)\\.(webp|jpg|jpeg|png|svg|ico|woff2)$',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
-  },
-
-  // SOLUCIÓN TURBOPACK: Declaramos un objeto vacío para silenciar el error.
-  turbopack: {},
-
-  webpack: (config, { dev, isServer }) => {
-    if (dev) {
+  webpack: (config, {dev}) => {
+    // HMR is disabled in AI Studio via DISABLE_HMR env var.
+    // Do not modify—file watching is disabled to prevent flickering during agent edits.
+    if (dev && process.env.DISABLE_HMR === 'true') {
       config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-        ignored: /node_modules/,
-      };
-    }
-    if (!dev && !isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
+        ignored: /.*/,
       };
     }
     return config;

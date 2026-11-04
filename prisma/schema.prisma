@@ -65,3 +65,11 @@ model AiPromptSuggestion {
   image       ImageMetadata @relation(fields: [imageId], references: [id], onDelete: Cascade)
   createdAt   DateTime      @default(now())
 }
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  name      String
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+}

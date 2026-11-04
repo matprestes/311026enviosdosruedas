@@ -11,6 +11,7 @@ import {
 import { FaInstagram, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import { CONTACT_EMAIL, OPERATING_HOURS, SUPPORT_PHONE } from '@/lib/promises';
 import { trackAnalytics } from '@/lib/analytics';
+import ReviewForm from '@/components/ReviewForm';
 
 const PHONE_HREF = `tel:+${SUPPORT_PHONE.replace(/\D/g, '')}`;
 const WHATSAPP_NUMBER = SUPPORT_PHONE.replace(/\D/g, '');
@@ -357,6 +358,7 @@ export default function OptimizedFooter() {
             variants={prefersReducedMotion ? {} : FOOTER_COL}
             className="lg:col-span-4 space-y-5"
           >
+            <ReviewForm />
             <h4 className="font-subheading text-lg tracking-wider text-brand-yellow-500 uppercase border-b border-white/10 pb-2">
               Base de Operaciones MDQ
             </h4>
