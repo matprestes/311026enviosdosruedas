@@ -145,13 +145,15 @@ function TierCard({
     <li className="h-full">
       <article
         className={cn(
-          'relative flex h-full flex-col gap-5 rounded-2xl p-5 sm:p-6',
-          'transition-[box-shadow,transform,background-color] duration-200',
+          'relative flex h-full flex-col gap-6 rounded-3xl p-6 sm:p-7',
+          'transition-all duration-300',
           dark
-            ? 'bg-white/10 shadow-float ring-1 ring-white/20 backdrop-blur-md hover:bg-white/15'
+            ? isFeatured
+              ? 'bg-gradient-to-b from-white/25 to-white/15 shadow-2xl ring-2 ring-brand-yellow-500 backdrop-blur-xl scale-[1.03] transform'
+              : 'bg-white/10 shadow-xl ring-1 ring-white/25 backdrop-blur-md hover:bg-white/18 hover:ring-brand-yellow-500/60 hover:-translate-y-1.5'
             : isFeatured
-              ? 'bg-brand-blue-50 shadow-lg ring-1 ring-brand-blue-200'
-              : 'bg-white shadow-sm ring-1 ring-brand-blue-100 hover:shadow-lg hover:ring-brand-blue-300 motion-safe:hover:-translate-y-0.5',
+              ? 'bg-brand-blue-50 shadow-xl ring-2 ring-brand-blue-500 scale-[1.02]'
+              : 'bg-white shadow-md ring-1 ring-brand-blue-100 hover:shadow-xl hover:ring-brand-blue-400 motion-safe:hover:-translate-y-1.5',
           cardClassName
         )}
       >
