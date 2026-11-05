@@ -15,7 +15,7 @@ import { trackAnalytics } from '@/lib/analytics';
 export function LogisticaHero() {
 
   return (
-    <section className="relative overflow-hidden bg-brand-blue-500 text-white pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-white/10">
+    <section className="relative overflow-hidden bg-brand-blue-500 text-white pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-white/10">
       {/* Glows de fondo */}
       <div
         className="absolute top-0 right-0 w-120 h-120 bg-brand-yellow-500/10 rounded-full blur-[140px] pointer-events-none"

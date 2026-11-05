@@ -18,7 +18,7 @@ const WHATSAPP_NUMBER = SUPPORT_PHONE.replace(/\D/g, '');
 export function MarDeliveryHero() {
 
   return (
-    <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden bg-[#031811] text-white pt-24 pb-12 sm:pt-28 sm:pb-16 lg:py-16 border-b border-[#2ECC85]/15 font-sans">
+    <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden bg-[#031811] text-white pt-32 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 border-b border-[#2ECC85]/15 font-sans">
       {/* Glows ambientales esmeralda y ámbar con escala responsiva */}
       <div
         className="absolute top-1/4 right-0 w-80 sm:w-130 h-80 sm:h-130 bg-[#2ECC85]/12 rounded-full blur-[120px] sm:blur-[160px] pointer-events-none"
