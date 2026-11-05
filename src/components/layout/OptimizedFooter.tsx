@@ -3,490 +3,260 @@
 import React from 'react';
 import Link from 'next/link';
 import OptimizedImage from '@/components/ui/OptimizedImage';
-import { motion, useReducedMotion } from 'motion/react';
 import {
-  Phone, MapPin, Mail, Clock, ShieldCheck, ArrowUpRight,
-  Zap, TrendingDown, ArrowUp, Layers, Building2, Package, Store
+  Phone, MapPin, Clock, ArrowUp, Zap, ArrowUpRight, ShieldCheck, Package, Store
 } from 'lucide-react';
 import { FaInstagram, FaFacebook, FaWhatsapp } from 'react-icons/fa';
-import { CONTACT_EMAIL, OPERATING_HOURS, SUPPORT_PHONE } from '@/lib/promises';
+import { SUPPORT_PHONE } from '@/lib/promises';
 import { trackAnalytics } from '@/lib/analytics';
-import ReviewForm from '@/components/ReviewForm';
 
 const PHONE_HREF = `tel:+${SUPPORT_PHONE.replace(/\D/g, '')}`;
 const WHATSAPP_NUMBER = SUPPORT_PHONE.replace(/\D/g, '');
 const CURRENT_YEAR = new Date().getFullYear();
 
-// ─── Animation Variants ───────────────────────────────────────────────────────
-
-/** Fade-up stagger container for footer columns */
-const FOOTER_CONTAINER = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-} as const;
-
-/** Each column fades up */
-const FOOTER_COL = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', stiffness: 360, damping: 28 },
-  },
-} as const;
-
-/** CTA Banner slides up from below */
-const BANNER_VARIANT = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', stiffness: 360, damping: 28, delay: 0.08 },
-  },
-} as const;
-
-/** Social icon spring bounce on hover */
-const SOCIAL_HOVER = { y: -2, scale: 1.04 } as const;
-const SOCIAL_SPRING = { type: 'spring', stiffness: 420, damping: 26 } as const;
-
 export default function OptimizedFooter() {
-  const prefersReducedMotion = useReducedMotion();
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer
-      id="optimized-footer"
-      className="bg-brand-blue-500 text-white border-t border-white/10 relative overflow-hidden font-sans"
-    >
-      {/* Decorative top yellow accent bar with continuous glow */}
-      <div className="h-1.5 bg-brand-yellow-500 w-full shadow-md shadow-brand-yellow-500/30" />
+    <footer id="optimized-footer" className="bg-brand-blue-500 text-white border-t border-white/10 relative overflow-hidden w-full font-sans">
+      {/* Franja Amarilla Superior de 6px (Firma Canónica de Marca) */}
+      <div className="h-1.5 bg-brand-yellow-500 w-full shadow-[0_2px_12px_rgba(255,236,1,0.5)]" aria-hidden="true" />
 
-      {/* Atmospheric Background & Subtle Blueprint Grid Details */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,236,1,0.08),transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,rgba(9,80,246,0.5),transparent_40%)] pointer-events-none" />
-      <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none" />
+      {/* Luces radiales de fondo */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,236,1,0.08),transparent_55%)] pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,rgba(7,59,194,0.6),transparent_45%)] pointer-events-none" aria-hidden="true" />
 
-      {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-12 relative z-10">
-
-        {/* TOP CTA BANNER — slides up from below on scroll reveal */}
-        <motion.div
-          variants={prefersReducedMotion ? {} : BANNER_VARIANT}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          className="mb-14 rounded-2xl bg-brand-blue/90 border border-white/15 p-6 sm:p-8 backdrop-blur-md shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6"
-        >
-          <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-yellow-500/15 border border-brand-yellow-500/30 text-brand-yellow-500 text-xs font-subheading uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-brand-yellow-500 animate-ping motion-reduce:animate-none" />
-              Operaciones Activas Mar del Plata {CURRENT_YEAR}
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-8 py-12 md:py-16 relative z-10">
+        
+        {/* 1. TOP CTA BANNER RESPONSIVO */}
+        <div className="mb-12 rounded-[1.25rem] bg-gradient-to-br from-[#0950f6]/[0.95] to-[#073bc2]/[0.98] border border-white/18 p-6 sm:p-9 backdrop-blur-md shadow-[0_20px_45px_-10px_rgba(7,21,54,0.35)] flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col gap-2.5 text-center lg:text-left max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow-500/15 border border-brand-yellow-500/35 text-brand-yellow-500 text-xs font-subheading uppercase tracking-wider w-fit mx-auto lg:mx-0">
+              <span className="w-2 h-2 rounded-full bg-brand-yellow-500 shadow-[0_0_8px_#FFEC01] animate-ping" aria-hidden="true" />
+              <span>Operaciones Activas Mar del Plata {CURRENT_YEAR}</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-display uppercase tracking-tight text-white">
+            <h3 className="font-display text-2xl sm:text-3xl lg:text-[2.1rem] uppercase tracking-tight text-white leading-tight">
               ¿Tenés envíos para hoy? <span className="text-brand-yellow-500">Los entregamos a tiempo.</span>
             </h3>
-            <p className="text-sm text-brand-blue-50 font-light max-w-xl">
-              Cotizá online en segundos o coordiná directo con nuestro equipo logístico por WhatsApp.
+            <p className="text-brand-blue-50 text-sm sm:text-base font-light leading-relaxed">
+              Cotizá online en segundos o coordiná directo con nuestro equipo logístico en Friuli 1972 por WhatsApp.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
             <Link
               href="/cotizar"
               onClick={() => trackAnalytics.ctaClick('footer_banner_cotizar_cta', 'Cotizá tu Envío')}
-              className="w-full sm:w-auto cta-nested-pill bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-500 font-subheading uppercase tracking-wider text-sm px-6 py-3.5 rounded-full shadow-accent-sm hover:shadow-cta-glow transition-[transform,background-color,border-color,box-shadow] duration-150 ease-out flex items-center justify-between group min-h-12"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-500 font-subheading text-[0.925rem] font-bold uppercase tracking-[0.05em] px-6 py-3.5 rounded-full shadow-[0_2px_6px_rgba(255,236,1,0.18)] hover:shadow-[0_0_28px_rgba(255,236,1,0.45),0_8px_24px_rgba(9,80,246,0.18)] transition-all min-h-[48px] group"
             >
               <span>Cotizá tu Envío</span>
-              <span className="cta-nested-icon bg-brand-blue-500/10 text-brand-blue-500 h-7 w-7 rounded-full flex items-center justify-center shrink-0 ml-3 group-hover:translate-x-1 transition-transform duration-150 ease-out">
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              <span className="w-7 h-7 rounded-full bg-[#0950f6]/[0.12] flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">
+                <ArrowUpRight className="w-4 h-4" />
               </span>
             </Link>
 
             <a
-              href={`https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=Hola%20Envíos%20DosRuedas!%20Quiero%20hacer%20una%20consulta%20de%20envíos`}
+              href={`https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=Hola%20Envios%20DosRuedas,%20quiero%20hacer%20una%20consulta%20de%20envios`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackAnalytics.whatsappClick('footer_banner_whatsapp', 'Chateá con Nosotros')}
-              aria-label="Chateá con Nosotros por WhatsApp para consultas de envíos"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 font-subheading uppercase tracking-wider text-sm px-5 py-3.5 rounded-full transition-[background-color,border-color] duration-150 ease-out min-h-12"
+              onClick={() => trackAnalytics.whatsappClick('footer_banner_whatsapp', 'WhatsApp Directo')}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-subheading text-[0.925rem] uppercase tracking-[0.05em] px-6 py-3.5 rounded-full transition-all min-h-[48px]"
             >
-              <FaWhatsapp className="h-4 w-4 text-brand-yellow-500" aria-hidden="true" />
-              <span>Chateá con Nosotros</span>
+              <FaWhatsapp className="w-[1.15rem] h-[1.15rem] text-brand-yellow-500" aria-hidden="true" />
+              <span>WhatsApp Directo</span>
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* MID SECTION: fade-up stagger per column on scroll reveal */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 items-start"
-          variants={prefersReducedMotion ? {} : FOOTER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-        >
-
-          {/* COLUMN 1: Brand details & Socials (4 Cols) */}
-          <motion.div
-            variants={prefersReducedMotion ? {} : FOOTER_COL}
-            className="lg:col-span-4 space-y-6"
-          >
-            <Link href="/" className="flex items-center gap-3.5 group w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 rounded-xl">
-              <div className="relative w-11 h-11 bg-white/10 p-1.5 rounded-xl border border-white/15 group-hover:scale-105 transition-transform duration-300 shrink-0 flex items-center justify-center">
+        {/* 2. MID SECTION (GRILLA DE 3 COLUMNAS RESPONSIVA) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.25fr_1.35fr_1.1fr] gap-10 lg:gap-14 items-start">
+          
+          {/* Columna 1: Marca (con logo.webp) y Redes */}
+          <div className="flex flex-col gap-5">
+            <Link href="/" className="inline-flex items-center gap-3.5 group w-fit focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500 rounded-xl">
+              <div className="relative w-[46px] h-[46px] shrink-0">
                 <OptimizedImage
-                  src="/logo-envios-simplified.webp"
-                  alt="Logo Envíos DosRuedas"
-                  width={32}
-                  height={32}
+                  src="/logo.webp"
+                  alt="Envíos DosRuedas"
+                  fill
+                  sizes="46px"
+                  className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-transform duration-200 group-hover:scale-105"
                   aboveTheFold={false}
-                  className="object-contain"
                 />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-2xl sm:text-3xl tracking-tight uppercase select-none text-white">
+                <span className="font-display text-[1.6rem] uppercase tracking-[-0.015em] text-white">
                   Envíos <span className="text-brand-yellow-500">DosRuedas</span>
                 </span>
-                <span className="text-2xs font-mono text-brand-blue-50 tracking-widest uppercase mt-0.5 opacity-90">
-                  Tu solución confiable · Mar del Plata
+                <span className="font-mono text-[0.65rem] text-brand-yellow-500 tracking-[0.1em] uppercase font-semibold mt-1">
+                  Flota Propia · Mar del Plata
                 </span>
               </div>
             </Link>
 
-            <p className="text-brand-blue-50 text-sm leading-relaxed max-w-sm font-light">
-              Con más de 7 años de trayectoria en Mar del Plata, transformamos el despacho de tus productos en un motor de crecimiento para emprendedores, PyMEs y comercios locales con flota propia y compromiso humano.
+            <p className="text-brand-blue-50 text-[0.88rem] leading-relaxed font-light max-w-lg">
+              Más de 15 años liderando la mensajería urbana y última milla e-commerce en Mar del Plata. Con base física en Friuli 1972, flota propia y cero tercerización, cuidamos cada paquete como si fuera nuestro.
             </p>
 
-            <div className="space-y-3 pt-2">
-              <span className="block text-xs font-bold text-brand-yellow-500 uppercase tracking-widest font-subheading">
+            <div className="flex flex-col gap-2.5">
+              <span className="text-[0.72rem] font-mono text-brand-yellow-500 uppercase font-semibold tracking-[0.08em]">
                 Canales Oficiales
               </span>
-              <div className="flex flex-wrap items-center gap-3">
-                {/* Instagram — spring bounce */}
-                <motion.div
-                  whileHover={prefersReducedMotion ? {} : SOCIAL_HOVER}
-                  transition={SOCIAL_SPRING}
-                  className="inline-block"
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <Link
+                  href="/nosotros/nuestras-redes"
+                  className="w-[2.6rem] h-[2.6rem] rounded-[0.75rem] bg-white/10 border border-white/18 text-white flex items-center justify-center hover:bg-brand-yellow-500 hover:text-brand-blue-500 hover:border-brand-yellow-500 transition-all hover:-translate-y-0.5"
+                  title="Instagram"
+                  aria-label="Instagram de Envíos DosRuedas"
                 >
-                  <Link
-                    href="/nosotros/nuestras-redes"
-                    className="h-10 w-10 rounded-xl bg-white/10 hover:bg-brand-yellow-500 text-white hover:text-brand-blue-500 flex items-center justify-center transition-colors duration-200 border border-white/15 hover:border-brand-yellow-500 shadow-sm p-2.5 group cursor-pointer"
-                    title="Instagram @enviosdosruedas"
-                    aria-label="Instagram Oficial"
-                  >
-                    <FaInstagram className="h-5 w-5" />
-                  </Link>
-                </motion.div>
-
-                {/* Facebook — spring bounce */}
-                <motion.div
-                  whileHover={prefersReducedMotion ? {} : SOCIAL_HOVER}
-                  transition={SOCIAL_SPRING}
-                  className="inline-block"
+                  <FaInstagram className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/nosotros/nuestras-redes"
+                  className="w-[2.6rem] h-[2.6rem] rounded-[0.75rem] bg-white/10 border border-white/18 text-white flex items-center justify-center hover:bg-brand-yellow-500 hover:text-brand-blue-500 hover:border-brand-yellow-500 transition-all hover:-translate-y-0.5"
+                  title="Facebook"
+                  aria-label="Facebook de Envíos DosRuedas"
                 >
-                  <Link
-                    href="/nosotros/nuestras-redes"
-                    className="h-10 w-10 rounded-xl bg-white/10 hover:bg-brand-yellow-500 text-white hover:text-brand-blue-500 flex items-center justify-center transition-colors duration-200 border border-white/15 hover:border-brand-yellow-500 shadow-sm p-2.5 group cursor-pointer"
-                    title="Facebook Envíos DosRuedas"
-                    aria-label="Facebook Oficial"
-                  >
-                    <FaFacebook className="h-5 w-5" />
-                  </Link>
-                </motion.div>
-
-                {/* WhatsApp — spring bounce */}
-                <motion.div
-                  whileHover={prefersReducedMotion ? {} : SOCIAL_HOVER}
-                  transition={SOCIAL_SPRING}
-                  className="inline-block"
+                  <FaFacebook className="w-5 h-5" />
+                </Link>
+                <a
+                  href={`https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[2.6rem] h-[2.6rem] rounded-[0.75rem] bg-brand-yellow-500 border border-brand-yellow-500 text-brand-blue-500 flex items-center justify-center hover:bg-brand-yellow-400 transition-all hover:-translate-y-0.5 shadow-sm"
+                  title="WhatsApp"
+                  aria-label="WhatsApp Oficial"
                 >
-                  <a
-                    href={`https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackAnalytics.whatsappClick('footer_social_whatsapp', 'WhatsApp Directo')}
-                    className="h-10 w-10 rounded-xl bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-500 flex items-center justify-center transition-colors duration-200 border border-brand-yellow-500 hover:border-brand-yellow-400 shadow-accent-sm hover:shadow-cta-glow p-2.5 group cursor-pointer"
-                    title="WhatsApp Directo"
-                    aria-label="WhatsApp Directo"
-                  >
-                    <FaWhatsapp className="h-5 w-5" />
-                  </a>
-                </motion.div>
+                  <FaWhatsapp className="w-5 h-5" />
+                </a>
+              </div>
 
-                <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 border border-white/15 text-xs text-white font-mono shadow-inner">
-                  <ShieldCheck className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                  <span>Centro de Depósito y Logística Local · Friuli 1972</span>
-                </div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[0.65rem] bg-white/[0.08] border border-white/15 font-mono text-[0.75rem] text-white w-fit mt-1">
+                <ShieldCheck className="w-[0.95rem] h-[0.95rem] text-brand-yellow-500 shrink-0" />
+                <span>Base Central Operativa · Friuli 1972</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* COLUMN 2: Services & Tools */}
-          <motion.div
-            variants={prefersReducedMotion ? {} : FOOTER_COL}
-            className="lg:col-span-4 space-y-5"
-          >
-            <h4 className="font-subheading text-lg tracking-wider text-brand-yellow-500 uppercase border-b border-white/10 pb-2 flex items-center gap-2">
-              <span>Servicios y Plataformas</span>
+          {/* Columna 2: Servicios y Plataformas */}
+          <div className="flex flex-col gap-5">
+            <h4 className="font-subheading text-[1.2rem] tracking-[0.06em] text-brand-yellow-500 uppercase border-b border-white/12 pb-2">
+              Servicios y Plataformas
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
-              {/* Grupo Plataformas y Cotizador */}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <p className="text-2xs text-brand-blue-50/70 uppercase tracking-widest font-subheading mb-2.5">
-                  Cotizador y Portales
+                <p className="text-[0.7rem] text-brand-yellow-500 uppercase tracking-[0.08em] font-mono font-semibold mb-2.5">
+                  Plataformas y Portales
                 </p>
-                <ul className="space-y-2.5 text-sm font-sans">
+                <ul className="list-none flex flex-col gap-2.5 font-sans">
                   <li>
-                    <Link
-                      href="/cotizar"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center justify-between group transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <Zap className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                        <span>Cotizá Express o LowCost</span>
-                      </div>
-                      <ArrowUpRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 ease-out text-brand-yellow-500" />
+                    <Link href="/cotizar" className="text-brand-blue-50 hover:text-brand-yellow-500 text-[0.85rem] inline-flex items-center gap-2 transition-all hover:translate-x-1">
+                      <Zap className="w-[0.9rem] h-[0.9rem] text-brand-yellow-500 shrink-0" />
+                      <span>Cotizá Express / LowCost</span>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/logistica-dosruedas"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center justify-between group transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <Package className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                        <span>Logística DosRuedas (Rastreo)</span>
-                      </div>
-                      <ArrowUpRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 ease-out text-brand-yellow-500" />
+                    <Link href="/logistica-dosruedas" className="text-brand-blue-50 hover:text-brand-yellow-500 text-[0.85rem] inline-flex items-center gap-2 transition-all hover:translate-x-1">
+                      <Package className="w-[0.9rem] h-[0.9rem] text-brand-yellow-500 shrink-0" />
+                      <span>Logística DosRuedas</span>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/mardelivery"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center justify-between group transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <Store className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                        <span>MarDelivery (Gastronomía)</span>
-                      </div>
-                      <ArrowUpRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 ease-out text-brand-yellow-500" />
+                    <Link href="/mardelivery" className="text-brand-blue-50 hover:text-brand-yellow-500 text-[0.85rem] inline-flex items-center gap-2 transition-all hover:translate-x-1">
+                      <Store className="w-[0.9rem] h-[0.9rem] text-brand-yellow-500 shrink-0" />
+                      <span>MarDelivery Gastronomía</span>
                     </Link>
                   </li>
                 </ul>
               </div>
 
-              {/* Grupo Servicios y Planes */}
               <div>
-                <p className="text-2xs text-brand-blue-50/70 uppercase tracking-widest font-subheading mb-2.5">
-                  Servicios y planes
+                <p className="text-[0.7rem] text-brand-yellow-500 uppercase tracking-[0.08em] font-mono font-semibold mb-2.5">
+                  Planes Logísticos
                 </p>
-                <ul className="space-y-2.5 text-sm font-sans">
-                  <li>
-                    <Link
-                      href="/servicios/envios-express"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <Zap className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                      <span>Envíos Express</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/servicios/envios-lowcost"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <TrendingDown className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                      <span>Envíos LowCost</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/servicios/enviosflex"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <Clock className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                      <span>Mercado Envíos Flex</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/servicios/empresas-cuenta-corriente"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <Building2 className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                      <span>Cuenta Corriente Flexible</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/servicios#ecommerce-24hs"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <Package className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                      <span>E-commerce 24HS</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/servicios/deposito-fulfillment"
-                      className="text-brand-blue-50 hover:text-brand-yellow-500 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1"
-                    >
-                      <Store className="h-4 w-4 text-brand-yellow-500 shrink-0" />
-                      <span>E-commerce Same Day</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/servicios"
-                      className="text-brand-yellow-500 hover:text-brand-yellow-400 flex items-center gap-2.5 transition-[color,transform] duration-200 ease-out hover:translate-x-1 font-bold"
-                    >
-                      <Layers className="h-4 w-4 shrink-0" />
-                      <span>Ver todos los servicios</span>
-                    </Link>
-                  </li>
+                <ul className="list-none flex flex-col gap-2.5 font-sans text-[0.85rem]">
+                  <li><Link href="/servicios/envios-express" className="text-brand-blue-50 hover:text-brand-yellow-500 transition-colors">Envíos Express (&lt; 90 min)</Link></li>
+                  <li><Link href="/servicios/envios-lowcost" className="text-brand-blue-50 hover:text-brand-yellow-500 transition-colors">Envíos LowCost</Link></li>
+                  <li><Link href="/servicios/enviosflex" className="text-brand-blue-50 hover:text-brand-yellow-500 transition-colors">Mercado Envíos Flex</Link></li>
+                  <li><Link href="/servicios/empresas-cuenta-corriente" className="text-brand-blue-50 hover:text-brand-yellow-500 transition-colors">Cuenta Corriente Flexible</Link></li>
+                  <li><Link href="/servicios/deposito-fulfillment" className="text-brand-blue-50 hover:text-brand-yellow-500 transition-colors">E-commerce Same Day</Link></li>
+                  <li><Link href="/servicios" className="text-brand-yellow-500 font-bold hover:underline">Ver todos los services →</Link></li>
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* COLUMN 3: Contact & Hub Operations Info (4 Cols) */}
-          <motion.div
-            variants={prefersReducedMotion ? {} : FOOTER_COL}
-            className="lg:col-span-4 space-y-5"
-          >
-            <ReviewForm />
-            <h4 className="font-subheading text-lg tracking-wider text-brand-yellow-500 uppercase border-b border-white/10 pb-2">
+          {/* Columna 3: Base de Operaciones MDQ */}
+          <div className="flex flex-col gap-5">
+            <h4 className="font-subheading text-[1.2rem] tracking-[0.06em] text-brand-yellow-500 uppercase border-b border-white/12 pb-2">
               Base de Operaciones MDQ
             </h4>
 
-            <div className="space-y-3.5 text-xs text-brand-blue-50 font-sans">
-              <div className="flex gap-3 items-start bg-brand-blue/80 p-3 rounded-xl border border-white/15">
-                <div className="p-2 bg-white/10 rounded-lg shrink-0 text-brand-yellow-500">
-                  <MapPin className="h-4 w-4" />
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-3 items-start bg-[#0950f6]/[0.6] p-3.5 rounded-[0.85rem] border border-white/14 hover:bg-[#0950f6]/[0.85] transition-colors">
+                <div className="p-2 bg-white/10 rounded-[0.55rem] text-brand-yellow-500 shrink-0">
+                  <MapPin className="w-[1.05rem] h-[1.05rem]" />
                 </div>
                 <div>
-                  <p className="font-bold text-white uppercase font-subheading tracking-wider">Centro de Distribución</p>
-                  <p className="font-sans text-[13px] text-brand-blue-50 mt-0.5">Friuli 1972, Mar del Plata</p>
+                  <p className="font-bold text-white uppercase font-subheading tracking-[0.05em] text-[0.88rem]">Centro de Distribución</p>
+                  <p className="text-[0.78rem] text-brand-blue-50 mt-0.5">Friuli 1972, Mar del Plata, Buenos Aires</p>
                 </div>
               </div>
 
-              <div className="flex gap-3 items-start bg-brand-blue/80 p-3 rounded-xl border border-white/15">
-                <div className="p-2 bg-white/10 rounded-lg shrink-0 text-brand-yellow-500">
-                  <Phone className="h-4 w-4" aria-hidden="true" />
+              <div className="flex gap-3 items-start bg-[#0950f6]/[0.6] p-3.5 rounded-[0.85rem] border border-white/14 hover:bg-[#0950f6]/[0.85] transition-colors">
+                <div className="p-2 bg-white/10 rounded-[0.55rem] text-brand-yellow-500 shrink-0">
+                  <Phone className="w-[1.05rem] h-[1.05rem]" />
                 </div>
                 <div>
-                  <p className="font-bold text-white uppercase font-subheading tracking-wider">Línea Directa y WhatsApp</p>
-                  <a
-                    href={PHONE_HREF}
-                    onClick={() => trackAnalytics.phoneClick(SUPPORT_PHONE, 'footer')}
-                    className="font-mono text-[13px] font-bold text-brand-yellow-500 hover:underline block mt-0.5"
-                  >
+                  <p className="font-bold text-white uppercase font-subheading tracking-[0.05em] text-[0.88rem]">Línea Directa y WhatsApp</p>
+                  <a href={PHONE_HREF} className="font-mono text-[0.85rem] font-bold text-brand-yellow-500 hover:underline block mt-0.5">
                     {SUPPORT_PHONE}
                   </a>
                 </div>
               </div>
 
-              <div className="flex gap-3 items-start bg-brand-blue/80 p-3 rounded-xl border border-white/15">
-                <div className="p-2 bg-white/10 rounded-lg shrink-0 text-brand-yellow-500">
-                  <Mail className="h-4 w-4" aria-hidden="true" />
+              <div className="flex gap-3 items-start bg-[#0950f6]/[0.6] p-3.5 rounded-[0.85rem] border border-white/14 hover:bg-[#0950f6]/[0.85] transition-colors">
+                <div className="p-2 bg-white/10 rounded-[0.55rem] text-brand-yellow-500 shrink-0">
+                  <Clock className="w-[1.05rem] h-[1.05rem]" />
                 </div>
                 <div>
-                  <p className="font-bold text-white uppercase font-subheading tracking-wider">Atención Comercial</p>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="font-sans text-[12px] text-brand-blue-50 hover:text-brand-yellow-500 transition-colors block mt-0.5 break-all">
-                    {CONTACT_EMAIL}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex gap-3 items-start bg-brand-blue/80 p-3 rounded-xl border border-white/15">
-                <div className="p-2 bg-white/10 rounded-lg shrink-0 text-brand-yellow-500">
-                  <Clock className="h-4 w-4" aria-hidden="true" />
-                </div>
-                <div className="space-y-1">
-                  <p className="font-bold text-white uppercase font-subheading tracking-wider">Horarios de Despacho (Base Central)</p>
-                  <div className="text-[12px] font-sans text-brand-blue-50 space-y-0.5">
-                    <div className="flex justify-between items-center gap-4">
-                      <span>Lunes a Viernes:</span>
-                      <span className="font-mono font-bold text-brand-yellow-500">{OPERATING_HOURS.weekdays}</span>
-                    </div>
-                    <div className="flex justify-between items-center gap-4">
-                      <span>Sábados:</span>
-                      <span className="font-mono font-bold text-brand-yellow-500">{OPERATING_HOURS.saturdays}</span>
-                    </div>
-                  </div>
+                  <p className="font-bold text-white uppercase font-subheading tracking-[0.05em] text-[0.88rem]">Horarios de Despacho</p>
+                  <p className="text-[0.78rem] text-brand-blue-50 mt-0.5">Lunes a Viernes: 08:00 a 18:00 hs</p>
+                  <p className="text-[0.78rem] text-brand-blue-50">Sábados: 08:00 a 13:00 hs · Guardia activa</p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-        </motion.div>
-
-        {/* Separator */}
-        <div className="border-t border-white/10 my-10 relative">
-          {/* Scroll to Top — continuous float loop */}
-          <motion.button
-            onClick={scrollToTop}
-            className="absolute -top-5 right-4 sm:right-6 bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-500 p-2.5 rounded-full shadow-accent-md hover:shadow-cta-glow transition-colors flex items-center justify-center border-2 border-brand-yellow-500 cursor-pointer min-w-11 min-h-11"
-            title="Volver al inicio"
-            aria-label="Volver arriba"
-            /* Idle float loop */
-            animate={prefersReducedMotion ? {} : { y: [0, -5, 0] }}
-            transition={
-              prefersReducedMotion
-                ? {}
-                : { duration: 2, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }
-            }
-            /* Tap feedback */
-            whileTap={{ scale: 0.97 }}
-            whileHover={prefersReducedMotion ? {} : { scale: 1.05, y: -4 }}
-          >
-            <ArrowUp className="h-4 w-4 font-bold" aria-hidden="true" />
-          </motion.button>
         </div>
 
-        {/* BOTTOM SECTION: Legal & Copyright */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-brand-blue-50 font-sans">
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 sm:gap-6">
-            <p className="font-medium text-white">© {CURRENT_YEAR} Envíos DosRuedas · Mar del Plata, Argentina.</p>
-            <Link href="/servicios" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Servicios
-            </Link>
-            <Link href="/cobertura" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Cobertura
-            </Link>
-            <Link href="/logistica-dosruedas" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Logística DosRuedas
-            </Link>
-            <Link href="/mardelivery" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              MarDelivery
-            </Link>
-            <Link href="/guias/envios-flex-mar-del-plata" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Guía MercadoLibre Flex
-            </Link>
-            <Link href="/nosotros" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Nosotros
-            </Link>
-            <Link href="/nosotros/sobre-nosotros" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Sobre Nosotros
-            </Link>
-            <Link href="/nosotros/preguntas-frecuentes" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Preguntas Frecuentes
-            </Link>
-            <Link href="/nosotros/nuestras-redes" className="hover:text-brand-yellow-500 transition-colors text-brand-blue-50">
-              Nuestras Redes
-            </Link>
-          </div>
-          <div className="flex flex-wrap justify-center gap-6 shrink-0 text-brand-blue-50">
-            <Link href="/terminos-y-condiciones" className="hover:text-brand-yellow-500 transition-colors">
-              Términos y Condiciones
-            </Link>
-            <Link href="/politica-de-privacidad" className="hover:text-brand-yellow-500 transition-colors">
-              Política de Privacidad
-            </Link>
-          </div>
+        {/* 3. BOTÓN VOLVER ARRIBA Y DIVISOR */}
+        <div className="border-t border-white/12 my-10 relative">
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="absolute -top-[22px] right-4 sm:right-6 w-11 h-11 rounded-full bg-brand-yellow-500 text-brand-blue-500 border-2 border-brand-yellow-500 shadow-[0_4px_14px_rgba(255,236,1,0.28)] flex items-center justify-center hover:bg-brand-yellow-400 hover:shadow-[0_0_28px_rgba(255,236,1,0.45)] transition-all cursor-pointer hover:-translate-y-1"
+            aria-label="Volver arriba en la página"
+          >
+            <ArrowUp className="w-5 h-5 stroke-[2.5]" aria-hidden="true" />
+          </button>
+        </div>
+
+        {/* 4. BARRA LEGAL Y COPYRIGHT RESPONSIVA */}
+        <div className="flex flex-col md:flex-row gap-5 items-center justify-between text-[0.78rem] text-brand-blue-50 text-center md:text-left">
+          <p>© {CURRENT_YEAR} Envíos DosRuedas · Todos los derechos reservados · Mar del Plata, Argentina.</p>
+          <nav className="flex flex-wrap justify-center md:justify-end items-center gap-4 sm:gap-5" aria-label="Enlaces legales y secundarios">
+            <Link href="/servicios" className="hover:text-brand-yellow-500 transition-colors">Servicios</Link>
+            <Link href="/cobertura" className="hover:text-brand-yellow-500 transition-colors">Cobertura</Link>
+            <Link href="/logistica-dosruedas" className="hover:text-brand-yellow-500 transition-colors">Logística DosRuedas</Link>
+            <Link href="/mardelivery" className="hover:text-brand-yellow-500 transition-colors">MarDelivery</Link>
+            <Link href="/nosotros" className="hover:text-brand-yellow-500 transition-colors">Nosotros</Link>
+            <Link href="/terminos-y-condiciones" className="hover:text-brand-yellow-500 transition-colors">Términos y Condiciones</Link>
+            <Link href="/politica-de-privacidad" className="hover:text-brand-yellow-500 transition-colors">Privacidad</Link>
+          </nav>
         </div>
 
       </div>

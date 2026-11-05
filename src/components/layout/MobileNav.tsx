@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
-import { motion, useReducedMotion } from 'motion/react';
-import { ChevronDown, ChevronRight, Phone, X, MessageSquare } from 'lucide-react';
-import { CTANestedPill } from '@/components/ui';
+import { ChevronDown, ChevronRight, Phone, MessageSquare } from 'lucide-react';
 import { SUPPORT_PHONE } from '@/lib/promises';
 import { trackAnalytics } from '@/lib/analytics';
 
@@ -28,11 +26,6 @@ export interface MobileNavProps {
   onDropdownToggle: (label: string) => void;
 }
 
-const SPRING_PANEL = { type: 'spring', stiffness: 380, damping: 32 } as const;
-const NAV_CONTAINER = { hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.15 } } } as const;
-const NAV_ITEM_VARIANT = { hidden: { opacity: 0, x: 24 }, visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 380, damping: 26 } } } as const;
-
-// FIX ESLINT: useSyncExternalStore para mounted sin setState en effect
 function useIsMounted() {
   return React.useSyncExternalStore(
     () => () => {},
@@ -42,10 +35,10 @@ function useIsMounted() {
 }
 
 export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, navItems, activeDropdown, onDropdownToggle }) => {
-  const prefersReducedMotion = useReducedMotion();
   const mounted = useIsMounted();
-  const drawerRef = React.useRef<HTMLDivElement>(null);
-  const onCloseRef = React.useRef(onClose);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const onCloseRef = useRef(onClose);
+  const pathname = usePathname();
 
   useEffect(() => {
     onCloseRef.current = onClose;
@@ -57,20 +50,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, navItems,
       if (e.key === 'Escape') {
         e.preventDefault();
         onCloseRef.current();
-        return;
-      }
-      if (e.key === 'Tab' && drawerRef.current) {
-        const focusable = drawerRef.current.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -78,209 +57,155 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, navItems,
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       clearTimeout(t);
-      document.getElementById('mobile-menu-toggle-opt')?.focus();
     };
   }, [isOpen]);
-
-  const pathname = usePathname();
 
   if (!mounted) return null;
 
   const content = (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+      <div
         onClick={onClose}
-        className="fixed inset-0 bg-brand-blue-500/70 backdrop-blur-md z-99 lg:hidden"
+        className={`fixed inset-0 z-[2000] bg-[#071536]/[0.75] backdrop-blur-[8px] lg:hidden transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        }`}
         aria-hidden="true"
       />
-      <motion.div
+      <div
         ref={drawerRef}
-        id="mobile-navigation-dialog"
+        id="mobile-nav"
         role="dialog"
         aria-modal="true"
-        aria-label="Menú principal de navegación"
-        initial={prefersReducedMotion ? { x: 0 } : { x: '100%' }}
-        animate={{ x: 0 }}
-        exit={prefersReducedMotion ? { opacity: 0 } : { x: '100%' }}
-        transition={SPRING_PANEL}
-        className="fixed top-0 right-0 bottom-0 z-100 flex flex-col w-[88vw] max-w-[340px] h-dvh bg-brand-blue-500 text-white shadow-2xl border-l border-white/15 lg:hidden overscroll-contain"
+        aria-label="Navegación móvil"
+        className={`fixed top-0 right-0 bottom-0 z-[2001] w-[86%] max-w-[360px] bg-[#073bc2] p-6 flex flex-col gap-5 overflow-y-auto shadow-[-12px_0_40px_rgba(0,0,0,0.45)] border-l border-white/15 lg:hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0 h-16">
+        <div className="flex items-center justify-between border-b border-white/15 pb-4 shrink-0">
+          <span className="font-display text-[20px] uppercase text-white tracking-tight">Menú Principal</span>
+          <button
+            type="button"
+            onClick={onClose}
+            id="drawer-close-btn"
+            className="w-[38px] h-[38px] rounded-full bg-white/10 flex items-center justify-center text-xl text-white hover:bg-brand-yellow-500 hover:text-brand-blue-500 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500"
+            aria-label="Cerrar menú"
+          >
+            ✕
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-1.5 flex-1 overflow-y-auto pr-1">
           <Link
             href="/"
             onClick={onClose}
-            className="flex items-center gap-2.5 focus:outline-none focus:ring-2 focus:ring-brand-yellow-500/50 rounded-lg"
+            className={`flex items-center justify-between py-3 px-3.5 rounded-[10px] font-subheading text-[16px] tracking-[0.06em] uppercase text-white transition-colors ${
+              pathname === '/' ? 'bg-white/20 text-brand-yellow-500 font-bold' : 'hover:bg-white/[0.12] hover:text-brand-yellow-500'
+            }`}
           >
-            <span className="font-display text-xl tracking-tight uppercase select-none flex items-center gap-1.5 leading-none">
-              <span className="text-white">Envíos</span>
-              <span className="text-brand-yellow-500">DosRuedas</span>
-            </span>
+            <span>Inicio</span>
           </Link>
-          <motion.button
-            onClick={onClose}
-            whileHover={prefersReducedMotion ? {} : { scale: 1.04 }}
-            whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-            transition={{ type: 'spring', duration: 0.2, bounce: 0.1 }}
-            className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 text-white hover:text-brand-yellow-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow-500/50 transition-colors cursor-pointer min-w-11 min-h-11 flex items-center justify-center border border-white/10"
-            aria-label="Cerrar menú"
-          >
-            <X className="h-5 w-5" />
-          </motion.button>
-        </div>
 
-        <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 space-y-4">
-          <motion.nav
-            className="space-y-1.5"
-            variants={prefersReducedMotion ? {} : NAV_CONTAINER}
-            initial="hidden"
-            animate="visible"
-          >
-            {navItems.map((item) => {
-              const isDirectActive = item.href ? pathname === item.href : false;
-              const isGroupActive = item.dropdownItems
-                ? item.dropdownItems.some((sub) => pathname === sub.href)
-                : false;
-              const isActive = isDirectActive || isGroupActive;
+          {navItems.filter(item => item.label !== 'Inicio').map((item) => {
+            const hasSub = item.dropdownItems && item.dropdownItems.length > 0;
+            const isGroupActive = hasSub && item.dropdownItems?.some(sub => pathname === sub.href);
 
-              return (
-                <motion.div
-                  key={item.label}
-                  variants={prefersReducedMotion ? {} : NAV_ITEM_VARIANT}
-                  className="border-b border-white/10 pb-2 last:border-b-0 last:pb-0"
-                >
-                  {item.href ? (
-                    <Link
-                      href={item.href}
-                      onClick={onClose}
-                      aria-current={isDirectActive ? 'page' : undefined}
-                      className={`flex items-center gap-3.5 py-2.5 px-3 rounded-xl text-lg font-subheading tracking-wider uppercase transition-all duration-150 ease-out min-h-12 focus:outline-none focus:ring-2 focus:ring-brand-yellow-500/50 ${
-                        isDirectActive
-                          ? 'text-brand-yellow-500 bg-white/15 font-bold border-l-4 border-brand-yellow-500 pl-3'
-                          : 'text-white hover:text-brand-yellow-500 hover:bg-white/5'
+            return (
+              <div key={item.label} className="flex flex-col">
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className={`flex items-center justify-between py-3 px-3.5 rounded-[10px] font-subheading text-[16px] tracking-[0.06em] uppercase text-white transition-colors ${
+                      pathname === item.href ? 'bg-white/20 text-brand-yellow-500 font-bold' : 'hover:bg-white/[0.12] hover:text-brand-yellow-500'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => onDropdownToggle(item.label)}
+                      aria-expanded={activeDropdown === item.label}
+                      className={`flex items-center justify-between w-full py-3 px-3.5 rounded-[10px] font-subheading text-[16px] tracking-[0.06em] uppercase text-white transition-colors cursor-pointer ${
+                        isGroupActive || activeDropdown === item.label ? 'bg-white/[0.15] text-brand-yellow-500' : 'hover:bg-white/[0.12] hover:text-brand-yellow-500'
                       }`}
                     >
-                      {item.icon && <item.icon className="h-5 w-5 text-brand-yellow-500 shrink-0" />}
-                      <span>{item.label}</span>
-                    </Link>
-                  ) : (
-                    <div>
-                      <button
-                        type="button"
-                        aria-expanded={activeDropdown === item.label}
-                        onClick={() => onDropdownToggle(item.label)}
-                        className={`w-full text-left py-2.5 px-3 rounded-xl text-lg font-subheading tracking-wider uppercase flex items-center justify-between cursor-pointer transition-all duration-150 ease-out min-h-12 focus:outline-none focus:ring-2 focus:ring-brand-yellow-500/50 ${
-                          isActive
-                            ? 'text-brand-yellow-500 bg-white/10 font-bold'
-                            : 'text-white hover:bg-white/5'
+                      <span className="flex items-center gap-2.5">
+                        {item.icon && <item.icon className="w-4 h-4 text-brand-yellow-500" />}
+                        <span>{item.label}</span>
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-brand-yellow-500 transition-transform duration-200 ${
+                          activeDropdown === item.label ? 'rotate-180' : ''
                         }`}
-                      >
-                        <span className="flex items-center gap-3.5">
-                          {item.icon && <item.icon className="h-5 w-5 text-brand-yellow-500 shrink-0" />}
-                          <span>{item.label}</span>
-                        </span>
-                        <motion.span
-                          animate={{ rotate: activeDropdown === item.label ? 180 : 0 }}
-                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                        >
-                          <ChevronDown className="h-5 w-5 text-brand-yellow-500 shrink-0" />
-                        </motion.span>
-                      </button>
+                      />
+                    </button>
 
-                      <div
-                        className={`grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-                          activeDropdown === item.label
-                            ? 'grid-rows-[1fr] opacity-100'
-                            : 'grid-rows-[0fr] opacity-0 pointer-events-none'
-                        }`}
-                      >
-                        <div className="overflow-hidden pl-3 pr-1 py-1.5 flex flex-col gap-1">
-                          {item.dropdownItems?.map((subItem, idx) => {
-                            const SubIcon = subItem.icon || ChevronRight;
-                            const isSubActive = pathname === subItem.href;
-
-                            return (
-                              <motion.div
-                                key={subItem.href}
-                                initial={prefersReducedMotion ? {} : { opacity: 0, x: 12 }}
-                                animate={activeDropdown === item.label ? { opacity: 1, x: 0 } : { opacity: 0, x: 12 }}
-                                transition={{ delay: idx * 0.03, type: 'spring', stiffness: 380, damping: 28 }}
-                              >
-                                <Link
-                                  href={subItem.href}
-                                  onClick={onClose}
-                                  aria-current={isSubActive ? 'page' : undefined}
-                                  className={`flex items-center gap-2.5 py-2 px-3 rounded-xl text-sm font-subheading uppercase tracking-wider transition-all duration-150 ease-out min-h-10.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-500/50 ${
-                                    isSubActive
-                                      ? 'bg-brand-yellow-500 text-brand-blue-500 font-bold shadow-sm'
-                                      : 'text-white hover:text-brand-yellow-500 hover:bg-black/15'
-                                  }`}
-                                >
-                                  <div
-                                    className={`p-1 rounded-lg shrink-0 ${
-                                      isSubActive
-                                        ? 'bg-brand-blue-500 text-brand-yellow-500'
-                                        : 'bg-white/10 text-brand-yellow-500'
-                                    }`}
-                                  >
-                                    <SubIcon className="h-3.5 w-3.5" />
-                                  </div>
-                                  <span className="truncate">{subItem.label}</span>
-                                </Link>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
+                    {activeDropdown === item.label && hasSub && (
+                      <div className="flex flex-col pl-4 py-1 gap-1 border-l-2 border-brand-yellow-500/40 my-1 ml-3">
+                        {item.dropdownItems!.map((sub) => {
+                          const SubIcon = sub.icon || ChevronRight;
+                          const isSubActive = pathname === sub.href;
+                          return (
+                            <Link
+                              key={sub.href}
+                              href={sub.href}
+                              onClick={onClose}
+                              className={`flex items-center gap-2 py-2 px-3 rounded-lg text-sm font-sans font-medium transition-colors ${
+                                isSubActive ? 'bg-brand-yellow-500 text-brand-blue-500 font-bold' : 'text-white/90 hover:text-brand-yellow-500 hover:bg-white/10'
+                              }`}
+                            >
+                              <SubIcon className="w-3.5 h-3.5 text-brand-yellow-500 shrink-0" />
+                              <span className="truncate">{sub.label}</span>
+                            </Link>
+                          );
+                        })}
                       </div>
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </motion.nav>
-        </div>
+                    )}
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </nav>
 
-        {/* Footer Actions with Safe Area Support */}
-        <div className="p-5 border-t border-white/10 space-y-3 shrink-0 bg-brand-blue-500 backdrop-blur-md mt-auto pb-[calc(1.25rem+env(safe-area-inset-bottom,0px))]">
+        <div className="mt-auto pt-4 border-t border-white/15 flex flex-col gap-3 shrink-0">
           <div className="grid grid-cols-2 gap-2">
             <a
               href={PHONE_HREF}
               onClick={() => trackAnalytics.phoneClick(SUPPORT_PHONE, 'drawer_mobile')}
-              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 border border-white/10 text-white hover:text-brand-yellow-500 font-mono text-xs font-bold transition-all min-h-11 focus:outline-none focus:ring-2 focus:ring-brand-yellow-500/50"
-              aria-label="Llamar por teléfono"
+              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 border border-white/10 text-white hover:text-brand-yellow-500 font-mono text-xs font-bold transition-all min-h-11"
             >
-              <Phone className="h-4 w-4 text-brand-yellow-500" aria-hidden="true" />
+              <Phone className="w-4 h-4 text-brand-yellow-500" />
               <span>Llamar</span>
             </a>
-
             <a
               href={WHATSAPP_HREF}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackAnalytics.whatsappClick('drawer_mobile_wa', 'WhatsApp')}
-              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 border border-white/10 text-white hover:text-brand-yellow-500 font-mono text-xs font-bold transition-all min-h-11 focus:outline-none focus:ring-2 focus:ring-brand-yellow-500/50"
-              aria-label="Consultar por WhatsApp"
+              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 active:scale-95 border border-white/10 text-white hover:text-brand-yellow-500 font-mono text-xs font-bold transition-all min-h-11"
             >
-              <MessageSquare className="h-4 w-4 text-brand-yellow-500" aria-hidden="true" />
+              <MessageSquare className="w-4 h-4 text-brand-yellow-500" />
               <span>WhatsApp</span>
             </a>
           </div>
 
-          <CTANestedPill
-            id="drawer_cta"
+          <Link
             href="/cotizar"
-            variant="primary"
-            size="large"
-            className="w-full justify-center min-h-11 py-3 text-sm active:scale-95"
             onClick={onClose}
+            className="flex items-center justify-center w-full py-3 px-5 rounded-full bg-brand-yellow-500 text-brand-blue-500 font-subheading text-[16px] uppercase tracking-[0.06em] font-bold shadow-[0_8px_24px_rgba(255,236,1,0.32)] hover:bg-brand-yellow-400 transition-all text-center min-h-[48px]"
           >
             Cotizá tu envío
-          </CTANestedPill>
+          </Link>
+
+          <div className="flex flex-col items-center justify-center pt-2 text-center text-xs text-white/80 font-mono gap-1">
+            <span className="font-semibold text-brand-yellow-500">📞 {SUPPORT_PHONE}</span>
+            <span>Friuli 1972 · Mar del Plata</span>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 

@@ -119,6 +119,7 @@ interface TierCardProps {
 
 function TierCard({
   tier,
+  index,
   isFeatured,
   unit,
   ctaLabel,
@@ -126,9 +127,10 @@ function TierCard({
   ctaVariant,
   tone,
   cardClassName,
-}: TierCardProps) {
+}: TierCardProps & { index: number }) {
   const isExternal = Boolean(ctaHref?.startsWith('http'));
   const dark = tone === 'dark';
+  const isYellowCard = dark && (index % 2 === 1);
 
   const badge = isFeatured && tier.tag ? (
     <Badge
@@ -148,9 +150,9 @@ function TierCard({
           'relative flex h-full flex-col gap-6 rounded-3xl p-6 sm:p-7',
           'transition-all duration-300',
           dark
-            ? isFeatured
-              ? 'bg-gradient-to-b from-white/25 to-white/15 shadow-2xl ring-2 ring-brand-yellow-500 backdrop-blur-xl scale-[1.03] transform'
-              : 'bg-white/10 shadow-xl ring-1 ring-white/25 backdrop-blur-md hover:bg-white/18 hover:ring-brand-yellow-500/60 hover:-translate-y-1.5'
+            ? isYellowCard
+              ? 'bg-brand-yellow-500 text-brand-blue-500 shadow-xl ring-2 ring-brand-yellow-400 hover:shadow-2xl hover:-translate-y-1.5'
+              : 'bg-white text-brand-blue-500 shadow-xl ring-1 ring-brand-blue-200 hover:ring-brand-blue-400 hover:-translate-y-1.5'
             : isFeatured
               ? 'bg-brand-blue-50 shadow-xl ring-2 ring-brand-blue-500 scale-[1.02]'
               : 'bg-white shadow-md ring-1 ring-brand-blue-100 hover:shadow-xl hover:ring-brand-blue-400 motion-safe:hover:-translate-y-1.5',
@@ -162,16 +164,18 @@ function TierCard({
         <div className="flex items-start justify-between gap-2 pt-1">
           <h3
             className={cn(
-              'font-subheading text-sm uppercase leading-tight tracking-wider sm:text-base',
-              dark ? 'text-white' : 'text-brand-blue-500'
+              'font-subheading text-base uppercase leading-tight tracking-wider sm:text-lg',
+              'text-brand-blue-500'
             )}
           >
             {tier.range}
           </h3>
           <span
             className={cn(
-              'shrink-0 rounded-md px-2 py-0.5 font-mono text-xs font-medium tabular-nums',
-              dark ? 'bg-white/15 text-white' : 'bg-brand-blue-50 text-brand-blue-500'
+              'shrink-0 rounded-md px-2.5 py-1 font-mono text-xs font-bold tabular-nums',
+              dark && isYellowCard
+                ? 'bg-brand-blue-500 text-brand-yellow-500'
+                : 'bg-brand-blue-50 text-brand-blue-500'
             )}
           >
             {tier.distance}
@@ -181,8 +185,8 @@ function TierCard({
         <div>
           <p
             className={cn(
-              'font-mono text-2xs uppercase tracking-wider',
-              dark ? 'text-brand-blue-100' : 'text-brand-blue-500'
+              'font-mono text-2xs uppercase tracking-wider font-semibold',
+              dark && isYellowCard ? 'text-brand-blue-700' : 'text-brand-blue-400'
             )}
           >
             Tarifa
@@ -191,13 +195,16 @@ function TierCard({
             <span
               className={cn(
                 'font-mono text-[40px] font-bold leading-none tabular-nums sm:text-[44px]',
-                dark ? 'text-brand-yellow-500' : 'text-brand-blue-500'
+                'text-brand-blue-500'
               )}
             >
               {displayPrice(tier.price)}
             </span>
             <span
-              className={cn('font-mono text-xs', dark ? 'text-brand-blue-100' : 'text-brand-blue-500')}
+              className={cn(
+                'font-mono text-xs font-semibold',
+                dark && isYellowCard ? 'text-brand-blue-700' : 'text-brand-blue-500'
+              )}
             >
               {tier.period ?? unit}
             </span>
@@ -206,20 +213,20 @@ function TierCard({
 
         <ul
           className={cn(
-            'space-y-2 border-t pt-4',
-            dark ? 'border-white/15' : 'border-brand-blue-100'
+            'space-y-2.5 border-t pt-4',
+            dark && isYellowCard ? 'border-brand-blue-500/25' : 'border-brand-blue-100'
           )}
         >
           {tier.features.map((feature) => (
             <li
               key={feature}
-              className={cn('flex items-start gap-2', dark ? 'text-brand-blue-50' : 'text-brand-blue-500')}
+              className={cn(
+                'flex items-start gap-2.5',
+                dark && isYellowCard ? 'text-brand-blue-900 font-medium' : 'text-brand-blue-500'
+              )}
             >
               <Check
-                className={cn(
-                  'mt-0.5 h-4 w-4 shrink-0',
-                  dark ? 'text-brand-yellow-500' : 'text-brand-blue-500'
-                )}
+                className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue-500"
                 aria-hidden="true"
               />
               <span className="font-sans text-xs">{feature}</span>
@@ -230,9 +237,9 @@ function TierCard({
         {tier.note ? (
           <p
             className={cn(
-              'rounded-lg border px-3 py-2 text-xs',
-              dark
-                ? 'border-white/15 bg-white/10 text-brand-blue-50'
+              'rounded-xl border px-3.5 py-2.5 text-xs font-medium',
+              dark && isYellowCard
+                ? 'border-brand-blue-500/20 bg-brand-yellow-400 text-brand-blue-900'
                 : 'border-brand-blue-100 bg-brand-blue-50 text-brand-blue-500'
             )}
           >
@@ -243,9 +250,9 @@ function TierCard({
         <div className="mt-auto pt-2">
           <CTANestedPill
             href={ctaHref}
-            variant={ctaVariant}
+            variant={dark && isYellowCard ? 'primary' : (ctaVariant ?? 'primary')}
             size={isFeatured ? 'large' : 'default'}
-            className="w-full"
+            className="w-full justify-center"
             target={isExternal ? '_blank' : undefined}
             rel={isExternal ? 'noopener noreferrer' : undefined}
           >
@@ -593,6 +600,7 @@ export default function ServicePricing({
             <TierCard
               key={tier.range}
               tier={tier}
+              index={index}
               isFeatured={index === featuredIndex}
               unit={unit}
               ctaLabel={ctaLabel(index)}
