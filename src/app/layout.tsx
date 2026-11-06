@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Outfit, Anton, Bebas_Neue, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
-import { MotionConfig } from 'motion/react';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 import { CONTACT_EMAIL, SUPPORT_PHONE } from '@/lib/promises';
@@ -287,9 +286,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className="bg-brand-white text-brand-ink font-sans antialiased selection:bg-brand-yellow selection:text-brand-blue min-h-dvh flex flex-col"
         suppressHydrationWarning
       >
-        <MotionConfig reducedMotion="user">
-          <ClientLayout>{children}</ClientLayout>
-        </MotionConfig>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
