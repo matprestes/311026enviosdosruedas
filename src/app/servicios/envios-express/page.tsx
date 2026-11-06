@@ -119,7 +119,7 @@ export default function EnviosExpressPage() {
   };
 
   return (
-    <main className="min-h-dvh bg-white text-brand-blue-500 pb-16">
+    <main className="flex flex-col flex-1 w-full bg-white text-brand-blue-500 pb-16">
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"

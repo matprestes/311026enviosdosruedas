@@ -13,6 +13,7 @@ import {
   WAIT_CHARGE_BLOCK_MIN,
   WAIT_TOLERANCE_MIN,
 } from '@/lib/promises';
+import DoubleBezelCard from '@/components/ui/DoubleBezelCard';
 
 const formatArs = (value: number) => `$${value.toLocaleString('es-AR')}`;
 
@@ -56,38 +57,40 @@ const RECARGOS: { situacion: string; costo: string; detalle: string }[] = [
 
 export default function CotizadorRecargos() {
   return (
-    <section id="recargos" aria-labelledby="recargos-titulo" className="space-y-5 scroll-mt-24">
-      <div className="space-y-2">
+    <section id="recargos" aria-labelledby="recargos-titulo" className="space-y-6 mt-12 scroll-mt-24">
+      <div className="space-y-2 text-center max-w-3xl mx-auto">
         <h2
           id="recargos-titulo"
-          className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-white"
+          className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-brand-blue-500"
         >
           Lo que puede sumar al precio
         </h2>
-        <p className="font-sans text-white/90 leading-relaxed max-w-3xl text-sm sm:text-base">
+        <p className="font-sans text-brand-blue-500/80 leading-relaxed text-sm sm:text-base">
           El cotizador calcula el viaje por distancia. Estas situaciones se cobran aparte,
           según lo que pase en el viaje.
         </p>
       </div>
 
-      <dl className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md divide-y divide-white/10">
-        {RECARGOS.map((recargo) => (
-          <div
-            key={recargo.situacion}
-            className="grid gap-1 sm:grid-cols-12 sm:gap-6 px-4 sm:px-5 py-4"
-          >
-            <dt className="sm:col-span-4 font-subheading text-sm uppercase tracking-wider text-white">
-              {recargo.situacion}
-            </dt>
-            <dd className="sm:col-span-3 font-mono text-sm font-bold text-brand-yellow-500 tabular-nums">
-              {recargo.costo}
-            </dd>
-            <dd className="sm:col-span-5 font-sans text-sm text-white/85 leading-relaxed">
-              {recargo.detalle}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <DoubleBezelCard>
+        <dl className="divide-y divide-brand-blue-100">
+          {RECARGOS.map((recargo) => (
+            <div
+              key={recargo.situacion}
+              className="grid gap-2 sm:grid-cols-12 sm:gap-6 px-2 sm:px-4 py-4 first:pt-0 last:pb-0"
+            >
+              <dt className="sm:col-span-4 font-subheading text-sm uppercase tracking-wider text-brand-blue-500 font-bold">
+                {recargo.situacion}
+              </dt>
+              <dd className="sm:col-span-3 font-mono text-sm font-extrabold text-brand-blue-600 tabular-nums">
+                {recargo.costo}
+              </dd>
+              <dd className="sm:col-span-5 font-sans text-xs sm:text-sm text-brand-blue-500/85 leading-relaxed">
+                {recargo.detalle}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </DoubleBezelCard>
     </section>
   );
 }

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function CotizarPage() {
   return (
-    <main className="min-h-dvh bg-white text-brand-blue-500 pb-20">
+    <main className="flex flex-col flex-1 w-full bg-white text-brand-blue-500 pb-20">
       <CotizadorHero />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <CotizadorUnificado />

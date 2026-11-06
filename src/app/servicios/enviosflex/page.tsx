@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function EnviosFlexPage() {
   return (
-    <main className="min-h-dvh bg-white text-brand-blue-500 overflow-x-hidden">
+    <main className="flex flex-col flex-1 w-full bg-white text-brand-blue-500 overflow-x-hidden">
       <FlexHero />
       <FlexFeatures />
       <FlexHowItWorks />
