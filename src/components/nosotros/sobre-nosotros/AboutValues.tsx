@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, Handshake, Heart } from 'lucide-react';
+import { ShieldCheck, Handshake, Heart, Sparkles } from 'lucide-react';
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard';
 
 export default function AboutValues() {
@@ -28,48 +28,53 @@ export default function AboutValues() {
   return (
     <section 
       id="about-values" 
-      className="py-20 sm:py-24 bg-brand-blue text-white relative z-10 overflow-hidden border-t border-white/10"
+      className="py-20 sm:py-28 bg-brand-blue-500 text-white relative z-10 overflow-hidden border-t border-white/15"
     >
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffec01_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <div className="text-left max-w-2xl mb-16 space-y-3.5">
-          <span className="px-4 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs sm:text-sm font-subheading uppercase tracking-widest inline-block transform -rotate-1 shadow-glow-yellow">
-            FILOSOFÍA OPERATIVA
-          </span>
+        <div className="text-left max-w-3xl mb-16 sm:mb-20 space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-yellow-500 text-brand-blue-500 rounded-full text-xs sm:text-sm font-subheading uppercase tracking-widest font-bold transform -rotate-1 shadow-glow-yellow">
+            <Sparkles className="w-4 h-4 text-brand-blue-500" />
+            <span>FILOSOFÍA OPERATIVA</span>
+          </div>
+
           <h2 className="text-white text-3xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-[1.05]">
             NUESTROS VALORES
           </h2>
-          <p className="text-brand-blue-50 font-sans text-base sm:text-lg max-w-prose leading-relaxed">
+
+          <p className="text-brand-blue-50 font-sans text-base sm:text-lg max-w-2xl leading-relaxed font-light">
             Los pilares innegociables que sostienen nuestra operativa diaria en cada barrio de Mar del Plata.
           </p>
         </div>
 
         {/* Values Asymmetrical Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           
           {/* Featured Value (Cuidado Extremo) - 7 cols */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-7"
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 h-full"
           >
-            <DoubleBezelCard>
-              <div className="flex flex-col gap-6 h-full justify-between">
-                <div className="w-14 h-14 bg-brand-blue-50 text-brand-blue rounded-2xl flex items-center justify-center border border-brand-blue-100">
-                  <ShieldCheck className="h-7 w-7 text-brand-blue" />
+            <DoubleBezelCard className="h-full">
+              <div className="flex flex-col gap-6 h-full justify-between p-2">
+                <div className="w-14 h-14 bg-brand-blue-50 text-brand-blue-500 rounded-2xl flex items-center justify-center border border-brand-blue-100 shadow-sm">
+                  <ShieldCheck className="h-7 w-7 text-brand-blue-500" />
                 </div>
 
                 <div className="space-y-3">
-                  <span className="text-xs font-subheading uppercase tracking-wider text-brand-blue bg-brand-yellow px-3 py-1 rounded-full w-fit transform -rotate-1 inline-block">
+                  <span className="text-xs font-subheading uppercase tracking-wider font-bold text-brand-blue-500 bg-brand-yellow-500 px-3 py-1 rounded-full w-fit transform -rotate-1 inline-block shadow-xs">
                     Pilar de Confianza
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-display uppercase tracking-tight text-brand-ink leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-display uppercase tracking-tight text-brand-blue-500 leading-tight">
                     Cuidado del Paquete
                   </h3>
-                  <p className="text-brand-ink font-sans leading-relaxed text-sm sm:text-base max-w-prose">
+                  <p className="text-brand-blue-500/85 font-sans leading-relaxed text-sm sm:text-base max-w-prose">
                     Manipulación profesional de paquetería e-commerce, indumentaria, tecnología y repuestos. Cada envío viaja seguro y protegido de las inclemencias del clima marplatense.
                   </p>
                 </div>
@@ -78,7 +83,7 @@ export default function AboutValues() {
           </motion.div>
 
           {/* Secondary Values - 5 cols */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <div className="lg:col-span-5 flex flex-col gap-6 h-full">
             {values
               .filter((v) => !v.featured)
               .map((val, idx) => {
@@ -89,20 +94,20 @@ export default function AboutValues() {
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: (idx + 1) * 0.1 }}
+                    transition={{ duration: 0.5, delay: (idx + 1) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     className="flex-1"
                   >
-                    <DoubleBezelCard>
-                      <div className="flex flex-col gap-4 h-full justify-between">
-                        <div className="w-11 h-11 bg-brand-blue-50 text-brand-blue rounded-xl flex items-center justify-center border border-brand-blue-100 shrink-0">
-                          <Icon className="h-5 w-5 text-brand-blue" />
+                    <DoubleBezelCard className="h-full">
+                      <div className="flex flex-col gap-4 h-full justify-between p-2">
+                        <div className="w-12 h-12 bg-brand-blue-50 text-brand-blue-500 rounded-2xl flex items-center justify-center border border-brand-blue-100 shrink-0 shadow-sm">
+                          <Icon className="h-6 w-6 text-brand-blue-500" />
                         </div>
 
-                        <div className="space-y-1.5">
-                          <h3 className="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-ink leading-tight">
+                        <div className="space-y-2">
+                          <h3 className="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-blue-500 leading-tight">
                             {val.title}
                           </h3>
-                          <p className="text-xs sm:text-sm text-brand-ink leading-relaxed font-sans">
+                          <p className="text-xs sm:text-sm text-brand-blue-500/85 leading-relaxed font-sans">
                             {val.desc}
                           </p>
                         </div>
