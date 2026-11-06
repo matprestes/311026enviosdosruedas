@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import HeroAnimado from '@/components/home/HeroAnimado';
-import HomeHero3D from '@/components/home/HomeHero3D';
 import SegmentosHome from '@/components/home/SegmentosHome';
 import SocialProofSection from '@/components/home/SocialProofSection';
 import CtaSection from '@/components/home/CtaSection';
@@ -70,23 +69,6 @@ const MarDeliveryHomeSection = dynamic(() => import('@/components/home/MarDelive
     </div>
   ),
 });
-
-const CustomerSuccessStories = dynamic(() => import('@/components/home/CustomerSuccessStories'), {
-  loading: () => (
-    <div
-      aria-label="Cargando historias de éxito de comercios"
-      className="w-full min-h-[460px] bg-white flex items-center justify-center py-16"
-    >
-      <div className="flex flex-col items-center gap-3">
-        <div className="h-8 w-8 rounded-full border-2 border-brand-blue-500 border-t-transparent animate-spin" />
-        <span className="font-mono text-xs text-brand-blue-500/60 uppercase tracking-widest">
-          Cargando experiencias de comercios locales...
-        </span>
-      </div>
-    </div>
-  ),
-});
-
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.enviosdosruedas.com';
 
 export const metadata: Metadata = {
@@ -122,8 +104,6 @@ export default function HomePage() {
               Interactuá en tiempo real con nuestro modelo 3D de entrega y baúl Flex, diseñado con tecnología Three.js y renderizado PBR.
             </p>
           </div>
-
-          <HomeHero3D />
         </div>
       </section>
 
@@ -132,7 +112,6 @@ export default function HomePage() {
       <LogisticaHomeSection />
       <MarDeliveryHomeSection />
       <EmprendedoresHome />
-      <CustomerSuccessStories />
       <SocialProofSection />
       <CtaSection />
     </div>
