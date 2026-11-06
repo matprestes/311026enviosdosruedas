@@ -89,23 +89,6 @@ export default function HomePage() {
   return (
     <div id="home-page-container" className="bg-white text-brand-blue-500 overflow-x-hidden">
       <HeroAnimado />
-      
-      {/* Immersive 3D Delivery Showcase Section */}
-      <section className="py-16 sm:py-20 bg-brand-blue-500 px-4 sm:px-6 lg:px-8 relative z-10 border-b border-white/15">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="inline-block px-4 py-1 bg-brand-yellow-500 text-brand-blue-500 rounded-full font-subheading text-xs uppercase tracking-widest font-bold shadow-sm">
-              EXPERIENCIA INTERACTIVA 3D
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white">
-              Explorador 3D de Flota y Envíos
-            </h2>
-            <p className="font-sans text-sm sm:text-base text-brand-blue-50 leading-relaxed">
-              Interactuá en tiempo real con nuestro modelo 3D de entrega y baúl Flex, diseñado con tecnología Three.js y renderizado PBR.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <SegmentosHome />
       <ServicesOverview />
