@@ -5,3 +5,6 @@ coverage/
 *.log
 .env*
 !.env.example
+.gmp_cache/
+*.tsbuildinfo
+.turbo/
