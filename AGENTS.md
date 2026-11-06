@@ -6,7 +6,7 @@ Este archivo define el contexto canónico, directrices de arquitectura y reglas 
 
 ## 1. Stack Tecnológico & Arquitectura
 - **Framework:** Next.js 15+ (App Router)
-- **Lenguaje:** TypeScript (strict mode, `@/*` resuelve a `./src/*` y `./*`)
+- **Lenguaje:** TypeScript (strict mode, `@/*` resuelve a `./src/*`)
 - **Estilos:** Tailwind CSS v4 (`src/app/globals.css`)
 - **Base de Datos & ORM:** PostgreSQL + Prisma (`prisma/schema.prisma`)
 - **Animaciones:** Motion (`motion/react`)
