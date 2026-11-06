@@ -294,11 +294,11 @@ export default function InteractiveZoneMap() {
 
                 {/* InfoWindow on Base */}
                 <InfoWindow position={BASE_LOCATION} disableAutoPan={true}>
-                  <div className="p-1 font-sans text-xs text-brand-blue-900 max-w-[180px]">
-                    <b className="block font-subheading text-sm text-brand-blue-600 uppercase">
+                  <div className="p-1 font-sans text-xs text-brand-blue-500 max-w-[180px]">
+                    <b className="block font-subheading text-sm text-brand-blue-500 uppercase">
                       Base Central Friuli 1972
                     </b>
-                    <p className="text-[11px] text-slate-600 mt-0.5">
+                    <p className="text-[11px] text-brand-blue-500/80 mt-0.5">
                       Centro neurálgico de salida de motos en Mar del Plata.
                     </p>
                   </div>

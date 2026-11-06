@@ -26,12 +26,12 @@ export default function OptimizedFooter() {
 
       {/* Luces radiales de fondo */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,236,1,0.08),transparent_55%)] pointer-events-none" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,rgba(7,59,194,0.6),transparent_45%)] pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,rgba(9,80,246,0.6),transparent_45%)] pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 py-12 md:py-16 relative z-10">
         
         {/* 1. TOP CTA BANNER RESPONSIVO */}
-        <div className="mb-12 rounded-[1.25rem] bg-gradient-to-br from-[#0950f6]/[0.95] to-[#073bc2]/[0.98] border border-white/18 p-6 sm:p-9 backdrop-blur-md shadow-[0_20px_45px_-10px_rgba(7,21,54,0.35)] flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div className="mb-12 rounded-[1.25rem] bg-gradient-to-br from-brand-blue-500/[0.98] to-brand-blue-500 border border-white/20 p-6 sm:p-9 backdrop-blur-md shadow-[0_20px_45px_-10px_rgba(9,80,246,0.40)] flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex flex-col gap-2.5 text-center lg:text-left max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow-500/15 border border-brand-yellow-500/35 text-brand-yellow-500 text-xs font-subheading uppercase tracking-wider w-fit mx-auto lg:mx-0">
               <span className="w-2 h-2 rounded-full bg-brand-yellow-500 shadow-[0_0_8px_#FFEC01] animate-ping" aria-hidden="true" />

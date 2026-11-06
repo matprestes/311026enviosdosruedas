@@ -25,7 +25,7 @@ export default function ErrorPage({
         <h1 className="font-display text-4xl sm:text-5xl uppercase tracking-tight text-brand-blue-500">
           Algo no salió bien
         </h1>
-        <p className="font-sans text-sm text-slate-600 leading-relaxed">
+        <p className="font-sans text-sm text-brand-blue-500/80 leading-relaxed">
           Ocurrió un problema temporal al procesar la solicitud. Podés volver a intentarlo o regresar al inicio.
         </p>
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">

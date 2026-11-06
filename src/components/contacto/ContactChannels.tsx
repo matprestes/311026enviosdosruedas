@@ -60,7 +60,7 @@ export default function ContactChannels() {
         >
           Elegí cómo comunicarte
         </h2>
-        <p className="font-sans text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
+        <p className="font-sans text-xs sm:text-sm text-brand-blue-500/80 mt-1 max-w-2xl">
           Atención personalizada sin intermediarios, de lunes a sábados en Mar del Plata.
         </p>
       </div>
@@ -78,7 +78,7 @@ export default function ContactChannels() {
                     <span className="text-2xs font-subheading uppercase tracking-wider text-brand-blue-500 px-2 py-0.5 rounded bg-brand-blue-50 border border-brand-blue-100">
                       {channel.tag}
                     </span>
-                    <span className="text-2xs font-mono font-bold uppercase text-slate-500 tabular-nums">
+                    <span className="text-2xs font-mono font-bold uppercase text-brand-blue-400 tabular-nums">
                       {channel.subtag}
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export default function ContactChannels() {
                     </h3>
                   </div>
 
-                  <p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-brand-blue-500/80 leading-relaxed">
                     {channel.description}
                   </p>
                 </div>

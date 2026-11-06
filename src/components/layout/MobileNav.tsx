@@ -66,7 +66,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, navItems,
     <>
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-[2000] bg-[#071536]/[0.75] backdrop-blur-[8px] lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[2000] bg-brand-blue-500/[0.75] backdrop-blur-[8px] lg:hidden transition-opacity duration-300 ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         aria-hidden="true"
@@ -77,7 +77,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, navItems,
         role="dialog"
         aria-modal="true"
         aria-label="Navegación móvil"
-        className={`fixed top-0 right-0 bottom-0 z-[2001] w-[86%] max-w-[360px] bg-[#073bc2] p-6 flex flex-col gap-5 overflow-y-auto shadow-[-12px_0_40px_rgba(0,0,0,0.45)] border-l border-white/15 lg:hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed top-0 right-0 bottom-0 z-[2001] w-[86%] max-w-[360px] bg-brand-blue-500 p-6 flex flex-col gap-5 overflow-y-auto shadow-[-12px_0_40px_rgba(9,80,246,0.45)] border-l border-white/15 lg:hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

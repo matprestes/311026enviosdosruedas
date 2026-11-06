@@ -44,15 +44,15 @@ export default function MobileBottomNav() {
             whileTap={{ scale: 0.88 }}
             className={`relative flex items-center justify-center p-1 rounded-full transition-colors ${
               isHomeActive
-                ? 'text-brand-blue-500 dark:text-brand-yellow-500 bg-brand-blue-50 dark:bg-white/10'
-                : 'text-slate-500 dark:text-slate-300 group-hover:text-brand-blue-500 dark:group-hover:text-white'
+                ? 'text-brand-blue-500 bg-brand-blue-50'
+                : 'text-brand-blue-500/70 group-hover:text-brand-blue-500'
             }`}
           >
             <Home className="w-5 h-5 stroke-[2.2]" />
             {isHomeActive && (
               <motion.span
                 layoutId="bottom-nav-indicator"
-                className="absolute -top-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue-500 dark:bg-brand-yellow-500"
+                className="absolute -top-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue-500"
                 transition={{ type: 'spring', stiffness: 450, damping: 30 }}
               />
             )}
@@ -60,8 +60,8 @@ export default function MobileBottomNav() {
           <span
             className={`text-[11px] font-sans font-medium tracking-tight mt-0.5 ${
               isHomeActive
-                ? 'text-brand-blue-500 dark:text-brand-yellow-500 font-bold'
-                : 'text-slate-500 dark:text-slate-300 group-hover:text-brand-blue-500 dark:group-hover:text-white'
+                ? 'text-brand-blue-500 font-bold'
+                : 'text-brand-blue-500/70 group-hover:text-brand-blue-500'
             }`}
           >
             Home
@@ -79,8 +79,8 @@ export default function MobileBottomNav() {
             whileTap={{ scale: 0.88 }}
             className={`relative flex items-center justify-center px-3 py-1 rounded-full transition-all ${
               isCotizarActive
-                ? 'bg-brand-yellow-500 text-brand-blue-900 shadow-md shadow-brand-yellow-500/25 ring-2 ring-brand-blue-500/20'
-                : 'bg-brand-yellow-500/20 text-brand-blue-600 dark:text-brand-yellow-400 group-hover:bg-brand-yellow-500 group-hover:text-brand-blue-900'
+                ? 'bg-brand-yellow-500 text-brand-blue-500 shadow-md shadow-brand-yellow-500/25 ring-2 ring-brand-blue-500/20'
+                : 'bg-brand-yellow-500/20 text-brand-blue-500 group-hover:bg-brand-yellow-500 text-brand-blue-500'
             }`}
           >
             <Calculator className="w-5 h-5 stroke-[2.4]" />
@@ -88,8 +88,8 @@ export default function MobileBottomNav() {
           <span
             className={`text-[11px] font-sans font-semibold tracking-tight mt-0.5 ${
               isCotizarActive
-                ? 'text-brand-blue-600 dark:text-brand-yellow-400 font-bold'
-                : 'text-slate-600 dark:text-slate-200 group-hover:text-brand-blue-600'
+                ? 'text-brand-blue-500 font-bold'
+                : 'text-brand-blue-500/70 group-hover:text-brand-blue-500'
             }`}
           >
             Cotizar
@@ -107,16 +107,16 @@ export default function MobileBottomNav() {
         >
           <motion.div
             whileTap={{ scale: 0.88 }}
-            className="relative flex items-center justify-center p-1 rounded-full text-slate-500 dark:text-slate-300 group-hover:text-emerald-500 transition-colors"
+            className="relative flex items-center justify-center p-1 rounded-full text-brand-blue-500/70 group-hover:text-brand-blue-500 transition-colors"
           >
-            <MessageCircle className="w-5 h-5 stroke-[2.2] text-emerald-500" />
+            <MessageCircle className="w-5 h-5 stroke-[2.2] text-brand-blue-500" />
             {/* Live active dot indicator */}
             <span className="absolute top-0.5 right-0.5 flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-yellow-500" />
             </span>
           </motion.div>
-          <span className="text-[11px] font-sans font-medium tracking-tight mt-0.5 text-slate-500 dark:text-slate-300 group-hover:text-emerald-500">
+          <span className="text-[11px] font-sans font-medium tracking-tight mt-0.5 text-brand-blue-500/70 group-hover:text-brand-blue-500">
             WhatsApp
           </span>
         </a>
@@ -132,15 +132,15 @@ export default function MobileBottomNav() {
             whileTap={{ scale: 0.88 }}
             className={`relative flex items-center justify-center p-1 rounded-full transition-colors ${
               isServiciosActive
-                ? 'text-brand-blue-500 dark:text-brand-yellow-500 bg-brand-blue-50 dark:bg-white/10'
-                : 'text-slate-500 dark:text-slate-300 group-hover:text-brand-blue-500 dark:group-hover:text-white'
+                ? 'text-brand-blue-500 bg-brand-blue-50'
+                : 'text-brand-blue-500/70 group-hover:text-brand-blue-500'
             }`}
           >
             <Truck className="w-5 h-5 stroke-[2.2]" />
             {isServiciosActive && (
               <motion.span
                 layoutId="bottom-nav-indicator"
-                className="absolute -top-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue-500 dark:bg-brand-yellow-500"
+                className="absolute -top-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue-500"
                 transition={{ type: 'spring', stiffness: 450, damping: 30 }}
               />
             )}
@@ -148,8 +148,8 @@ export default function MobileBottomNav() {
           <span
             className={`text-[11px] font-sans font-medium tracking-tight mt-0.5 ${
               isServiciosActive
-                ? 'text-brand-blue-500 dark:text-brand-yellow-500 font-bold'
-                : 'text-slate-500 dark:text-slate-300 group-hover:text-brand-blue-500 dark:group-hover:text-white'
+                ? 'text-brand-blue-500 font-bold'
+                : 'text-brand-blue-500/70 group-hover:text-brand-blue-500'
             }`}
           >
             Servicios

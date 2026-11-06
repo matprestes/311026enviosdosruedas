@@ -142,13 +142,13 @@ export default function HeroAnimado() {
                 height={560}
                 aboveTheFold={true}
                 sizes="(min-width: 1024px) 460px, 92vw"
-                className="w-full h-auto drop-shadow-[0_24px_44px_rgba(2,27,94,0.45)] rounded-2xl"
+                className="w-full h-auto drop-shadow-[0_24px_44px_rgba(9,80,246,0.35)] rounded-2xl"
               />
 
               {/* Floating Chip 1: Rider / Flota propia */}
               <motion.div
                 whileHover={{ scale: 1.04 }}
-                className="absolute top-[20%] -left-[4%] z-4 inline-flex items-center gap-3 bg-white text-brand-blue-500 px-3.5 py-2.5 rounded-xl border border-brand-blue-100 shadow-[0_12px_30px_rgba(7,21,54,0.25)]"
+                className="absolute top-[20%] -left-[4%] z-4 inline-flex items-center gap-3 bg-white text-brand-blue-500 px-3.5 py-2.5 rounded-xl border border-brand-blue-100 shadow-[0_12px_30px_rgba(9,80,246,0.20)]"
               >
                 <div className="w-8 h-8 rounded-full bg-brand-blue-50 border-2 border-brand-yellow-500 flex items-center justify-center shrink-0 overflow-hidden relative">
                   <OptimizedImage
@@ -170,7 +170,7 @@ export default function HeroAnimado() {
               {/* Floating Chip 2: Base Friuli 1972 */}
               <motion.div
                 whileHover={{ scale: 1.04 }}
-                className="absolute bottom-[8%] -left-[2%] z-4 inline-flex items-center gap-3 bg-white text-brand-blue-500 px-3.5 py-2.5 rounded-xl border border-brand-blue-100 shadow-[0_12px_30px_rgba(7,21,54,0.25)]"
+                className="absolute bottom-[8%] -left-[2%] z-4 inline-flex items-center gap-3 bg-white text-brand-blue-500 px-3.5 py-2.5 rounded-xl border border-brand-blue-100 shadow-[0_12px_30px_rgba(9,80,246,0.20)]"
               >
                 <div className="w-8 h-8 rounded-lg bg-brand-yellow-500 text-brand-blue-500 flex items-center justify-center shrink-0 font-bold">
                   <MapPin className="h-4 w-4" />
@@ -186,7 +186,7 @@ export default function HeroAnimado() {
               {/* Floating Chip 3: Entrega en el día */}
               <motion.div
                 whileHover={{ scale: 1.04 }}
-                className="absolute top-[8%] -right-[2%] z-4 inline-flex items-center gap-3 bg-white text-brand-blue-500 px-3.5 py-2.5 rounded-xl border border-brand-blue-100 shadow-[0_12px_30px_rgba(7,21,54,0.25)]"
+                className="absolute top-[8%] -right-[2%] z-4 inline-flex items-center gap-3 bg-white text-brand-blue-500 px-3.5 py-2.5 rounded-xl border border-brand-blue-100 shadow-[0_12px_30px_rgba(9,80,246,0.20)]"
               >
                 <div className="w-8 h-8 rounded-lg bg-brand-blue-500 text-brand-yellow-500 flex items-center justify-center shrink-0 font-bold">
                   <ShieldCheck className="h-4 w-4" />

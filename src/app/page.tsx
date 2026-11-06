@@ -10,7 +10,7 @@ const ServicesOverview = dynamic(() => import('@/components/home/ServicesOvervie
   loading: () => (
     <div
       aria-label="Cargando resumen de servicios"
-      className="w-full min-h-[620px] bg-brand-slate-900 flex items-center justify-center py-20"
+      className="w-full min-h-[620px] bg-brand-blue-500 flex items-center justify-center py-20"
     >
       <div className="flex flex-col items-center gap-3">
         <div className="h-8 w-8 rounded-full border-2 border-brand-yellow-500 border-t-transparent animate-spin" />

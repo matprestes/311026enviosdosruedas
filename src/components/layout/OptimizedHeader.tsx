@@ -143,8 +143,8 @@ export default function OptimizedHeader() {
         id="site-header"
         className={`fixed top-0 left-0 right-0 z-[1000] flex items-center justify-between gap-5 transition-[background,min-height,box-shadow,border-color] duration-300 px-[clamp(16px,4vw,56px)] ${
           scrolled
-            ? 'bg-[#073bc2]/[0.98] min-h-[70px] shadow-[0_12px_36px_rgba(7,21,54,0.28)] border-b border-white/[0.14]'
-            : 'bg-[#0950f6]/[0.94] min-h-[82px] shadow-none border-b border-white/[0.22] backdrop-blur-[14px]'
+            ? 'bg-brand-blue-500/[0.98] min-h-[70px] shadow-[0_12px_36px_rgba(9,80,246,0.35)] border-b border-white/[0.16] backdrop-blur-[14px]'
+            : 'bg-brand-blue-500/[0.94] min-h-[82px] shadow-none border-b border-white/[0.22] backdrop-blur-[14px]'
         }`}
       >
         {/* BRAND / LOGO + TEXTO TIPOGRÁFICO */}
@@ -240,7 +240,7 @@ export default function OptimizedHeader() {
                       animate="visible"
                       exit="exit"
                       style={{ transformOrigin: 'top left' }}
-                      className="absolute top-[calc(100%+4px)] left-0 min-w-[250px] bg-[#073bc2] border border-white/[0.18] rounded-[14px] p-2 shadow-[0_20px_48px_-8px_rgba(7,21,54,0.45)] z-[100]"
+                      className="absolute top-[calc(100%+4px)] left-0 min-w-[250px] bg-brand-blue-500 border border-white/[0.22] rounded-[14px] p-2 shadow-[0_20px_48px_-8px_rgba(9,80,246,0.45)] z-[100]"
                     >
                       <div className="flex flex-col gap-1">
                         {item.dropdownItems.map((subItem) => {
@@ -300,7 +300,7 @@ export default function OptimizedHeader() {
           >
             <span>Cotizá tu envío</span>
             <span
-              className="grid w-8 h-8 shrink-0 place-items-center rounded-full bg-brand-blue-500 text-brand-yellow-500 transition-all duration-200 group-hover:bg-[#071536] group-hover:rotate-[-45deg]"
+              className="grid w-8 h-8 shrink-0 place-items-center rounded-full bg-brand-blue-500 text-brand-yellow-500 transition-all duration-200 group-hover:bg-brand-blue-400 group-hover:rotate-[-45deg]"
               aria-hidden="true"
             >
               <svg className="w-4 h-4 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
