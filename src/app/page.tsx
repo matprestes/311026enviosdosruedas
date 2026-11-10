@@ -96,7 +96,6 @@ export default function HomePage() {
       <MarDeliveryHomeSection />
       <EmprendedoresHome />
       <SocialProofSection />
-      <CtaSection />
     </div>
   );
 }
