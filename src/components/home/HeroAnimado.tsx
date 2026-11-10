@@ -8,7 +8,7 @@ import { CTANestedPill } from '@/components/ui/CTANestedPill';
 import { Knockout } from '@/components/ui/Knockout';
 import Badge from '@/components/ui/Badge';
 import HeroProceduralBackground from '@/components/ui/HeroProceduralBackground';
-import { SPRING_GENTLE, SPRING_SNAPPY, EASE_FLUID } from '@/lib/motion';
+import { SPRING_SNAPPY, EASE_FLUID } from '@/lib/motion';
 
 /** Diferenciales del ticker. La lista se repite dos veces para que el bucle no se vea. */
 const diferenciales = [

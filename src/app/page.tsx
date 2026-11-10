@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import HeroAnimado from '@/components/home/HeroAnimado';
 import SegmentosHome from '@/components/home/SegmentosHome';
 import SocialProofSection from '@/components/home/SocialProofSection';
-import CtaSection from '@/components/home/CtaSection';
 
 // Dynamic code-splitting for heavy below-the-fold interactive components
 const ServicesOverview = dynamic(() => import('@/components/home/ServicesOverview'), {

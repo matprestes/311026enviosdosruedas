@@ -1,17 +1,14 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import {
   Search,
   Store,
   Bike,
   ShoppingBag,
-  ArrowRight,
   ShieldCheck,
   CheckCircle2,
-  ExternalLink,
 } from 'lucide-react';
 import { DoubleBezelCard } from '@/components/ui/DoubleBezelCard';
 import { CTANestedPill } from '@/components/ui/CTANestedPill';

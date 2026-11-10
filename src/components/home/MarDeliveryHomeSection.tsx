@@ -8,7 +8,6 @@ import {
   Zap,
   Users,
   BarChart3,
-  CheckCircle2,
   UtensilsCrossed,
   ArrowUpRight,
   Sparkles,

@@ -27,38 +27,38 @@ export interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Inicio', href: '/', icon: Home },
+  { label: 'INICIO', href: '/', icon: Home },
   {
-    label: 'Servicios',
+    label: 'SERVICIOS',
     icon: Bike,
     dropdownItems: [
-      { label: 'Envíos Express', href: '/servicios/envios-express', icon: Zap },
-      { label: 'Envíos LowCost', href: '/servicios/envios-lowcost', icon: TrendingDown },
-      { label: 'Envíos Flex (MeLi)', href: '/servicios/enviosflex', icon: Clock },
-      { label: 'Cuenta Corriente Flexible', href: '/servicios/empresas-cuenta-corriente', icon: Building2 },
-      { label: 'E-commerce 24HS', href: '/servicios#ecommerce-24hs', icon: Package },
-      { label: 'E-commerce Same Day', href: '/servicios/deposito-fulfillment', icon: Store },
+      { label: 'ENVÍOS EXPRESS', href: '/servicios/envios-express', icon: Zap },
+      { label: 'ENVÍOS LOWCOST', href: '/servicios/envios-lowcost', icon: TrendingDown },
+      { label: 'ENVÍOS FLEX (MELI)', href: '/servicios/enviosflex', icon: Clock },
+      { label: 'CUENTA CORRIENTE FLEXIBLE', href: '/servicios/empresas-cuenta-corriente', icon: Building2 },
+      { label: 'E-COMMERCE 24HS', href: '/servicios#ecommerce-24hs', icon: Package },
+      { label: 'E-COMMERCE SAME DAY', href: '/servicios/deposito-fulfillment', icon: Store },
     ],
   },
   {
-    label: 'Plataformas',
+    label: 'PLATAFORMAS',
     icon: LayoutGrid,
     dropdownItems: [
-      { label: 'Logística DosRuedas', href: '/logistica-dosruedas', icon: Search },
-      { label: 'MarDelivery Gastronomía', href: '/mardelivery', icon: UtensilsCrossed },
+      { label: 'LOGÍSTICA DOSRUEDAS', href: '/logistica-dosruedas', icon: Search },
+      { label: 'MARDELIVERY GASTRONOMÍA', href: '/mardelivery', icon: UtensilsCrossed },
     ],
   },
-  { label: 'Prompt Lab', href: '/generador-de-prompts', icon: Sparkles },
+  { label: 'PROMPT LAB', href: '/generador-de-prompts', icon: Sparkles },
   {
-    label: 'Nosotros',
+    label: 'NOSOTROS',
     icon: Info,
     dropdownItems: [
-      { label: 'Sobre Nosotros', href: '/nosotros/sobre-nosotros', icon: Info },
-      { label: 'Preguntas Frecuentes', href: '/nosotros/preguntas-frecuentes', icon: HelpCircle },
-      { label: 'Nuestras Redes', href: '/nosotros/nuestras-redes', icon: Share2 },
+      { label: 'SOBRE NOSOTROS', href: '/nosotros/sobre-nosotros', icon: Info },
+      { label: 'PREGUNTAS FRECUENTES', href: '/nosotros/preguntas-frecuentes', icon: HelpCircle },
+      { label: 'NUESTRAS REDES', href: '/nosotros/nuestras-redes', icon: Share2 },
     ],
   },
-  { label: 'Contacto', href: '/contacto', icon: Mail },
+  { label: 'CONTACTO', href: '/contacto', icon: Mail },
 ];
 
 export default function OptimizedHeader() {
