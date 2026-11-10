@@ -3,6 +3,8 @@ import { LogisticaHero } from '@/components/logistica-dosruedas/LogisticaHero';
 import { TrackingWidget } from '@/components/logistica-dosruedas/TrackingWidget';
 import { PortalAccessCards } from '@/components/logistica-dosruedas/PortalAccessCards';
 
+export const dynamic = 'force-dynamic';
+
 const baseUrl = 'https://www.enviosdosruedas.com';
 
 export const metadata: Metadata = {

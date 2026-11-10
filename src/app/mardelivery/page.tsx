@@ -3,6 +3,8 @@ import { MarDeliveryHero } from '@/components/mardelivery/MarDeliveryHero';
 import { CartaDigitalFeatures } from '@/components/mardelivery/CartaDigitalFeatures';
 import { RepartidoresOptions } from '@/components/mardelivery/RepartidoresOptions';
 
+export const dynamic = 'force-dynamic';
+
 const baseUrl = 'https://www.enviosdosruedas.com';
 
 export const metadata: Metadata = {

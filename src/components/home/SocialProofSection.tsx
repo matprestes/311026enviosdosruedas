@@ -1,7 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CTANestedPill } from '@/components/ui/CTANestedPill';
 
 interface Review {
   id: string;
@@ -9,9 +9,11 @@ interface Review {
   timeAgo: string;
   quoteHighlight: string;
   text: string;
+  // color variant: 'blue' | 'white' | 'yellow'
   variant: 'blue' | 'white' | 'yellow';
 }
 
+// 6 reviews selected from source data, cleaned of emojis, no ownerResponse
 const REVIEWS: Review[] = [
   {
     id: 'karen-herrera',
@@ -35,7 +37,7 @@ const REVIEWS: Review[] = [
     timeAgo: 'Hace 37 semanas',
     quoteHighlight: 'EL MEJOR SERVICIO PREMIUM DE LA ZONA',
     text: 'El mejor servicio premium de la zona en Mar del Plata. 100% recomendable por puntualidad y trato.',
-    variant: 'white',
+    variant: 'yellow',
   },
   {
     id: 'lorenzo-elizagoyen',
@@ -64,44 +66,64 @@ const REVIEWS: Review[] = [
 ];
 
 function ReviewCard({ review }: { review: Review }) {
-  const isFeatured = review.variant === 'blue';
+  const cardStyles = {
+    blue: {
+      article: 'bg-brand-blue-500 text-white shadow-elevated',
+      dateBadge: 'bg-brand-yellow-500 text-brand-blue-500',
+      starsColor: 'text-brand-yellow-500',
+      headingColor: 'text-white',
+      bodyColor: 'text-white/90',
+      borderColor: 'border-white/20',
+      avatarBg: 'bg-brand-yellow-500 text-brand-blue-500',
+      authorColor: 'text-white',
+    },
+    white: {
+      article: 'bg-white border-2 border-brand-yellow-500 shadow-[0_16px_40px_rgba(9,80,246,0.08)]',
+      dateBadge: 'bg-brand-blue-50 text-brand-blue-500',
+      starsColor: 'text-brand-blue-500',
+      headingColor: 'text-brand-blue-500',
+      bodyColor: 'text-brand-blue-500/85',
+      borderColor: 'border-brand-blue-100/40',
+      avatarBg: 'bg-brand-blue-500 text-white',
+      authorColor: 'text-brand-blue-500',
+    },
+    yellow: {
+      article: 'bg-brand-yellow-500 text-brand-blue-500 shadow-[0_16px_40px_rgba(255,236,1,0.3)]',
+      dateBadge: 'bg-white text-brand-blue-500 shadow-sm',
+      starsColor: 'text-brand-blue-500',
+      headingColor: 'text-brand-blue-500',
+      bodyColor: 'text-brand-blue-500',
+      borderColor: 'border-brand-blue-500/20',
+      avatarBg: 'bg-brand-blue-500 text-white',
+      authorColor: 'text-brand-blue-500',
+    },
+  }[review.variant];
 
   return (
     <article
       className={cn(
-        'group w-full rounded-2xl flex flex-col justify-between p-7 lg:p-8 min-h-80 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated border relative overflow-hidden',
-        isFeatured
-          ? 'bg-brand-blue-500 text-white border-brand-blue-400 shadow-md'
-          : 'bg-white text-brand-blue-500 border-brand-blue-100/80 shadow-xs'
+        'card-token w-full rounded-2xl flex flex-col justify-between p-8 min-h-85',
+        cardStyles.article
       )}
     >
-      {/* Top subtle highlight */}
-      <div
-        className={cn(
-          'absolute top-0 inset-x-0 h-1 transition-opacity duration-300 opacity-0 group-hover:opacity-100',
-          isFeatured ? 'bg-brand-yellow-500' : 'bg-brand-blue-500'
-        )}
-        aria-hidden="true"
-      />
-
       <div>
         {/* Top Row: Rating & Date */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between mb-6">
           <div
             role="img"
             aria-label="Calificación: 5 de 5 estrellas"
-            className="flex gap-1 text-base text-brand-yellow-500"
+            className={cn('flex gap-1', cardStyles.starsColor)}
           >
-            <span aria-hidden="true">★</span>
-            <span aria-hidden="true">★</span>
-            <span aria-hidden="true">★</span>
-            <span aria-hidden="true">★</span>
-            <span aria-hidden="true">★</span>
+            <span aria-hidden="true" className="text-xl">★</span>
+            <span aria-hidden="true" className="text-xl">★</span>
+            <span aria-hidden="true" className="text-xl">★</span>
+            <span aria-hidden="true" className="text-xl">★</span>
+            <span aria-hidden="true" className="text-xl">★</span>
           </div>
           <span
             className={cn(
-              'text-xs font-mono tracking-wider',
-              isFeatured ? 'text-brand-yellow-500 font-semibold' : 'text-brand-blue-400'
+              'text-xs font-bold px-3.5 py-1 rounded-full font-mono',
+              cardStyles.dateBadge
             )}
           >
             {review.timeAgo}
@@ -111,59 +133,32 @@ function ReviewCard({ review }: { review: Review }) {
         {/* Review Heading */}
         <h3
           className={cn(
-            'font-display text-lg sm:text-xl uppercase leading-snug mb-3 tracking-tight',
-            isFeatured ? 'text-white' : 'text-brand-blue-500'
+            'font-subheading text-xl lg:text-2xl uppercase leading-none mb-3 tracking-wide',
+            cardStyles.headingColor
           )}
         >
           {review.quoteHighlight}
         </h3>
 
         {/* Review Body */}
-        <p
-          className={cn(
-            'text-sm leading-relaxed font-sans font-light',
-            isFeatured ? 'text-white/90' : 'text-brand-blue-500/80'
-          )}
-        >
+        <p className={cn('text-sm leading-relaxed font-normal', cardStyles.bodyColor)}>
           {review.text}
         </p>
       </div>
 
       {/* Author / Footer */}
-      <div
-        className={cn(
-          'pt-5 mt-6 border-t flex items-center justify-between gap-3',
-          isFeatured ? 'border-white/15' : 'border-brand-blue-100/50'
-        )}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            aria-hidden="true"
-            className={cn(
-              'w-9 h-9 rounded-full font-bold flex items-center justify-center text-xs shrink-0',
-              isFeatured
-                ? 'bg-brand-yellow-500 text-brand-blue-500 shadow-xs'
-                : 'bg-brand-blue-50 text-brand-blue-500 border border-brand-blue-100'
-            )}
-          >
-            {review.author.charAt(0)}
-          </div>
-          <span
-            className={cn(
-              'font-semibold text-sm tracking-tight',
-              isFeatured ? 'text-white' : 'text-brand-blue-500 font-bold'
-            )}
-          >
-            {review.author}
-          </span>
-        </div>
-        <span
+      <div className={cn('pt-6 mt-6 border-t flex items-center gap-3', cardStyles.borderColor)}>
+        <div
+          aria-hidden="true"
           className={cn(
-            'text-2xs font-mono uppercase tracking-wider',
-            isFeatured ? 'text-white/70' : 'text-brand-blue-400'
+            'w-10 h-10 rounded-full font-bold flex items-center justify-center text-sm shrink-0 shadow-sm',
+            cardStyles.avatarBg
           )}
         >
-          Google Maps
+          {review.author.charAt(0)}
+        </div>
+        <span className={cn('font-bold text-sm tracking-wide', cardStyles.authorColor)}>
+          {review.author}
         </span>
       </div>
     </article>
@@ -175,46 +170,44 @@ export default function SocialProofSection() {
     <section
       id="social-proof"
       aria-labelledby="social-proof-title"
-      className="content-auto relative py-20 lg:py-24 bg-brand-blue-50/40 border-y border-brand-blue-100/60"
+      className="content-auto relative py-20 lg:py-24 bg-brand-blue-50 border-y border-brand-blue-100/60"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-12 lg:mb-16">
-          {/* Rating Trust Kicker (Unboxed metadata with typographic separators) */}
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.22em] text-brand-blue-500 mb-3">
-            <span>04</span>
-            <span className="text-brand-blue-300" aria-hidden="true">/</span>
-            <span className="text-brand-yellow-500 font-bold" aria-hidden="true">★★★★★</span>
-            <span>5.0 / 5.0 en Google</span>
-            <span className="text-brand-blue-300" aria-hidden="true">·</span>
-            <span className="text-brand-blue-400">+120 valoraciones auditadas</span>
+        <header className="mb-10 lg:mb-14">
+          {/* Rating Trust Badge */}
+          <div className="inline-flex items-center mb-5">
+            <span className="inline-flex items-center gap-1.5 bg-brand-blue-500 text-white text-[12px] sm:text-[13px] font-mono font-bold px-5 py-2 rounded-full tracking-wider uppercase shadow-md">
+              5.0 / 5.0 EN GOOGLE · +120 VALORACIONES
+            </span>
           </div>
 
-          {/* Main Title & Action Button */}
+          {/* Main Title & CTA Button */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            {/* Title with highlighted keyword */}
             <h2
               id="social-proof-title"
-              className="font-display text-3xl sm:text-5xl lg:text-6xl leading-hero tracking-tight uppercase text-brand-blue-500 max-w-4xl text-balance"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[0.92] tracking-tight uppercase text-brand-blue-500 max-w-4xl"
             >
-              La palabra de quienes{' '}
-              <span className="underline decoration-brand-yellow-500 decoration-4 underline-offset-8">
-                venden y envían
+              LA PALABRA DE QUIENES{' '}
+              <span className="inline-block relative mx-1 my-1 px-4 sm:px-5 py-1 rounded-full bg-brand-yellow-500 text-brand-blue-500 shadow-cta-glow">
+                VENDEN Y ENVÍAN
               </span>{' '}
-              en MDQ
+              EN MDQ
             </h2>
 
-            {/* Google Maps Canonical CTA */}
+            {/* Google Maps Link Button */}
             <div className="shrink-0 pt-2 lg:pt-0">
-              <CTANestedPill
+              <Link
                 href="https://www.google.com/maps?q=Friuli+1972,+Mar+del+Plata"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="outline"
-                size="default"
-                icon={<ExternalLink className="w-4 h-4 text-brand-blue-500" aria-hidden="true" />}
+                className="button-pill rounded-full inline-flex items-center gap-2.5 border-2 border-brand-blue-500 text-brand-blue-500 hover:bg-brand-blue-500 hover:text-white px-7 py-3 min-h-11 font-subheading text-lg sm:text-xl tracking-wider uppercase shadow-sm hover:shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500 focus-visible:ring-offset-2"
+                aria-label="Ver todas las opiniones en Google Maps"
               >
-                Ver en Google Maps
-              </CTANestedPill>
+                <span>VER EN GOOGLE MAPS</span>
+                <ExternalLink className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </header>

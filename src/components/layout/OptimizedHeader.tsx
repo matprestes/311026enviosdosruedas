@@ -9,7 +9,7 @@ import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion
 import {
   ChevronDown, ChevronRight, Phone,
   Home, Zap, TrendingDown, Clock, Info, HelpCircle, Share2, Mail,
-  LayoutGrid, Building2, Package, Store, Search, UtensilsCrossed, Bike
+  LayoutGrid, Building2, Package, Store, Search, UtensilsCrossed, Bike, Sparkles
 } from 'lucide-react';
 import { SUPPORT_PHONE } from '@/lib/promises';
 import { trackAnalytics } from '@/lib/analytics';
@@ -48,6 +48,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: 'MarDelivery Gastronomía', href: '/mardelivery', icon: UtensilsCrossed },
     ],
   },
+  { label: 'Prompt Lab', href: '/generador-de-prompts', icon: Sparkles },
   {
     label: 'Nosotros',
     icon: Info,
